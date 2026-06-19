@@ -1,0 +1,99 @@
+<?php
+
+/**
+ * @file
+ * Defines hooks and functionality for the OAFC Profile module.
+ */
+
+use Drupal\node\NodeInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * {@inheritdoc}
+ *
+ * @see hook_ENTITY_TYPE_insert()
+ */
+function oafc_profile_node_insert(NodeInterface $node) {
+  if ($node->bundle() !== 'profile') {
+    return;
+  }
+
+  \Drupal::service('oafc_profile.hook.entity_save')->clearAuthorEntityCache(
+    $node
+  );
+}
+
+/**
+ * {@inheritdoc}
+ *
+ * @see hook_ENTITY_TYPE_update()
+ */
+function oafc_profile_node_update(NodeInterface $node) {
+  if ($node->bundle() !== 'profile') {
+    return;
+  }
+
+  \Drupal::service('oafc_profile.hook.entity_save')->clearAuthorEntityCache(
+    $node
+  );
+}
+
+/**
+ * {@inheritdoc}
+ *
+ * @see hook_entity_extra_field_info()
+ */
+function oafc_profile_entity_extra_field_info() {
+  return \Drupal::service('oafc_profile.hook.entity_field')->extraFieldInfo();
+}
+
+/**
+ * {@inheritdoc}
+ *
+ * @see hook_ENTITY_TYPE_view()
+ */
+function oafc_profile_user_view(
+  array &$build,
+  EntityInterface $entity,
+  EntityViewDisplayInterface $display,
+  string $view_mode
+) {
+  \Drupal::service('oafc_profile.hook.entity_field')->profileFieldView(
+    $build,
+    $entity,
+    $display,
+    $view_mode
+  );
+}
+
+/**
+ * {@inheritdoc}
+ *
+ * @see hook_form_FORM_ID_alter()
+ */
+function oafc_profile_form_node_profile_form_alter(
+  array &$form,
+  FormStateInterface $form_state
+) {
+  \Drupal::service('oafc_profile.hook.form_alter')->alterForm(
+    $form,
+    $form_state
+  );
+}
+
+/**
+ * {@inheritdoc}
+ *
+ * @see hook_form_FORM_ID_alter()
+ */
+function oafc_profile_form_node_profile_edit_form_alter(
+  array &$form,
+  FormStateInterface $form_state
+) {
+  \Drupal::service('oafc_profile.hook.form_alter')->alterForm(
+    $form,
+    $form_state
+  );
+}

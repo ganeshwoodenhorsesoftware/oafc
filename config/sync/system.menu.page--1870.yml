@@ -1,0 +1,13 @@
+uuid: fed97449-e817-4982-b494-a428a612274f
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_section
+third_party_settings:
+  menu_section:
+    uid: '1'
+id: page--1870
+label: ttt
+description: null
+locked: false

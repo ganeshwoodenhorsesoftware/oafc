@@ -1,0 +1,44 @@
+uuid: 81c20bfe-73da-4cf9-aeb8-034bc0535ba8
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_order.commerce_order_item_type.individual_membership
+    - field.field.commerce_order_item.individual_membership.license
+  module:
+    - commerce_order
+id: commerce_order_item.individual_membership.default
+targetEntityType: commerce_order_item
+bundle: individual_membership
+mode: default
+content:
+  purchased_entity:
+    type: entity_reference_autocomplete
+    weight: -1
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  quantity:
+    type: commerce_quantity
+    weight: 1
+    region: content
+    settings:
+      placeholder: ''
+      step: '1'
+    third_party_settings: {  }
+  unit_price:
+    type: commerce_unit_price
+    weight: 2
+    region: content
+    settings:
+      require_confirmation: true
+    third_party_settings: {  }
+hidden:
+  adjustments: true
+  created: true
+  license: true
+  total_price: true

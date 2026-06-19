@@ -1,0 +1,8 @@
+name: OAFC Classified Ad
+description: Support module for classified ads on OAFC
+type: module
+core_version_requirement: ^9 || ^10
+dependencies:
+  - drupal:commerce
+  - oafc_base
+package: oafc

@@ -1,0 +1,5 @@
+oafc_base.admin_oafc:
+  title: Administer OAFC
+  description: 'Administer OAFC.'
+  route_name: oafc_base.admin_oafc
+  parent: system.admin_config

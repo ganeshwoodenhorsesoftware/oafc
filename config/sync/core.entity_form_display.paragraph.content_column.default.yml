@@ -1,0 +1,46 @@
+uuid: ecf4f55e-d577-4e1f-9af2-8842f436aa76
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.content_column.field_paragraph_reference
+    - paragraphs.paragraphs_type.content_column
+  module:
+    - field_group
+    - paragraphs
+third_party_settings:
+  field_group:
+    group_components:
+      children:
+        - field_paragraph_reference
+      label: Components
+      region: content
+      parent_name: ''
+      weight: 20
+      format_type: details
+      format_settings:
+        classes: ''
+        id: ''
+        open: false
+        required_fields: true
+id: paragraph.content_column.default
+targetEntityType: paragraph
+bundle: content_column
+mode: default
+content:
+  field_paragraph_reference:
+    type: entity_reference_paragraphs
+    weight: 0
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: _none
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
+  uid: true

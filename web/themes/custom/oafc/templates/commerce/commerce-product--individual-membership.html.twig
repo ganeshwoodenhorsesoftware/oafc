@@ -1,0 +1,110 @@
+{#
+/**
+ * @file
+ *
+ * Default product template.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the wrapper.
+ * - product: The rendered product fields.
+ *   Use 'product' to print them all, or print a subset such as
+ *   'product.title'. Use the following code to exclude the
+ *   printing of a given field:
+ *   @code
+ *   {{ product|without('title') }}
+ *   @endcode
+ * - product_entity: The product entity.
+ * - product_url: The product URL.
+ *
+ * @ingroup themeable
+ */
+#}
+
+{# Fallback product thumbnail placeholder. #}
+{% set product_placeholder_thumbnail_url = base_path ~ directory ~ '/gfx/listing_placeholder.jpg' %}
+{% set product_placeholder_thumbnail_alt = product_entity.title.value %}
+
+{# Listing. #}
+{% if view_mode == 'listing' %}
+
+  {# Set product thumbnail. #}
+  {% if product_variation_images %}
+    {# Set thumbnail to first variation, first image. #}
+    {%
+    set product_image_thumbnail = {
+    '#theme':      'image_style',
+    '#style_name': 'product_thumbnail',
+    '#uri':        product_variation_images.0.images.0.entity.uri.value,
+    '#alt':        product_variation_images.0.images.0.alt,
+    }
+    %}
+  {% endif %}
+
+  <div class="listing-item">
+    <div class="listing-item__image">
+      <a href="{{ product_url }}" aria-label="{{ 'View Details'|t }}">
+        {% if product_image_thumbnail %}
+          {{ product_image_thumbnail }}
+        {% else %}
+          <img src="{{ product_placeholder_thumbnail_url }}" alt="{{ product_placeholder_thumbnail_alt }}" />
+        {% endif %}
+      </a>
+    </div>
+    <div class="listing-item__title">
+      <h3><a href="{{ product_url }}">{{ product_entity.title.value }}</a></h3>
+    </div>
+    <div class="listing-item__sub-title">
+      {{ product.variation_price }}
+    </div>
+    <div class="listing-item__body">
+      {% if product_entity.body.summary %}
+        {{ product_entity.body.summary }}
+      {% else %}
+        {% set teaser_text = product_entity.body.value|raw|striptags %}
+        {{ teaser_text|length > 200 ? teaser_text|slice(0, 200) ~ '...' : teaser_text }}
+      {% endif %}
+    </div>
+    <a href="{{ product_url }}" class="btn btn--sm btn--red">{{ 'View Details'|t }}</a>
+  </div>
+
+{# Teaser/Listing Display. #}
+{% elseif view_mode == 'teaser' %}
+
+  {# Set product thumbnail. #}
+  {% if product_variation_images %}
+    {# Set thumbnail to first variation, first image. #}
+    {%
+    set product_image_thumbnail = {
+    '#theme':      'image_style',
+    '#style_name': 'product_slider_block_image',
+    '#uri':        product_variation_images.0.images.0.entity.uri.value,
+    '#alt':        product_variation_images.0.images.0.alt,
+    }
+    %}
+  {% endif %}
+
+  <div class="product-teaser-item">
+    <a href="{{ product_url }}">
+      <div class="product-teaser-item__title">
+        <strong>{{ 'For Sale'|t }}</strong>
+        {{ product_entity.title.value }}
+      </div>
+
+      <div class="product-teaser-item__image">
+        {% if product_image_thumbnail %}
+          {{ product_image_thumbnail }}
+        {% else %}
+          <img src="{{ product_placeholder_thumbnail_url }}" alt="{{ product_placeholder_thumbnail_alt }}" />
+        {% endif %}
+      </div>
+    </a>
+  </div>
+
+{# Node display. #}
+{% else %}
+
+  <article{{ attributes }} class="product product--full">
+    {{- product|without('variation_attributes') -}}
+  </article>
+
+{% endif %}

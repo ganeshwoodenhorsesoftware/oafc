@@ -1,0 +1,23 @@
+uuid: bfe87e27-c66f-4e28-8976-732554b3973a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_text_long_formatted
+    - paragraphs.paragraphs_type.card
+  module:
+    - text
+id: paragraph.card.field_text_long_formatted
+field_name: field_text_long_formatted
+entity_type: paragraph
+bundle: card
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: false
+  required_summary: false
+field_type: text_with_summary

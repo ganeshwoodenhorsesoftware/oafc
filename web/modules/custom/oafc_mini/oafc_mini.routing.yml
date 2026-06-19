@@ -1,0 +1,12 @@
+entity.oafc_mini.add_form:
+  path: '/images/add/{menu}/{region}'
+  defaults:
+    _controller: '\Drupal\oafc_mini\Controller\OafcMiniController::add'
+    _title: 'Add image'
+  requirements:
+    _custom_access: 'Drupal\oafc_mini\Access\OafcMiniAddAccessCheck::access'
+  options:
+    parameters:
+      menu:
+        type: entity:menu
+        with_config_overrides: TRUE

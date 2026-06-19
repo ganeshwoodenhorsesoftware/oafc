@@ -1,0 +1,9 @@
+uuid: ea1177a2-8912-49e4-a2cf-01d4f2747acd
+langcode: en
+status: true
+dependencies: {  }
+id: basic_content
+label: 'Basic Content'
+icon_uuid: null
+description: 'Basic WYSIWYG content.'
+behavior_plugins: {  }

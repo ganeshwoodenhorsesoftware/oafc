@@ -1,0 +1,10 @@
+oafc_tnc.tnc:
+  type: config_object
+  label: 'OAFC Terms and Conditions'
+  mapping:
+    tnc:
+      type: text
+      label: 'Terms and Conditions'
+    tnc_format:
+      type: text
+      label: 'Terms and Conditions text format'

@@ -1,0 +1,25 @@
+oafc_license_notifications.settings:
+  type: config_object
+  label: 'License notification settings'
+  mapping:
+    first_notification_days:
+      type: integer
+      label: 'First notification days before expiration'
+    second_notification_days:
+      type: integer
+      label: 'Second notification days before expiration'
+    third_notification_days:
+      type: integer
+      label: 'Third notification days before expiration'
+    enabled:
+      type: boolean
+      label: 'Enable automatic notifications'
+    from_email:
+      type: email
+      label: 'From email address'
+    bcc_email:
+      type: email
+      label: 'BCC email address'
+    log_notifications:
+      type: boolean
+      label: 'Log all notification attempts'

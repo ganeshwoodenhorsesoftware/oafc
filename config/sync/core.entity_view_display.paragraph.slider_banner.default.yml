@@ -1,0 +1,41 @@
+uuid: d7867f15-f4ca-4dd9-a5c8-5fd6c975b3ca
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.slider_banner.field_banner_image
+    - field.field.paragraph.slider_banner.field_banner_link
+    - paragraphs.paragraphs_type.slider_banner
+  module:
+    - image
+    - link
+id: paragraph.slider_banner.default
+targetEntityType: paragraph
+bundle: slider_banner
+mode: default
+content:
+  field_banner_image:
+    type: image
+    label: above
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_banner_link:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  search_api_excerpt: true

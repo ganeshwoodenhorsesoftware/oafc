@@ -1,0 +1,32 @@
+{#
+/**
+ * @file
+ * Theme implementation for a microsite Event.
+ *
+ * @see template_preprocess_node()
+ */
+#}
+<div class="listing-item">
+  <div class="listing-item__image">
+    <a href="{{ url }}" aria-label="{{ 'View Details'|t }}">
+      {% if node.field_logo.entity.fileuri %}
+        <img src="{{ node.field_logo.entity.fileuri|image_style('logo_listing') }}" alt="{{ node.field_logo.alt }}" />
+      {% else %}
+        <img src="{{ base_path ~ directory }}/gfx/listing_placeholder.jpg" alt="{{ node.field_featured_image.alt }}" />
+      {% endif %}
+    </a>
+  </div>
+  <div class="listing-item__title">
+    <h3><a href="{{ url }}">{{ node.title.value }}</a></h3>
+  </div>
+  <div class="listing-item__sub-title">
+    {{ content.field_date_range }}
+  </div>
+  <div class="listing-item__body">
+    {% set body_teaser %}
+      {{ content.body }}
+    {% endset %}
+    {{ body_teaser|striptags }}
+  </div>
+  <a href="{{ url }}" class="btn btn--sm btn--red">{{ 'View Details'|t }}</a>
+</div>

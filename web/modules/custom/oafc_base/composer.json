@@ -1,0 +1,11 @@
+{
+    "name": "org/oafc_base",
+    "type": "drupal-drush",
+    "extra": {
+        "drush": {
+            "services": {
+                "drush.services.yml": "^11"
+            }
+        }
+    }
+}

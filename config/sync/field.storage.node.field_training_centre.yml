@@ -1,0 +1,19 @@
+uuid: dd3c70f3-0f8f-40b9-ac64-e65d36b3bea4
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_training_centre
+field_name: field_training_centre
+entity_type: node
+type: entity_reference
+settings:
+  target_type: node
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

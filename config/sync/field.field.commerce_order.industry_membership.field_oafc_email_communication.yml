@@ -1,0 +1,23 @@
+uuid: de04ae0e-3b41-4f6c-8c01-70b34c6d28a7
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_order.commerce_order_type.industry_membership
+    - field.storage.commerce_order.field_oafc_email_communication
+id: commerce_order.industry_membership.field_oafc_email_communication
+field_name: field_oafc_email_communication
+entity_type: commerce_order
+bundle: industry_membership
+label: 'OAFC Email Communication'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'You consent to add your email to OAFC’s email distribution list.'
+  off_label: 'You do not consent to add your email to OAFC’s email distribution list.'
+field_type: boolean

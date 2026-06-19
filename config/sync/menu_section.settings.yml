@@ -1,0 +1,7 @@
+_core:
+  default_config_hash: Md4PWn1Kqjo0dTmayiQftttMFetFcIxFLljns1AR_nM
+section_types:
+  course: course
+  event: event
+allowed_types: {  }
+theme_prefix: oafc

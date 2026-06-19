@@ -1,0 +1,7 @@
+name: OAFC
+type: module
+description: 'Defines common functionality for all custom modules.'
+core_version_requirement: ^9 || ^10
+package: oafc
+dependencies:
+  - drupal:commerce

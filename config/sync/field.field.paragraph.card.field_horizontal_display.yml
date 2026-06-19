@@ -1,0 +1,23 @@
+uuid: dbb77604-1ecb-4b9c-ba8c-b264cf740933
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_horizontal_display
+    - paragraphs.paragraphs_type.card
+id: paragraph.card.field_horizontal_display
+field_name: field_horizontal_display
+entity_type: paragraph
+bundle: card
+label: 'Horizontal Display'
+description: 'Displays the card in a horizontal format rather than the default vertical format. Typically used when only a single card is displayed within a row.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

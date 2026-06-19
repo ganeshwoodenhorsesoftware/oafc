@@ -1,0 +1,35 @@
+uuid: a73697dc-16a9-47ed-a54b-b1cbf8b57a8e
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_variation_type.industry_membership
+    - field.field.commerce_product_variation.industry_membership.field_product_image
+    - field.field.commerce_product_variation.industry_membership.license_expiration
+    - field.field.commerce_product_variation.industry_membership.license_type
+  module:
+    - commerce_price
+id: commerce_product_variation.industry_membership.default
+targetEntityType: commerce_product_variation
+bundle: industry_membership
+mode: default
+content:
+  list_price:
+    type: commerce_price_default
+    label: above
+    settings:
+      strip_trailing_zeroes: false
+      currency_display: symbol
+    third_party_settings: {  }
+    weight: -1
+    region: content
+hidden:
+  field_product_image: true
+  langcode: true
+  license_expiration: true
+  license_type: true
+  price: true
+  product_id: true
+  search_api_excerpt: true
+  sku: true
+  title: true

@@ -1,0 +1,53 @@
+{#
+/**
+ * @file
+ * Theme implementation for a Course microsite.
+ *
+ * @see template_preprocess_node()
+ */
+#}
+{% if node.field_image.entity.fileuri %}
+  <div class="microsite-banner">
+    {{ content.field_image }}
+  </div>
+{% endif %}
+
+{% if node.field_logo.entity.fileuri %}
+  {% if node.field_image.entity.fileuri %}
+    {% set title_wrapper_class = 'microsite-top__title-wrapper microsite-top__title-wrapper--logo' %}
+  {% else %}
+    {% set title_wrapper_class = 'microsite-top__title-wrapper microsite-top__title-wrapper--logo microsite-top__title-wrapper--logo-without-banner' %}
+  {% endif %}
+{% else %}
+  {% set title_wrapper_class = 'microsite-top__title-wrapper' %}
+{% endif %}
+
+<div class="{{ title_wrapper_class }}">
+  {% if node.field_logo.entity.fileuri %}
+    <div class="microsite-logo">
+      {{ content.field_logo }}
+    </div>
+  {% endif %}
+  <div class="microsite-top__title-content clearfix">
+    <div class="microsite-social-media-sharing">
+      <div class="microsite-social-media-sharing__title">{{ 'Share Page'|t }}</div>
+      <ul class="microsite-social-media-sharing__list clearfix">
+        <li class="microsite-social-media-sharing__list-item microsite-social-media-sharing__list-item--facebook">
+          <a href="https://facebook.com/sharer/sharer.php?u={{ absolute_encoded_path }}" target="_blank" aria-label="{{ 'Share on Facebook'|t }}" title="{{ 'Share on Facebook'|t }}">{{ 'Share'|t }}</a>
+        </li>
+        <li class="microsite-social-media-sharing__list-item microsite-social-media-sharing__list-item--twitter">
+          <a href="https://twitter.com/intent/tweet/?text={{ encoded_title }}&amp;url={{ absolute_encoded_path }}" target="_blank" aria-label="{{ 'Share on Twitter'|t }}" title="{{ 'Share on Twitter'|t }}">{{ 'Tweet'|t }}</a>
+        </li>
+      </ul>
+    </div>
+    <h1 class="page-title">{{ node.label }}</h1>
+  </div>
+  <div class="microsite-top__info">
+    <div class="microsite-top__info-location-details">
+      {{ content.field_location }}
+    </div>
+    <div class="microsite-top__info-date">
+      {{ content.field_date_range }}
+    </div>
+  </div>
+</div>

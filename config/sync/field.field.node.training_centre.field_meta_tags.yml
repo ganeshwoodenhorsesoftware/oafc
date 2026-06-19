@@ -1,0 +1,23 @@
+uuid: 091d19f3-61cd-4fd5-a1e0-be021d428545
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_meta_tags
+    - node.type.training_centre
+  module:
+    - metatag
+id: node.training_centre.field_meta_tags
+field_name: field_meta_tags
+entity_type: node
+bundle: training_centre
+label: 'Meta Tags'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 'a:0:{}'
+default_value_callback: ''
+settings: {  }
+field_type: metatag

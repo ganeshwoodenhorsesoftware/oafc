@@ -1,0 +1,45 @@
+uuid: 9dcfbdba-1bbc-4436-a2d5-8eaa13dbc205
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.limited
+    - filter.format.webform_default
+    - node.type.classified_ad
+    - node.type.job_post
+  module:
+    - comment
+    - commerce_checkout
+    - commerce_product
+    - file
+    - filter
+    - node
+    - scheduler
+    - search
+    - shortcut
+    - system
+    - userprotect
+_core:
+  default_config_hash: qxfDy2wpdrC4sjNmKx6yevblnAkEgZiXoDllyXYGHIo
+id: authenticated
+label: 'Authenticated user'
+weight: -9
+is_admin: false
+permissions:
+  - 'access checkout'
+  - 'access comments'
+  - 'access content'
+  - 'access shortcuts'
+  - 'create classified_ad content'
+  - 'create job_post content'
+  - 'delete own files'
+  - 'post comments'
+  - 'schedule publishing of nodes'
+  - 'search content'
+  - 'skip comment approval'
+  - 'use text format limited'
+  - 'use text format webform_default'
+  - userprotect.account.edit
+  - userprotect.mail.edit
+  - userprotect.pass.edit
+  - 'view commerce_product'

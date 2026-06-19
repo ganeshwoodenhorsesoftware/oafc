@@ -1,0 +1,50 @@
+{#
+/**
+ * @file
+ * Default theme implementation for a form element label.
+ *
+ * Available variables:
+ * - element: an input element.
+ * - title: The label's text.
+ * - title_display: Elements title_display setting.
+ * - description: element description.
+ * - required: An indicator for whether the associated form element is required.
+ * - attributes: A list of HTML attributes for the label.
+ *
+ * @see template_preprocess_form_element_label()
+ *
+ * @ingroup templates
+ */
+#}
+{# Check for the address line 2 field. #}
+{% if (element_id) and ('address-line2' in element_id) %}
+  {% set is_address_line2 = true %}
+  {% set label_text = 'Apartment, suite, etc.'|t %}
+  {% set title = label_text %}
+{# Rename 'Company' address field label. #}
+{% elseif (element_id) and ('address-organization' in element_id) %}
+  {% set label_text = 'Company / Organization'|t %}
+  {% set title = label_text %}
+{% endif %}
+{%
+  set classes = [
+    'control-label',
+    title_display == 'after' ? 'option',
+    not is_address_line2 and title_display == 'invisible' ? 'sr-only',
+    required ? 'js-form-required',
+  ]
+%}
+{% if title is not empty %}
+  <label{{ attributes.addClass(classes) }}>{{ element }}{{ title }}
+    {% if description %}
+      <p class="help-block">{{ description }}</p>
+    {% endif %}
+  </label>
+  {% if required and (title_display == 'before' or title_display == 'after') %}
+    <span class="form-required"> *</span>
+  {% else %}
+    {% if (element_type != 'radio') and (element_type != 'checkbox') %}
+      <span class="form-optional {{ title_display == 'invisible' ? 'sr-only' : '' }}"> - {{ 'Optional'|t }}</span>
+    {% endif %}
+  {% endif %}
+{% endif %}

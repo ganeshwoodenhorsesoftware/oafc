@@ -1,0 +1,25 @@
+uuid: dd7733fa-50b3-4699-bff9-c0368b61222c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_weight
+    - node.type.partner
+id: node.partner.field_weight
+field_name: field_weight
+entity_type: node
+bundle: partner
+label: Weight
+description: ''
+required: true
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

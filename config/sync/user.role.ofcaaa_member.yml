@@ -1,0 +1,14 @@
+uuid: 5e1c494a-4aa8-452f-8b21-12dfa7009359
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_order
+    - file
+id: ofcaaa_member
+label: 'OFCAAA Member'
+weight: 3
+is_admin: null
+permissions:
+  - 'delete own files'
+  - 'view own commerce_order'

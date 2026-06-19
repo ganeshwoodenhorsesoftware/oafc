@@ -1,0 +1,29 @@
+uuid: a8eb8306-6865-49a4-80aa-32b70385e3d1
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_order.commerce_order_type.industry_membership
+    - field.storage.commerce_order.field_product_categories
+    - taxonomy.vocabulary.industry_member_categories
+id: commerce_order.industry_membership.field_product_categories
+field_name: field_product_categories
+entity_type: commerce_order
+bundle: industry_membership
+label: 'Product categories'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      industry_member_categories: industry_member_categories
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

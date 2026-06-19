@@ -1,0 +1,133 @@
+//
+// Swiftmailer.
+//
+
+@import 'abstracts/variables';
+@import 'abstracts/mixins';
+
+.email-body-content-inner {
+  h1 {
+    margin: 0 0 10px 0;
+    padding: 0;
+    font-family: $f-arial;
+    font-size: 26px;
+    font-weight: bold;
+    line-height: 1.2;
+    color: $c-email-header;
+  }
+
+  h2 {
+    margin: 0 0 10px 0;
+    padding: 0;
+    font-family: $f-arial;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1.2;
+    color: $c-primary;
+  }
+
+  h3 {
+    margin: 0 0 10px 0;
+    padding: 0;
+    font-family: $f-arial;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1.2;
+    color: $c-email-header;
+  }
+
+  // General font styling.
+  a,
+  p,
+  li {
+    font-family: $f-arial;
+    font-size: 14px;
+    color: $c-email-body;
+  }
+
+  a {
+    color: $c-link;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      color: $c-link-hover;
+      text-decoration: underline;
+    }
+  }
+
+  p {
+    margin: 0 0 18px;
+    padding: 0;
+  }
+
+  ul,
+  ol {
+    margin-top: 0;
+    margin-bottom: 18px;
+  }
+
+  .no-bottom-margin {
+    margin-bottom: 0;
+  }
+
+  hr.line-break {
+    clear: both;
+    margin: 30px 0;
+    padding: 0;
+    width: 100%;
+    height: 1px;
+    color: $c-border-light;
+    background: $c-border-light;
+    border: 0;
+  }
+
+  table,
+  .table--email {
+    margin: 0 0 18px;
+    padding: 0;
+    border: 0;
+    width: 100%;
+    border-collapse: collapse;
+
+    tr {
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+
+    td,
+    th {
+      margin: 0;
+      padding: 5px 10px;
+      font-family: $f-arial;
+      font-size: 14px;
+      color: $c-email-body;
+      text-align: left;
+      border: 1px solid $c-border-light;
+    }
+
+    th {
+      font-weight: bold;
+      background: $c-border-lighter;
+    }
+  }
+
+  .table--workshop {
+    tr:first-child > th {
+      color: $c-white;
+      font-weight: bold;
+      border-color: $c-primary-dark;
+      background: $c-primary-dark;
+    }
+  }
+
+  .table--section {
+    tr:first-child > th {
+      color: $c-white;
+      font-weight: normal;
+      border-color: $c-email-body;
+      background: $c-email-body;
+    }
+  }
+}

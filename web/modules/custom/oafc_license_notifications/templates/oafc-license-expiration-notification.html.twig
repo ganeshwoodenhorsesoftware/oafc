@@ -1,0 +1,119 @@
+{#
+/**
+ * @file
+ * Default theme implementation for license expiration notification emails.
+ *
+ * Available variables:
+ * - license: The license entity.
+ * - owner: The user account that owns the license.
+ * - days_until_expiration: Number of days until the license expires.
+ * - expiry_date: The formatted expiry date.
+ * - purchased_entity: The purchased entity (product variation).
+ * - purchased_entity_url: URL to the purchased entity.
+ * - renew_url: URL to the store for renewal.
+ *
+ * @ingroup themeable
+ */
+#}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .header {
+      background-color: #f8f9fa;
+      padding: 20px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      h2 {
+        text-align: center;
+      }
+    }
+    .content {
+      padding: 20px 0;
+    }
+    .alert {
+      background-color: #fff3cd;
+      border-left: 4px solid #ffc107;
+      padding: 15px;
+      margin: 20px 0;
+    }
+    .button {
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: #007bff;
+      color: #ffffff !important;
+      text-decoration: none;
+      border-radius: 5px;
+      margin: 20px 0;
+    }
+    .footer {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid #dee2e6;
+      font-size: 0.9em;
+      color: #6c757d;
+    }
+    .license-details {
+      background-color: #f8f9fa;
+      padding: 15px;
+      border-radius: 5px;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h2>Membership Expiration Notice</h2>
+  </div>
+
+  <div class="content">
+    <p>Dear {{ owner.getDisplayName() }},</p>
+
+    <div class="alert">
+      {% if days_until_expiration == 1 %}
+        <strong>Your membership expires tomorrow!</strong>
+      {% else %}
+        <strong>Your membership expires in {{ days_until_expiration }} days.</strong>
+      {% endif %}
+    </div>
+
+    <p>This is a reminder that your <strong>{{ purchased_entity.label() }}</strong> membership will expire on <strong>{{ expiry_date }}</strong>.</p>
+
+    <div class="license-details">
+      <h3>Membership Details</h3>
+      <ul>
+        <li><strong>Membership:</strong> {{ license.label() }}</li>
+        <li><strong>Expiration Date:</strong> {{ expiry_date }}</li>
+        {% if purchased_entity %}
+          <li><strong>Membership Type:</strong> {{ purchased_entity.label() }}</li>
+        {% endif %}
+      </ul>
+    </div>
+
+    <p>To continue enjoying your membership benefits without interruption, please click the button below to login and renew before the expiration date.</p>
+
+    {% if renew_url %}
+      <p style="text-align: center;">
+        <a href="{{ renew_url }}" class="button">Renew Your Membership</a>
+      </p>
+    {% endif %}
+
+    <p>If you have any questions or need assistance, please don't hesitate to contact us.</p>
+
+    <p>Thank you for being a valued member!</p>
+  </div>
+
+  <div class="footer">
+    <p>This is an automated notification. Please do not reply to this email.</p>
+  </div>
+</body>
+</html>

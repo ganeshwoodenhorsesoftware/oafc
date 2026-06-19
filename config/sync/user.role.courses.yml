@@ -1,0 +1,35 @@
+uuid: 531a1b72-8118-4064-b1bd-dc734f8b7276
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.course
+    - node.type.page
+  module:
+    - contextual
+    - file
+    - node
+    - oafc_mini
+    - system
+    - webform
+id: courses
+label: Courses
+weight: -7
+is_admin: null
+permissions:
+  - 'access contextual links'
+  - 'access webform overview'
+  - 'add oafc mini entities'
+  - 'administer webform element access'
+  - 'create course content'
+  - 'create page content'
+  - 'create webform'
+  - 'delete own files'
+  - 'edit own course content'
+  - 'edit own oafc mini entities'
+  - 'edit own page content'
+  - 'edit own webform'
+  - 'edit own webform submission'
+  - 'edit webform source'
+  - 'view own webform submission'
+  - 'view the administration theme'

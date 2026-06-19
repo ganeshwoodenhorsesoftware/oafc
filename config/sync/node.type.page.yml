@@ -1,0 +1,24 @@
+uuid: 3c63cdc2-5b20-4411-9707-187aefec0933
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - event-test
+      - footer-bottom-navigation
+      - footer
+      - header
+      - main
+    parent: 'main:'
+_core:
+  default_config_hash: UJuvUHJC2Gt8oQ2jaLq-GImnjLkjwRswehyijwsW8Qo
+name: Page
+type: page
+description: 'A basic content page.'
+help: null
+new_revision: false
+preview_mode: 1
+display_submitted: false

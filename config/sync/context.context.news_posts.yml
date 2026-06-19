@@ -1,0 +1,28 @@
+uuid: 3366cba5-1be5-4f45-ba8d-101f6db7af65
+langcode: en
+status: true
+dependencies:
+  module:
+    - context_active_trail
+    - system
+label: 'News Posts'
+name: news_posts
+group: null
+description: ''
+requireAllConditions: false
+disabled: false
+conditions:
+  request_path:
+    id: request_path
+    negate: false
+    uuid: 05badd83-d9d0-4858-93d8-fe45066e4f5b
+    context_mapping: {  }
+    pages: '/about/announcements/*'
+reactions:
+  active_trail:
+    id: active_trail
+    trail: 'main:menu_link_content:ad01cf51-d879-47c1-9374-aed3a739b8fe'
+    breadcrumbs: 0
+    breadcrumb_title: 0
+    uuid: 50bff1a1-6ad8-49bc-acdf-714a5b1cf255
+weight: 0

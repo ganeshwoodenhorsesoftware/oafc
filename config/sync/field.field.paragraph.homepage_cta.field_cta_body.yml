@@ -1,0 +1,19 @@
+uuid: 21754b56-b8fe-4740-acd7-95c0d47aa463
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_cta_body
+    - paragraphs.paragraphs_type.homepage_cta
+id: paragraph.homepage_cta.field_cta_body
+field_name: field_cta_body
+entity_type: paragraph
+bundle: homepage_cta
+label: Body
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

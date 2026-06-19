@@ -1,0 +1,11 @@
+uuid: 099841f5-1be8-4c4a-a51d-a4cc780bc77b
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_product
+id: commerce_product_variation.token
+label: Token
+description: ''
+targetEntityType: commerce_product_variation
+cache: true

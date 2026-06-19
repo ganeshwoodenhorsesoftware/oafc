@@ -1,0 +1,16 @@
+oafc_base.admin_oafc:
+  path: '/admin/config/oafc'
+  defaults:
+    _controller: '\Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
+    link_id: 'oafc_base.admin_oafc'
+    _title: 'Administer OAFC'
+  requirements:
+    _permission: 'administer site configuration'
+
+entity.webform.settings_oafc:
+  path: '/admin/structure/webform/manage/{webform}/settings/oafc'
+  defaults:
+    _entity_form: 'webform.settings_oafc'
+    _title_callback: '\Drupal\webform\Controller\WebformEntityController::title'
+  requirements:
+    _entity_access: 'webform.update'

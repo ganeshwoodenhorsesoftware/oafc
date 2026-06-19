@@ -1,0 +1,21 @@
+uuid: 71cb5e82-bfc3-4db0-be55-3823ee39f25b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_cta_body
+    - node.type.homepage
+  module:
+    - text
+id: node.homepage.field_cta_body
+field_name: field_cta_body
+entity_type: node
+bundle: homepage
+label: 'CTA Body'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

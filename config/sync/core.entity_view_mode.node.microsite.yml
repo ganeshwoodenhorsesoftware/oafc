@@ -1,0 +1,11 @@
+uuid: 43b82d98-fceb-476f-9183-fd9214491c5d
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.microsite
+label: Microsite
+description: ''
+targetEntityType: node
+cache: true

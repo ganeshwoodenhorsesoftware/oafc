@@ -1,0 +1,14 @@
+uuid: 7fa25788-9fd3-40a4-8926-cf0ad331160d
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.retired_member
+  module:
+    - user
+id: user_add_role_action.retired_member
+label: 'Add the Retired Member role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: retired_member

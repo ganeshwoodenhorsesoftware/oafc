@@ -1,0 +1,5 @@
+services:
+  oafc_classified_ad.order_attach_classified_ad_subscriber:
+    class: Drupal\oafc_classified_ad\EventSubscriber\OrderAttachClassifiedAdSubscriber
+    tags:
+      - { name: event_subscriber }

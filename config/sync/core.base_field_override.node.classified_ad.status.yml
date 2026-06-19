@@ -1,0 +1,22 @@
+uuid: 97262cc8-256d-4b8e-8e03-43dcb57fed4f
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.classified_ad
+id: node.classified_ad.status
+field_name: status
+entity_type: node
+bundle: classified_ad
+label: Published
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

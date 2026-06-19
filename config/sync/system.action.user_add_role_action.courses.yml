@@ -1,0 +1,14 @@
+uuid: 561bb55f-df4f-47fb-84f8-7942dd4d96fe
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.courses
+  module:
+    - user
+id: user_add_role_action.courses
+label: 'Add the Courses role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: courses

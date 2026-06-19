@@ -1,0 +1,7 @@
+# This can be used to create a project-specific filter in Meld, used when
+# comparing configuration folders i.e. ignore these patterns that are ignored
+# during configuration import anyways. It should be maintained together with
+# `.gitignore` whenever the `config_ignore.settings` configuration file is
+# updated. The only difference with `.gitignore` is that here there are no
+# return characters.
+block.block.* commerce_payment.commerce_payment_gateway.* system.menu.course* system.menu.event* webform.webform.*

@@ -1,0 +1,20 @@
+uuid: 361395e0-5456-405f-b83a-76916e30f3cc
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_order
+    - taxonomy
+id: commerce_order.field_product_categories
+field_name: field_product_categories
+entity_type: commerce_order
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

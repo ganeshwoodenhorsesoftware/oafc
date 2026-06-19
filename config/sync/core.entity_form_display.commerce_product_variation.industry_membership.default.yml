@@ -1,0 +1,84 @@
+uuid: 6de0f35f-594d-402d-8039-10a15d0dfc5c
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_variation_type.industry_membership
+    - field.field.commerce_product_variation.industry_membership.field_product_image
+    - field.field.commerce_product_variation.industry_membership.license_expiration
+    - field.field.commerce_product_variation.industry_membership.license_type
+    - image.style.thumbnail
+  module:
+    - commerce
+    - commerce_price
+    - image
+id: commerce_product_variation.industry_membership.default
+targetEntityType: commerce_product_variation
+bundle: industry_membership
+mode: default
+content:
+  field_product_image:
+    type: image_image
+    weight: 100
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  license_expiration:
+    type: commerce_plugin_select
+    weight: 21
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  license_type:
+    type: commerce_plugin_select
+    weight: 20
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  list_price:
+    type: commerce_list_price
+    weight: -1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  price:
+    type: commerce_price_default
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  sku:
+    type: string_textfield
+    weight: -4
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 99
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  uid: true

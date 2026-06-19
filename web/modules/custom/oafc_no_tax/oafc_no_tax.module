@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Hooks and functionality for the OAFC No Tax module.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * {@inheritdoc}
+ *
+ * @see hook_form_FORM_ID_alter()
+ */
+function oafc_no_tax_form_user_form_alter(
+  array &$form,
+  FormStateInterface $form_state, $form_id
+) {
+  if (in_array('administrator', \Drupal::currentUser()->getRoles())) {
+    return;
+  }
+
+  $form['field_is_tax_exempt']['#access'] = FALSE;
+}

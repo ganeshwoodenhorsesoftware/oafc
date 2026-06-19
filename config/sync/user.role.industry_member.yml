@@ -1,0 +1,19 @@
+uuid: 4c807eeb-807b-4325-adf3-8bd14b650481
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.profile
+  module:
+    - commerce_order
+    - file
+    - node
+id: industry_member
+label: 'Industry Member'
+weight: 1
+is_admin: null
+permissions:
+  - 'create profile content'
+  - 'delete own files'
+  - 'edit own profile content'
+  - 'view own commerce_order'

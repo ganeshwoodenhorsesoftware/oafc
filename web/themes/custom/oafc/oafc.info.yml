@@ -1,0 +1,42 @@
+name: Ontario Association of Fire Chiefs
+type: theme
+description: 'Custom theme for OAFC.'
+package: Core
+version: '1.0.0'
+base theme: orange_framework
+core_version_requirement: ^9 || ^10
+
+libraries:
+  - oafc/global-styling
+
+ckeditor_stylesheets:
+  - css/style.css
+
+regions:
+  commerce_cart: 'Commerce Cart'
+  highlighted: 'Highlighted'
+  breadcrumbs: 'Breadcrumbs'
+  above_content: 'Above Content'
+  content: 'Content'
+  below_content: 'Below Content'
+  homepage_sidebar: 'Homepage - Sidebar'
+  page_sidebar: 'Page - Left Sidebar'
+  right_sidebar: 'Page - Right Sidebar'
+  blog_sidebar: 'Blog - Sidebar'
+  site_search: 'Site Search'
+  footer_contact_info: 'Footer - Contact Information'
+  marketplace_secondary_nav: 'Marketplace - Secondary Navigation'
+  member_login: 'Member Login'
+  microsite_header: 'Microsite Header'
+  microsite_navigation: 'Microsite Navigation'
+  # Navigation.
+  header_nav: 'Header Navigation'
+  primary_nav: 'Primary Navigation'
+  mobile_nav: 'Mobile Navigation'
+  microsite_mobile_nav: 'Mobile Navigation - Microsite'
+  footer_nav: 'Footer Navigation'
+  footer_bottom_nav: 'Footer Bottom Navigation'
+  social_nav: 'Social Media Navigation'
+  i_want_to_nav: 'I Want To Navigation'
+  quick_links_nav: 'Quick Links Navigation'
+  dashboard_quicklinks: 'Dashboard Quicklinks'

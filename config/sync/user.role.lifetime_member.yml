@@ -1,0 +1,14 @@
+uuid: 2fe0aebc-b422-4ed6-9321-65fae6535fb5
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_order
+    - file
+id: lifetime_member
+label: 'Lifetime member'
+weight: 2
+is_admin: null
+permissions:
+  - 'delete own files'
+  - 'view own commerce_order'

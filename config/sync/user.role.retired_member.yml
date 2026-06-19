@@ -1,0 +1,14 @@
+uuid: 599e4a31-04a4-4621-b966-435947758427
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_order
+    - file
+id: retired_member
+label: 'Retired Member'
+weight: 4
+is_admin: null
+permissions:
+  - 'delete own files'
+  - 'view own commerce_order'

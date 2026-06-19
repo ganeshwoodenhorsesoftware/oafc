@@ -1,0 +1,5 @@
+# Schema for the configuration files of the theme.
+
+oafc.settings:
+  type: theme_settings
+  label: 'OAFC Settings'

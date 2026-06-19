@@ -1,0 +1,9 @@
+uuid: 956fb5ca-3978-4a4e-ab1b-e5d920fd9246
+langcode: en
+status: true
+dependencies: {  }
+id: search_api__views_page__classified_ads__used_equipment
+name: 'search_api:views_page__classified_ads__used_equipment'
+filter_key: null
+url_processor: query_string
+breadcrumb: {  }

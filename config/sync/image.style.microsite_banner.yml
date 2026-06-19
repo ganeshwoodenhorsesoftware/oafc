@@ -1,0 +1,15 @@
+uuid: f0ec69b7-c497-4ebd-81d6-311e444ff231
+langcode: en
+status: true
+dependencies: {  }
+name: microsite_banner
+label: 'Microsite Banner'
+effects:
+  dc7d6aaf-9ce8-4f1d-9fa6-c4fe3a3b42ec:
+    uuid: dc7d6aaf-9ce8-4f1d-9fa6-c4fe3a3b42ec
+    id: image_scale
+    weight: 1
+    data:
+      width: 1140
+      height: null
+      upscale: false

@@ -1,0 +1,9 @@
+uuid: 7f308eb1-6435-4528-a416-7e51ab80e5ae
+langcode: en
+status: true
+dependencies: {  }
+name: 'OAFC Product Categories'
+vid: oafc_product_categories
+description: null
+weight: 0
+new_revision: false

@@ -1,0 +1,13 @@
+uuid: 13d26809-9cc4-4890-8296-97f093a3ddcf
+langcode: en
+status: true
+dependencies: {  }
+id: individual_membership
+label: 'Individual membership'
+traits: {  }
+locked: false
+description: 'Create new individual membership.'
+variationType: individual_membership
+variationTypes: {  }
+multipleVariations: true
+injectVariationFields: true

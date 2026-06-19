@@ -1,0 +1,9 @@
+uuid: null
+langcode: en
+status: true
+dependencies: {  }
+id: search_api__views_page__used_equipment__used_equipment
+name: 'search_api:views_page__used_equipment__used_equipment'
+filter_key: null
+url_processor: query_string
+breadcrumb: {  }

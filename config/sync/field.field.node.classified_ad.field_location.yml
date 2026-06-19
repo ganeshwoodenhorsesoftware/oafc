@@ -1,0 +1,29 @@
+uuid: e9293d13-04cc-459d-93ff-6cdbefc5b9b7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_location
+    - node.type.classified_ad
+    - taxonomy.vocabulary.locations
+id: node.classified_ad.field_location
+field_name: field_location
+entity_type: node
+bundle: classified_ad
+label: Location
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      locations: locations
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

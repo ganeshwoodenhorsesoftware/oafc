@@ -1,0 +1,22 @@
+uuid: bf9a25e6-803c-4226-b204-f60ff0c8bd9a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_fire_service_join_year
+  module:
+    - user
+id: user.user.field_fire_service_join_year
+field_name: field_fire_service_join_year
+entity_type: user
+bundle: user
+label: 'What year did you join the fire service?'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1516614306
+default_value_callback: ''
+settings: {  }
+field_type: timestamp

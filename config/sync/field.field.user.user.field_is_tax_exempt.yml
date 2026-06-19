@@ -1,0 +1,24 @@
+uuid: 5e786bbb-6a13-48a7-b7c3-57d7c1088f0b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_is_tax_exempt
+  module:
+    - user
+id: user.user.field_is_tax_exempt
+field_name: field_is_tax_exempt
+entity_type: user
+bundle: user
+label: 'Is tax exempt?'
+description: 'When checked, no tax will be applied when the user places orders.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

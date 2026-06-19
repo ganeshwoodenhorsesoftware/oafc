@@ -1,0 +1,14 @@
+diff --git a/core/lib/Drupal/Core/Condition/ConditionPluginCollection.php b/core/lib/Drupal/Core/Condition/ConditionPluginCollection.php
+index 4d6dd70..72b4b34 100644
+--- a/core/lib/Drupal/Core/Condition/ConditionPluginCollection.php
++++ b/core/lib/Drupal/Core/Condition/ConditionPluginCollection.php
+@@ -74,4 +74,9 @@ public function getConditionContexts() {
+     return $this->conditionContexts;
+   }
+ 
++  public function __wakeup() {
++    $this->pluginInstances = [];
++    parent::__wakeup();
++  }
++
+ }

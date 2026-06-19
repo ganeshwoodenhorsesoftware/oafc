@@ -1,0 +1,11 @@
+uuid: 62a9560a-fe72-4cb4-91a9-31acda70a63f
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.oafc_product_categories
+id: taxonomy_term.oafc_product_categories
+target_entity_type_id: taxonomy_term
+target_bundle: oafc_product_categories
+default_langcode: site_default
+language_alterable: false

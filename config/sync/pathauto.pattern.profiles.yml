@@ -1,0 +1,22 @@
+uuid: 6a7f20ae-d53b-4422-a19f-002fe9096259
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: profiles
+label: Profiles
+type: 'canonical_entities:node'
+pattern: 'marketplace-careers/buyers-guide/[node:title]'
+selection_criteria:
+  0ea42e17-ef71-410a-a444-c1e8e8ac43c7:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: 0ea42e17-ef71-410a-a444-c1e8e8ac43c7
+    context_mapping:
+      node: node
+    bundles:
+      profile: profile
+selection_logic: and
+weight: -5
+relationships: {  }

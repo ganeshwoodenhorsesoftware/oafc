@@ -1,0 +1,14 @@
+uuid: 6cb2a3db-af60-4c30-ad7c-eadd639e700a
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.industry_member
+  module:
+    - user
+id: user_remove_role_action.industry_member
+label: 'Remove the Industry Member role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: industry_member

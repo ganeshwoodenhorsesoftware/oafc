@@ -1,0 +1,11 @@
+uuid: 15866638-6441-491f-9ada-efa1922d8be5
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.job_positions
+id: taxonomy_term.job_positions
+target_entity_type_id: taxonomy_term
+target_bundle: job_positions
+default_langcode: site_default
+language_alterable: false

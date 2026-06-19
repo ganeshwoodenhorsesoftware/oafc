@@ -1,0 +1,95 @@
+// Variables.
+
+// Colors.
+$c-white: #fff;
+$c-black: #000;
+
+$c-site-bg: $c-black;
+
+$c-primary: #c52423;
+$c-primary-light: #e23232;
+$c-primary-hover: #550000;
+$c-primary-dark: #990000;
+
+$c-secondary: $c-black;
+$c-secondary-hover: #c52423;
+
+$c-tertiary: #f9c312;
+$c-tertiary-hover: darken($c-tertiary, 10%);
+$c-tertiary-active: #fde596;
+
+$c-accent-1: #ccc;
+$c-accent-2: #ccc;
+$c-accent-3: #ccc;
+
+$c-body: #0d0d0d;
+$c-email-body: #666;
+$c-email-header: #333;
+$c-border-light: #ccc;
+$c-border-lighter: #efefef;
+
+$c-link: #cf2626;
+$c-link--archived: #de2827;
+$c-link-hover: darken($c-link, 10%);
+
+$c-body-link: #0000ee;
+$c-body-link-hover: darken($c-body-link, 10%);
+
+$c-link-blue: #006699;
+$c-link-blue-hover: #2c96cb;
+
+$c-light-red: #ffd6d6;
+
+$c-tan: #fbfaf8;
+$c-tan-dark: #f0ede8;
+
+$gray-base:              #151515 !default;
+$gray-darker:            #353535;
+$gray-dark:              #545353;
+$gray:                   #807e7e;
+$gray-light:             #cccaca;
+$gray-lighter:           #f2f0f0;
+
+$c-header-grey: #efede7;
+$c-footer-grey: #7d7d7d;
+
+// Fonts.
+$f-arial: Arial, Helvetica, sans-serif;
+$f-open-sans: 'Open Sans', sans-serif;
+$f-glyphicons: 'Glyphicons Halflings';
+
+$f-primary: $f-open-sans;
+$f-secondary: 'Times New Roman', Times, serif;
+$f-condensed: 'Open Sans Condensed', sans-serif;
+$f-body: $f-primary;
+
+// Site Styles.
+$border-radius: 0;
+$button-border-radius: 3px;
+
+// Responsive helpers.
+$screen-min: 320px;
+
+// Extra small screen / phone.
+$screen-xs: 480px !default;
+$screen-xs-min: $screen-xs !default;
+
+// Small screen / large phone.
+$screen-sm-ph: 600px;
+
+// Small screen / tablet.
+$screen-sm: 768px !default;
+$screen-sm-min: $screen-sm !default;
+
+// Medium screen / desktop.
+$screen-md: 992px !default;
+$screen-md-min: $screen-md !default;
+
+// Large screen / wide desktop.
+$screen-lg: 1200px !default;
+$screen-lg-min: $screen-lg !default;
+
+// So media queries don't overlap when required, provide a maximum.
+$screen-xs-max: ($screen-sm-min - 1) !default;
+$screen-sm-max: ($screen-md-min - 1) !default;
+$screen-md-max: ($screen-lg-min - 1) !default;

@@ -1,0 +1,6 @@
+course_fee:
+  label: Course Fee
+  singular_label: 'Course Fee'
+  plural_label: 'Course Fee'
+  has_ui: true
+  weight: 100

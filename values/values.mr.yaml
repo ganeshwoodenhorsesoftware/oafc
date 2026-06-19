@@ -1,0 +1,42 @@
+drupal:
+  webroot: '/app/web'
+  drushPath: '../vendor/bin/drush'
+
+bootstrap:
+  enabled: true
+  source: "oafc-staging"
+
+jobResources:
+  cpuRequests: "500m"
+  cpuLimits: "1000m"
+  memoryRequests: "512Mi"
+  memoryLimits: "1Gi"
+
+mariadb:
+  myCnf: |
+    [mariadb]
+    max_connections=100
+    max_allowed_packet=256M
+
+php:
+  fpm:
+    configMap:
+      enabled: true
+      mountPath: /usr/local/etc/php-fpm.d/www.conf
+      subPath: www.conf
+      content: |
+        [www]
+        listen = 0.0.0.0:9000
+        pm = dynamic
+        pm.max_children = 3
+        pm.start_servers = 2
+        pm.min_spare_servers = 1
+        pm.max_spare_servers = 2
+        pm.process_idle_timeout = 60s
+        pm.max_requests = 500
+
+podScheduling:
+  nodeAffinity:
+    key: "topology.kubernetes.io/zone"
+    values:
+      - "northamerica-northeast1-a"

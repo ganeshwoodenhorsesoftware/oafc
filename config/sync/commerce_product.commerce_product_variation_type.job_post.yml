@@ -1,0 +1,16 @@
+uuid: 35496e4b-5b63-4de5-a8fc-8f23cbe630f4
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_license
+third_party_settings:
+  commerce_license:
+    license_types: {  }
+    activate_on_place: false
+id: job_post
+label: 'Job post'
+traits: {  }
+locked: false
+orderItemType: job_post
+generateTitle: false

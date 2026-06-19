@@ -1,0 +1,27 @@
+_core:
+  default_config_hash: 06iLyM-SN-es1DuAVafYznJNRkm50tCqc8MlxtkDnnY
+definitions:
+  contact__site_page:
+    menu_name: footer
+    parent: ''
+    weight: -50
+    expanded: false
+    enabled: false
+  'taxonomy_menu__menu_link:taxonomy_menu__menu_link__news__49':
+    menu_name: main
+    parent: 'menu_link_content:ad01cf51-d879-47c1-9374-aed3a739b8fe'
+    weight: 3
+    expanded: false
+    enabled: true
+  'taxonomy_menu__menu_link:taxonomy_menu__menu_link__news__47':
+    menu_name: main
+    parent: 'menu_link_content:ad01cf51-d879-47c1-9374-aed3a739b8fe'
+    weight: 5
+    expanded: false
+    enabled: true
+  'taxonomy_menu__menu_link:taxonomy_menu__menu_link__news__48':
+    menu_name: main
+    parent: 'menu_link_content:ad01cf51-d879-47c1-9374-aed3a739b8fe'
+    weight: 4
+    expanded: false
+    enabled: true

@@ -1,0 +1,13 @@
+administer oafc mini entities:
+  title: 'Administer OAFC mini entities'
+  description: 'Allow to access the administration form to configure OAFC mini entities.'
+  restrict access: true
+
+add oafc mini entities:
+  title: 'Create new OAFC mini entities'
+
+delete oafc mini entities:
+  title: 'Delete OAFC mini entities'
+
+edit own oafc mini entities:
+  title: 'Edit own OAFC mini entities'

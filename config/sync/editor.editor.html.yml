@@ -1,0 +1,77 @@
+uuid: b38497b2-c2d7-4b38-9c2a-0465b2eb5116
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.html
+  module:
+    - ckeditor
+_core:
+  default_config_hash: 3OFinWsB1VgnRDLrJM56cjPLSVO0bQ6cKytHrYPLYvY
+format: html
+editor: ckeditor
+settings:
+  toolbar:
+    rows:
+      -
+        -
+          name: Formatting
+          items:
+            - Styles
+            - Format
+            - Font
+            - FontSize
+            - TextColor
+            - BGColor
+            - Bold
+            - Underline
+            - Italic
+            - Strike
+            - RemoveFormat
+        -
+          name: Alignment
+          items:
+            - JustifyLeft
+            - JustifyCenter
+            - JustifyRight
+        -
+          name: Links
+          items:
+            - ImceLink
+            - DrupalLink
+            - DrupalUnlink
+        -
+          name: Lists
+          items:
+            - Copy
+            - PasteText
+            - BulletedList
+            - NumberedList
+        -
+          name: Media
+          items:
+            - DrupalMediaLibrary
+            - DrupalImage
+            - ImceImage
+            - Blockquote
+            - Table
+        -
+          name: Tools
+          items:
+            - PasteFromWord
+            - SpecialChar
+            - HorizontalRule
+            - Source
+  plugins:
+    stylescombo:
+      styles: "table.table|Standard Table\r\ntable.table-bordered|Bordered Table\r\ntable.table--borderless|Borderless Table\r\na.btn|Button\r\na.btn.btn--primary|Primary Button"
+    drupallink:
+      linkit_enabled: true
+      linkit_profile: standard
+    font:
+      font_names: ''
+      font_sizes: ''
+    colorbutton:
+      colors: ''
+image_upload:
+  status: false

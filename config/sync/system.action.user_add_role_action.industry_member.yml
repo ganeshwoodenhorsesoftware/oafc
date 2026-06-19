@@ -1,0 +1,14 @@
+uuid: 0803dbbc-5b6e-4c83-a784-7152b7377b8f
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.industry_member
+  module:
+    - user
+id: user_add_role_action.industry_member
+label: 'Add the Industry Member role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: industry_member

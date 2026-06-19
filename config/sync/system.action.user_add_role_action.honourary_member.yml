@@ -1,0 +1,14 @@
+uuid: a462b4fc-2e35-439e-ac3f-492070574391
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.honourary_member
+  module:
+    - user
+id: user_add_role_action.honourary_member
+label: 'Add the Honourary Member role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: honourary_member

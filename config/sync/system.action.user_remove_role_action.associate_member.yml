@@ -1,0 +1,14 @@
+uuid: 001ccaf8-3c06-4e2d-9cb2-efb5770a4527
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.associate_member
+  module:
+    - user
+id: user_remove_role_action.associate_member
+label: 'Remove the Associate Member role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: associate_member

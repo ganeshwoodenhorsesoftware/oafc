@@ -1,0 +1,27 @@
+uuid: 72a4261d-c9cb-435c-9fc1-015051db02b8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_hosted_files
+  module:
+    - file
+    - user
+id: user.user.field_hosted_files
+field_name: field_hosted_files
+entity_type: user
+bundle: user
+label: 'Hosted files'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'txt doc pdf docx xls xlsx'
+  max_filesize: '2 MB'
+  description_field: false
+field_type: file

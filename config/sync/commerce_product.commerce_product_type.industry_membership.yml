@@ -1,0 +1,13 @@
+uuid: 5749eeaf-61f6-43a4-a126-4e23654494d8
+langcode: en
+status: true
+dependencies: {  }
+id: industry_membership
+label: 'Industry membership'
+traits: {  }
+locked: false
+description: 'Create new industry membership.'
+variationType: industry_membership
+variationTypes: {  }
+multipleVariations: true
+injectVariationFields: true

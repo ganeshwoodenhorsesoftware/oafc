@@ -1,0 +1,8 @@
+name: OAFC Profile
+description: 'Provides functionality related to industry member profiles.'
+type: module
+package: oafc
+core_version_requirement: ^9 || ^10
+dependencies:
+  - drupal:node
+  - drupal:user

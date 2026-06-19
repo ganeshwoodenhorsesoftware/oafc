@@ -1,0 +1,21 @@
+uuid: 91f6cd2c-4941-4989-86b3-4a151fc88d42
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_fax_number
+  module:
+    - telephone
+    - user
+id: user.user.field_fax_number
+field_name: field_fax_number
+entity_type: user
+bundle: user
+label: 'Fax number'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: telephone

@@ -1,0 +1,24 @@
+uuid: 2fb7776c-b42a-4f10-92cd-b028dfdd8c73
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_form_mode.media.media_library
+    - field.field.media.private_image.field_private_image
+    - media.type.private_image
+id: media.private_image.media_library
+targetEntityType: media
+bundle: private_image
+mode: media_library
+content: {  }
+hidden:
+  created: true
+  field_private_image: true
+  langcode: true
+  name: true
+  path: true
+  publish_on: true
+  scheduler_settings: true
+  status: true
+  uid: true
+  unpublish_on: true

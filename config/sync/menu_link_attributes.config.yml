@@ -1,0 +1,13 @@
+attributes:
+  container_class:
+    label: 'Container class'
+    description: 'Set the class for the wrapping <code>&lt;li&gt;</code> element.<br />Example: <strong>hide-from-marketplace</strong> (hide the menu item within the Marketplace sub-navigation)'
+  class:
+    label: Class
+    description: 'Set the class for the menu link.'
+  target:
+    label: ''
+    description: ''
+    options:
+      _blank: 'New window (_blank)'
+      _self: 'Same window (_self)'

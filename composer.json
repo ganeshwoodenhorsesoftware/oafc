@@ -1,0 +1,195 @@
+{
+    "name": "acromedia/drupalorange-project-template",
+    "description": "AcroMedia's Commerce 2.x project template",
+    "type": "project",
+    "license": "GPL-2.0+",
+    "authors": [
+        {
+            "name": "",
+            "role": ""
+        }
+    ],
+    "repositories": {
+        "drupal": {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        },
+        "current_menu": {
+            "type": "vcs",
+            "url": "https://github.com/krystalcode/drupal-current-menu.git"
+        },
+        "menu_section": {
+            "type": "vcs",
+            "url": "https://github.com/krystalcode/drupal-menu-section.git"
+        }
+    },
+    "require": {
+        "ext-bcmath": "*",
+        "ext-curl": "*",
+        "ext-dom": "*",
+        "ext-intl": "*",
+        "ext-json": "*",
+        "ext-mbstring": "*",
+        "composer/installers": "^1.9",
+        "cweagans/composer-patches": "^1.x-dev",
+        "drupal/admin_toolbar": "^3.0",
+        "drupal/advancedqueue": "^1.0",
+        "drupal/anchor_link": "^1.6",
+        "drupal/better_exposed_filters": "^6.0",
+        "drupal/block_exclude_pages": "^2.1",
+        "drupal/ckeditor_font": "^1.0",
+        "drupal/ckeditor_media_embed": "^2",
+        "drupal/colorbutton": "^1.1",
+        "drupal/commerce": "~2",
+        "drupal/commerce_license": "^3.0",
+        "drupal/commerce_moneris": "^2.0",
+        "drupal/commerce_paypal": "^1.0",
+        "drupal/commerce_shipping": "^2.0",
+        "drupal/config_filter": "^2.6",
+        "drupal/config_ignore": "^3.2",
+        "drupal/config_split": "^2.0",
+        "drupal/contact_storage": "^1.0",
+        "drupal/context": "^5.0@RC",
+        "drupal/context_active_trail": "^2.0@RC",
+        "drupal/core-composer-scaffold": "^10.3",
+        "drupal/core-recommended": "^10.4.7",
+        "drupal/current_menu": "dev-master",
+        "drupal/date_range_formatter": "^4.0",
+        "drupal/easy_breadcrumb": "^2.0",
+        "drupal/editor_advanced_link": "^2.0",
+        "drupal/facets": "^2.0",
+        "drupal/field_group": "^3.0",
+        "drupal/google_analytics": "^4.0",
+        "drupal/honeypot": "^2.0",
+        "drupal/image_effects": "^3.0",
+        "drupal/imce": "^3.0",
+        "drupal/jquery_ui_button": "^2.1",
+        "drupal/linked_field": "^1.1",
+        "drupal/linkit": "^6",
+        "drupal/magnific_popup": "^2.0",
+        "drupal/mailchimp": "^2.2",
+        "drupal/menu_block": "^1.0",
+        "drupal/menu_link_attributes": "^1.0",
+        "drupal/menu_section": "dev-master",
+        "drupal/metatag": "^1.0",
+        "drupal/nodeaccess": "^2",
+        "drupal/page_manager": "^4.0",
+        "drupal/panelbutton": "^1.1",
+        "drupal/paragraphs": "^1.1",
+        "drupal/pathauto": "^1.0",
+        "drupal/physical": "1.2",
+        "drupal/prepopulate": "^2.0",
+        "drupal/profile_switcher": "^1.0@alpha",
+        "drupal/scheduler": "^2.0",
+        "drupal/search_api_solr": "^4.3",
+        "drupal/simple_sitemap": "^4.2",
+        "drupal/symfony_mailer_lite": "^1.0",
+        "drupal/taxonomy_menu": "^3.3",
+        "drupal/token": "^1.0",
+        "drupal/twig_tweak": "^3.3",
+        "drupal/ultimate_cron": "^2.0",
+        "drupal/upgrade_status": "^4.3",
+        "drupal/userprotect": "^1.0",
+        "drupal/webform": "^6.2",
+        "drupal/webform_product": "^3.1",
+        "drush/drush": "^12",
+        "menarasolutions/geographer": "^0.3.4",
+        "menarasolutions/geographer-es": "^0.1.0",
+        "tijsverkoyen/css-to-inline-styles": "^2.2",
+        "webflo/drupal-finder": "^1.0.0"
+    },
+    "require-dev": {
+        "drupal/config_devel": "^1.0",
+        "drupal/config_inspector": "^2.0",
+        "drupal/core-dev": "^10.3",
+        "drupal/devel": "^5.0",
+        "drupal/stage_file_proxy": "^3.1",
+        "drupal/twig_xdebug": "^1.0",
+        "geerlingguy/drupal-vm": "^4.7",
+        "palantirnet/drupal-rector": "^0.13"
+    },
+    "conflict": {
+        "drupal/drupal": "*"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "platform": {
+            "php": "8.1"
+        },
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "gitlab-domains": [
+            "git.acromedia.com"
+        ],
+        "allow-plugins": {
+            "composer/installers": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "cweagans/composer-patches": true,
+            "drupal/console-extend-plugin": true,
+            "drupal/core-composer-scaffold": true,
+            "php-http/discovery": true,
+            "phpstan/extension-installer": true,
+            "tbachert/spi": true
+        }
+    },
+    "scripts": {
+        "pre-install-cmd": [],
+        "pre-update-cmd": [],
+        "post-install-cmd": [],
+        "post-update-cmd": []
+    },
+    "extra": {
+        "composer-exit-on-patch-failure": true,
+        "patchLevel": {
+            "drupal/core": "-p2"
+        },
+        "installer-types": [
+            "library"
+        ],
+        "installer-paths": {
+            "web/core": [
+                "type:drupal-core"
+            ],
+            "web/libraries/{$name}": [
+                "type:drupal-library"
+            ],
+            "web/modules/contrib/{$name}": [
+                "type:drupal-module"
+            ],
+            "web/profiles/contrib/{$name}": [
+                "type:drupal-profile"
+            ],
+            "web/themes/contrib/{$name}": [
+                "type:drupal-theme"
+            ],
+            "drush/Commands/{$name}": [
+                "type:drupal-drush"
+            ]
+        },
+        "drupal-scaffold": {
+            "locations": {
+                "web-root": "web/"
+            },
+            "file-mapping": {
+                "[web-root]/robots.txt": false
+            }
+        },
+        "extra": {},
+        "patches": {
+            "drupal/core": {
+                "Fix a mysterious crash on page manager config": "patches/core_1.patch"
+            },
+            "drupal/commerce": {
+                "Change the title of the checkout Login form": "patches/checkout-login-form-title.patch"
+            },
+            "drupal/mailchimp": {
+                "Fixed issue with updates not sent for new users": "patches/mailchimp.send-updates-for-new-users.patch"
+            },
+            "drupal/state_machine": {
+                "Show current state in transition forms": "patches/state_machine.show_current_state-2979901-mr10.patch"
+            }
+        }
+    }
+}

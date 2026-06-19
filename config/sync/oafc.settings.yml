@@ -1,0 +1,21 @@
+favicon:
+  use_default: true
+features:
+  comment_user_picture: true
+  comment_user_verification: true
+  favicon: true
+  node_user_picture: true
+logo:
+  use_default: true
+facebook_url: 'https://www.facebook.com/pages/Ontario-Association-of-Fire-Chiefs/570718659627505'
+twitter_url: 'https://twitter.com/ONFireChiefs'
+instagram_url: 'https://www.instagram.com/onfirechiefs/?igsh=dGF3eGQ1cWJncWhj#'
+youtube_url: ''
+linkedin_url: 'http://www.linkedin.com/company/ontario-association-of-fire-chiefs'
+pinterest_url: ''
+flickr_url: ''
+email_wrapper_bg_color: ''
+email_footer_signature: ''
+email_footer_text:
+  value: "<p class=\"text-align-center\"><span style=\"font-size:16px;\"><span style=\"font-family:Arial,Helvetica,sans-serif;\">This message is sent to you by Ontario Association of Fire Chiefs</span></span><br />\r\n<span style=\"font-size:16px;\"><span style=\"font-family:Arial,Helvetica,sans-serif;\">520 Westney Road&nbsp;South, Unit 22, Ajax, Ontario, L1S 6W6</span></span><br />\r\nTel: 905-426-9865&nbsp; Toll Free:&nbsp; 1-800-774-6651<br />\r\nFax: 905-426-3032 Email: info@oafc.on.ca&nbsp; Website: www.oafc.on.ca</p>\r\n"
+  format: html

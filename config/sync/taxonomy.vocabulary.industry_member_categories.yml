@@ -1,0 +1,9 @@
+uuid: e966a926-4846-4d25-9a6d-8aad5d10596e
+langcode: en
+status: true
+dependencies: {  }
+name: 'Industry Member Categories'
+vid: industry_member_categories
+description: null
+weight: 0
+new_revision: false

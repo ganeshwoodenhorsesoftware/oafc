@@ -1,0 +1,54 @@
+{#
+/**
+ * @file
+ * Theme override to display a block.
+ *
+ * Available variables:
+ * - plugin_id: The ID of the block implementation.
+ * - label: The configured label of the block if visible.
+ * - configuration: A list of the block's configuration values.
+ *   - label: The configured label for the block.
+ *   - label_display: The display settings for the label.
+ *   - provider: The module or other provider that provided this block plugin.
+ *   - Block plugin specific settings will also be stored here.
+ * - content: The content of this block.
+ * - attributes: array of HTML attributes populated by modules, intended to
+ *   be added to the main container tag of this template.
+ *   - id: A valid HTML ID and guaranteed unique.
+ * - title_attributes: Same as attributes, except applied to the main title
+ *   tag that appears in the template.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the main title tag that appears in the template.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the main title tag that appears in the template.
+ *
+ * @see template_preprocess_block()
+ */
+#}
+{%
+  set classes = [
+    'cta-block',
+    'block',
+    'block-' ~ configuration.provider|clean_class,
+    'block-' ~ plugin_id|clean_class,
+  ]
+%}
+<div{{ attributes.addClass(classes) }}>
+  {% block content %}
+    {% set image_style_name = 'cta_' ~ content.field_cta_size[0]|render %}
+    {% set link_url = content.field_link[0]['#url']|render %}
+    {% set link_title = content.field_link[0]['#title']|render %}
+
+    <div class="cta-block__image">
+      <a href="{{ content.field_link[0]['#url'] }}">
+        <img src="{{ content.field_image[0]['#item'].entity.fileuri|image_style(image_style_name) }}" alt="{{ content.field_image[0]['#item'].alt }}" />
+      </a>
+    </div>
+
+    {% if link_url != link_title %}
+      <div class="cta-block__link">
+        <a href="{{ link_url }}" class="btn btn--cta-sm">{{ link_title }}</a>
+      </div>
+    {% endif %}
+  {% endblock %}
+</div>

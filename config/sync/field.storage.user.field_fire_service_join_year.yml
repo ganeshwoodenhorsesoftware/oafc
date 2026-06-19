@@ -1,0 +1,18 @@
+uuid: 35dc5d39-452e-4bbd-b99d-852440be1def
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+id: user.field_fire_service_join_year
+field_name: field_fire_service_join_year
+entity_type: user
+type: timestamp
+settings: {  }
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

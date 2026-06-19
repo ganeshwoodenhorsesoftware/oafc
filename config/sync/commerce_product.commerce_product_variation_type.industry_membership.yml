@@ -1,0 +1,21 @@
+uuid: 8eb3e82a-a3ef-477e-bd15-9130c3b2c2d3
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_license
+third_party_settings:
+  commerce_license:
+    license_types:
+      role: role
+    activate_on_place: false
+    allow_renewal: true
+    interval: '3'
+    period: month
+id: industry_membership
+label: 'Industry membership'
+traits:
+  - commerce_license
+locked: false
+orderItemType: industry_membership
+generateTitle: false

@@ -1,0 +1,43 @@
+{#
+/**
+ * @file
+ * Theme implementation for a featured Event.
+ *
+ * @see template_preprocess_node()
+ */
+#}
+{%
+  set classes = [
+    'featured-event',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+    'clearfix',
+  ]
+%}
+<article{{ attributes.addClass(classes) }}>
+  <div{{ content_attributes.addClass('node__content', 'clearfix') }}>
+    <a href="{{ url }}" title="{{ node.label }}" class="featured-event__link">
+      <div class="featured-event__image">
+        {{ content.field_featured_image }}
+      </div>
+      <div class="featured-event__title">
+        {{ label }}
+        <div class="featured-event__date">
+          {{ content.field_date_range }}
+        </div>
+      </div>
+    </a>
+    <div class="featured-event__body">
+      {% set body_teaser %}
+        {{ content.body }}
+      {% endset %}
+      {{ body_teaser|striptags }}
+    </div>
+    <div class="featured-event__view-more">
+      <a href="{{ url }}" class="btn btn--sm btn--red">{{ 'View Details'|t }}</a>
+    </div>
+  </div>
+</article>

@@ -1,0 +1,15 @@
+_core:
+  default_config_hash: UmU3BXAHFTzTA3pIILPL42bbuxC-OHuQwvE_VDFMrII
+langcode: en
+uuid: 1a62d74a-8025-4b48-8c21-18e5df77f58e
+name: 'Ontario Association of Fire Chiefs'
+mail: info@oafc.on.ca
+slogan: ''
+page:
+  403: ''
+  404: ''
+  front: /node/18
+admin_compact_mode: false
+weight_select_max: 100
+default_langcode: en
+mail_notification: ''

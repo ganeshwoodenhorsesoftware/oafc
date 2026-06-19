@@ -1,0 +1,22 @@
+uuid: def3447c-5835-4088-b2ba-0400f8f076db
+langcode: en
+status: true
+dependencies:
+  module:
+    - mailchimp_lists
+    - user
+id: user.field_mailchimp_subscription
+field_name: field_mailchimp_subscription
+entity_type: user
+type: mailchimp_lists_subscription
+settings:
+  mc_list_id: d39b6df0e7
+  double_opt_in: false
+  send_welcome: false
+module: mailchimp_lists
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

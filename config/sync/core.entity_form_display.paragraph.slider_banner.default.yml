@@ -1,0 +1,37 @@
+uuid: 3ec27b0e-4539-4c82-9f39-49efc1061e07
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.slider_banner.field_banner_image
+    - field.field.paragraph.slider_banner.field_banner_link
+    - image.style.thumbnail
+    - paragraphs.paragraphs_type.slider_banner
+  module:
+    - image
+    - link
+id: paragraph.slider_banner.default
+targetEntityType: paragraph
+bundle: slider_banner
+mode: default
+content:
+  field_banner_image:
+    type: image_image
+    weight: 0
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+  field_banner_link:
+    type: link_default
+    weight: 1
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
+  uid: true

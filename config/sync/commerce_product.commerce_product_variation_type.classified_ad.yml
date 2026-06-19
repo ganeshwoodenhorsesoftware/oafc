@@ -1,0 +1,16 @@
+uuid: 585d02e1-464d-4628-a76e-65e156642730
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_license
+third_party_settings:
+  commerce_license:
+    license_types: {  }
+    activate_on_place: false
+id: classified_ad
+label: 'Classified Ad'
+traits: {  }
+locked: false
+orderItemType: classified_ad
+generateTitle: false

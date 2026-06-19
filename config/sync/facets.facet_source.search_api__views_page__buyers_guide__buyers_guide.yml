@@ -1,0 +1,9 @@
+uuid: bf0fbf9b-1524-4492-b6ab-a0dbd10957f7
+langcode: en
+status: true
+dependencies: {  }
+id: search_api__views_page__buyers_guide__buyers_guide
+name: 'search_api:views_page__buyers_guide__buyers_guide'
+filter_key: null
+url_processor: query_string
+breadcrumb: {  }

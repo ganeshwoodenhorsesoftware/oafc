@@ -1,0 +1,14 @@
+uuid: dad012a4-2df4-40ce-a405-6a972fd46854
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.honourary_member
+  module:
+    - user
+id: user_remove_role_action.honourary_member
+label: 'Remove the Honourary Member role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: honourary_member

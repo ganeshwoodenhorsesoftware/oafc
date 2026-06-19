@@ -1,0 +1,15 @@
+uuid: 491807e1-748b-4f4e-bd69-09e62c5d165e
+langcode: en
+status: true
+dependencies: {  }
+name: cta_285x240
+label: 'CTA (285x240)'
+effects:
+  95495f57-8b03-46cd-a620-dd6289615062:
+    uuid: 95495f57-8b03-46cd-a620-dd6289615062
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 285
+      height: 240
+      anchor: center-center

@@ -1,0 +1,25 @@
+uuid: 059457d0-0800-4109-97de-f05c399f1401
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_attach_webform
+    - node.type.member_only_page
+  module:
+    - webform
+id: node.member_only_page.field_attach_webform
+field_name: field_attach_webform
+entity_type: node
+bundle: member_only_page
+label: 'Attach Webform'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:webform'
+  handler_settings:
+    target_bundles: null
+    auto_create: false
+field_type: webform

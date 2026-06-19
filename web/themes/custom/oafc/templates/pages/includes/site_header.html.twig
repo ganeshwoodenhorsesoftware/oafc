@@ -1,0 +1,267 @@
+{# Set the path for the site logo. #}
+{% set site_logo_url =  base_path ~ directory ~ '/gfx/logo.png' %}
+
+{# Set My Account menu links. #}
+{% set my_account_url = path('entity.user.canonical', {'user': user.id}) %}
+{% set membership_info_url = base_path ~ 'user' %}
+{% set contact_details_url = base_path ~ 'user/' ~ current_user_id ~ '/edit' %}
+{% set purchase_history_url = base_path ~ 'user/' ~ current_user_id ~ '/orders' %}
+
+{# Mobile overlays. #}
+{% if page.mobile_nav %}
+  {% if page.site_search %}
+    <div class="mobile-search-overlay mobile-overlay">
+      <div class="mobile-search-overlay__content mobile-overlay__content">
+        <a href="#" class="mobile-search-overlay__close mobile-overlay__close">
+          <span class="fa fa-times" aria-hidden="true"></span>
+        </a>
+        <div class="mobile-search-form">
+          {{ page.site_search }}
+          <a class="mobile-search-form__submit" href="#" title="{{ 'Search'|t }}">
+            <span class="fa fa-search" aria-hidden="true"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+  <div class="mobile-nav-overlay mobile-overlay">
+    <div class="mobile-nav-overlay__content mobile-overlay__content clearfix">
+      <header class="mobile-nav-overlay__header clearfix" role="banner">
+        <a href="#" class="mobile-nav-overlay__close mobile-overlay__close">
+          <span class="fa fa-times" aria-hidden="true"></span>
+        </a>
+      </header>
+      <div class="mobile-nav">
+        {{ page.mobile_nav }}
+      </div>
+    </div>
+  </div>
+
+  <div class="mobile-dashboard-overlay mobile-overlay">
+    <div class="mobile-nav-overlay__content mobile-overlay__content clearfix">
+      <header class="mobile-nav-overlay__header clearfix" role="banner">
+        <a href="#" class="mobile-nav-overlay__close mobile-overlay__close">
+          <span class="fa fa-times" aria-hidden="true"></span>
+        </a>
+      </header>
+      <div class="mobile-dashboard-nav">
+        {# My Account Menu. #}
+        <ul class="menu menu--level-0 menu--dashboard-account">
+          <li class="menu__item">
+            <a href="{{ my_account_url }}" class="menu__link">{{ 'My Account'|t }}</a>
+            <ul class="menu">
+              <li class="menu__item">
+                <a href="{{ membership_info_url }}" class="menu__link">{{ 'Membership Information'|t }}</a>
+              </li>
+              <li class="menu__item">
+                <a href="{{ contact_details_url }}" class="menu__link">{{ 'Contact Details'|t }}</a>
+              </li>
+              <li class="menu__item">
+                <a href="{{ purchase_history_url }}" class="menu__link">{{ 'Purchase History'|t }}</a>
+              </li>
+              <li class="menu__item">
+                <a href="{{ base_path }}user/logout" class="menu__link">{{ 'Log Out'|t }}</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        {# / My Account Menu. #}
+        {% if page.dashboard_quicklinks %}
+          {{ page.dashboard_quicklinks }}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endif %}
+{# / Mobile overlays. #}
+
+<header class="site-header">
+
+  <div class="site-header__top">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          {# User Navigation. #}
+          {% if logged_in %}
+            <div class="site-header-user-nav">
+              <ul class="menu clearfix">
+                <li class="menu__item menu__item--username">
+                  <a href="{{ base_path }}user" class="menu__link">
+                    {{ 'Welcome'|t }}
+                    {% if current_user_name %}
+                      {{ current_user_name }}
+                    {% endif %}
+                  </a>
+                </li>
+                <li class="menu__item menu__item--dashboard">
+                  <a href="{{ base_path }}user" class="menu__link">{{ 'My Dashboard'|t }}</a>
+                </li>
+                <li class="menu__item menu__item--dashboard-quicklinks">
+                  <a href="#" class="menu__link">
+                    <span class="dashboard-opened">{{ 'Close Dashboard Quicklinks'|t }}</span>
+                    <span class="dashboard-closed">{{ 'Dashboard Quicklinks'|t }}</span>
+                  </a>
+                </li>
+                <li class="menu__item menu__item--dashboard-quicklinks-mobile">
+                  <a href="#" class="menu__link">
+                    {{ 'Quicklinks'|t }}
+                  </a>
+                </li>
+              </ul>
+            </div>
+          {% endif %}
+          {# / User Navigation. #}
+
+          {# Google Translate. #}
+          <div class="site-header__google-translate">
+            <div id="google_translate_element"></div>
+            <script>
+              function googleTranslateElementInit() {
+                new google.translate.TranslateElement({
+                  pageLanguage: 'en',
+                  includedLanguages: 'fr',
+                  gaTrack: true,
+                  gaId: 'UA-3144255-1',
+                  layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+                }, 'google_translate_element');
+              }
+            </script>
+            <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+          </div>
+          {# / Google Translate. #}
+
+          {% if page.header_nav %}
+            <div class="site-header-nav hidden-xs">
+              {{ page.header_nav }}
+            </div>
+          {% endif %}
+
+        </div>
+      </div>
+    </div>
+  </div>
+  {# User Dashboard. #}
+  {% if logged_in %}
+    <div class="dashboard">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h2 class="dashboard__title">{{ 'Dashboard Quicklinks'|t }}</h2>
+
+            <div class="dashboard__quicklinks clearfix">
+              {% if page.dashboard_quicklinks %}
+                {{ page.dashboard_quicklinks }}
+              {% endif %}
+
+              {# My Account Menu. #}
+              <ul class="menu menu--level-0 menu--dashboard-account">
+                <li class="menu__item">
+                  <a href="{{ my_account_url }}" class="menu__link">{{ 'My Account'|t }}</a>
+                  <ul class="menu">
+                    <li class="menu__item">
+                      <a href="{{ membership_info_url }}" class="menu__link">{{ 'Membership Information'|t }}</a>
+                    </li>
+                    <li class="menu__item">
+                      <a href="{{ contact_details_url }}" class="menu__link">{{ 'Contact Details'|t }}</a>
+                    </li>
+                    <li class="menu__item">
+                      <a href="{{ purchase_history_url }}" class="menu__link">{{ 'Purchase History'|t }}</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+              {# / My Account Menu. #}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+  {# / User Dashboard. #}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <a href="{{ front_page }}" class="site-header__logo">
+          <img src="{{ base_path ~ directory }}/gfx/logo_oafc.png" alt="{{ site_name ? site_name }}" />
+          <span>{{ 'Ontario Association of Fire Chiefs'|t }}</span>
+        </a>
+
+        {# Contact information: visible only when printing (below logo). #}
+        <div class="site-header__print-contact" aria-hidden="true">
+          <p class="site-header__print-contact-line">520 Westney Road South, Unit 22, Ajax, Ontario, L1S 6W6</p>
+          <p class="site-header__print-contact-line">{{ 'Tel: 905-426-9865'|t }} &nbsp; {{ 'Toll Free: 1-800-774-6651'|t }}</p>
+          <p class="site-header__print-contact-line">{{ 'Fax: 905-426-3032'|t }} &nbsp; {{ 'Email: info@oafc.on.ca'|t }} &nbsp; {{ 'Website: www.oafc.on.ca'|t }}</p>
+          {% if site_name %}
+            <p class="site-header__print-contact-line site-header__print-contact-site-name">{{ site_name }}</p>
+          {% endif %}
+        </div>
+
+        {# Mobile navigation. #}
+        {% if page.mobile_nav %}
+          <div class="mobile-control-nav visible-xs-block visible-sm-block">
+            <ul class="menu clearfix">
+              <li class="menu__item menu__item--search">
+                <a href="#" class="menu__link" title="{{ 'Search'|t }}">
+                  <span aria-hidden="true" class="fa fa-search"></span>
+                </a>
+              </li>
+              <li class="menu__item menu__item--menu">
+                <a href="#" class="menu__link" title="{{ 'Menu'|t }}">
+                  <span aria-hidden="true" class="fa fa-bars"></span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        {% endif %}
+        {# / Mobile navigation. #}
+
+        <div class="site-header__actions">
+          {% if page.i_want_to_nav %}
+            <div class="i-want-to-nav site-header__inline-item">
+              <div class="i-want-to-nav__label">{{ 'I want to:'|t }}</div>
+              <div class="i-want-to-nav__select">
+                <a href="#" class="i-want-to-nav__trigger">{{ '-- select option --'|t }}</a>
+                <div class="i-want-to-nav__options">
+                  {{ page.i_want_to_nav }}
+                </div>
+              </div>
+            </div>
+
+            <div class="site-header__or-text site-header__inline-item">
+              {{ 'or'|t }}
+            </div>
+          {% endif %}
+
+          {% if page.site_search %}
+            <div class="site-header__search site-header__inline-item">
+              {{ page.site_search }}
+            </div>
+          {% endif %}
+
+          {% if page.commerce_cart %}
+            <div class="site-header__commerce-cart site-header__inline-item">
+              {{ page.commerce_cart }}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="site-header__bottom">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          {% if page.primary_nav %}
+            {# Primary navigation. #}
+            <div class="primary-nav">
+              {{ page.primary_nav }}
+            </div>
+            {# / Primary navigation. #}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

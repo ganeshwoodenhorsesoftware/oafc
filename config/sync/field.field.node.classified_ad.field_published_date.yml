@@ -1,0 +1,21 @@
+uuid: 437a17fd-6c80-4724-add3-aba0f55b76ca
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_published_date
+    - node.type.classified_ad
+  module:
+    - datetime
+id: node.classified_ad.field_published_date
+field_name: field_published_date
+entity_type: node
+bundle: classified_ad
+label: 'Published date'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

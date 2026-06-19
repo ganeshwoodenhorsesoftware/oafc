@@ -1,0 +1,20 @@
+uuid: 74ab1ed2-6288-48bf-89a4-827af296ebd7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_secondary_contact_email
+  module:
+    - user
+id: user.user.field_secondary_contact_email
+field_name: field_secondary_contact_email
+entity_type: user
+bundle: user
+label: 'Secondary contact email'
+description: "Confirmation emails will be CC'd to this address."
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: email

@@ -1,0 +1,11 @@
+uuid: c0904116-3278-4053-83fb-d212ab9eb5cb
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.industry_member_categories
+id: taxonomy_term.industry_member_categories
+target_entity_type_id: taxonomy_term
+target_bundle: industry_member_categories
+default_langcode: site_default
+language_alterable: false

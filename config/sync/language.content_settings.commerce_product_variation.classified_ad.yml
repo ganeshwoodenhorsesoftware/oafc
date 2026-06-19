@@ -1,0 +1,11 @@
+uuid: 6482748b-2872-4a9a-911f-c9e99dd4142b
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_variation_type.classified_ad
+id: commerce_product_variation.classified_ad
+target_entity_type_id: commerce_product_variation
+target_bundle: classified_ad
+default_langcode: site_default
+language_alterable: false

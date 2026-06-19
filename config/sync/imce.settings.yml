@@ -1,0 +1,10 @@
+_core:
+  default_config_hash: TdXtCMiB0HgC2Ymlkh7nLyhixh5QSeX2lZWghRfYiOI
+abs_urls: false
+admin_theme: false
+roles_profiles:
+  authenticated:
+    public: member
+  administrator:
+    public: admin
+abs_url: null

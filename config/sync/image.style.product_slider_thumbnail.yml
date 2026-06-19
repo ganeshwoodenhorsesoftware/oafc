@@ -1,0 +1,15 @@
+uuid: 0636089e-cf17-4635-b327-9d942648260a
+langcode: en
+status: true
+dependencies: {  }
+name: product_slider_thumbnail
+label: 'Product Slider Thumbnail'
+effects:
+  a96099cb-d8f1-4a5a-a26e-dc5a1685469a:
+    uuid: a96099cb-d8f1-4a5a-a26e-dc5a1685469a
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 285
+      height: 255
+      anchor: center-center

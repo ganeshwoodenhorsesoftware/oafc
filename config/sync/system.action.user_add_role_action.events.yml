@@ -1,0 +1,14 @@
+uuid: a7df06df-074a-417c-acd8-a19b2d399716
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.events
+  module:
+    - user
+id: user_add_role_action.events
+label: 'Add the Events role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: events

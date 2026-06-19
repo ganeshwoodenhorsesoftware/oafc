@@ -1,0 +1,124 @@
+/**
+ * Dashboard.
+ */
+.dashboard {
+  display: none;
+  clear: both;
+  margin: 0;
+  padding: 36px 0 30px 0;
+  background: #fff;
+  border-top: 1px solid #999;
+}
+.dashboard__title {
+  margin: 0 0 43px 0;
+  padding: 0 0 7px 0;
+  font-size: 30px;
+  color: #330000;
+  line-height: 1.0;
+  font-weight: 600;
+  border-bottom: 2px solid #999;
+}
+.dashboard__quicklinks {
+  text-align: left;
+
+  // Dashboard links coming from region.
+  > .region {
+    float: left;
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: 80%;
+
+    .menu--level-0 > .menu__item {
+      float: left;
+      display: block;
+      margin: 0;
+      padding: 0 30px 0 0;
+      width: 25%;
+
+      // Hide column links.
+      > .menu__link {
+        display: none;
+      }
+    }
+  }
+  .menu {
+    float: none;
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+  .menu__item {
+    float: none;
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+
+  // Top level links.
+  .menu--level-1 > .menu__item > .menu__link,
+  .menu--dashboard-account .menu__item .menu__link {
+    display: block;
+    margin: 0 0 12px 0;
+    padding: 0 0 8px 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: $c-secondary;
+    text-decoration: none;
+    border-bottom: 1px solid #ccc;
+
+    &:hover,
+    &:focus {
+      color: $c-link;
+      text-decoration: none;
+    }
+  }
+
+  // Sub links with arrows.
+  .menu .menu .menu .menu__item .menu__link,
+  .menu--dashboard-account .menu .menu__item .menu__link {
+    position: relative;
+    display: block;
+    margin: 0 0 7px 0;
+    padding: 0 0 0 21px;
+    font-size: 15px;
+    line-height: 1.2;
+    font-weight: normal;
+    color: $c-secondary;
+    text-decoration: none;
+    border: none;
+
+    &:hover,
+    &:focus {
+      color: $c-link;
+      text-decoration: none;
+    }
+
+    // Arrow.
+    &:before {
+      @include fa-icon();
+      position: absolute;
+      top: 2px;
+      left: 0;
+      content: $fa-var-arrow-right;
+      display: block;
+      margin: 0;
+      padding: 2px;
+      color: #fff;
+      font-size: 9px;
+      text-align: center;
+      background: $c-link;
+      z-index: 0;
+      transition: color .2s ease-in-out, background-color .2s ease-in-out, border-color .2s ease-in-out;
+    }
+  }
+
+  // My Account Menu.
+  .menu--dashboard-account {
+    float: left;
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: 20%;
+  }
+}

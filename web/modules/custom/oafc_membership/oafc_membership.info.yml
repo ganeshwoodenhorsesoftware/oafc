@@ -1,0 +1,8 @@
+name: OAFC Membership
+description: Support module for memberships in OAFC
+type: module
+core_version_requirement: ^9 || ^10
+dependencies:
+  - drupal:commerce
+  - drupal:address
+package: oafc

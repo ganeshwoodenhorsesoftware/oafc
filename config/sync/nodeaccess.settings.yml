@@ -1,0 +1,776 @@
+_core:
+  default_config_hash: Zno4MMkbreZeJZgnY0DXCPksXkuYye3MyIFlVuh-xLc
+allowed_grant_operations:
+  grant_view: true
+  grant_update: false
+  grant_delete: false
+bundles_roles_grants:
+  classified_ad:
+    anonymous:
+      grant_view: 1
+      grant_update: 0
+      grant_delete: 0
+    authenticated:
+      grant_view: 1
+      grant_update: 0
+      grant_delete: 0
+    author:
+      grant_view: 1
+      grant_update: 1
+      grant_delete: 0
+    administrator:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    courses:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    events:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    active_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    associate_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    board_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    corporation_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    honourary_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    industry_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    lifetime_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    ofcaaa_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    retired_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+  course:
+    anonymous:
+      grant_view: 1
+      grant_update: 0
+      grant_delete: 0
+    authenticated:
+      grant_view: 1
+      grant_update: 0
+      grant_delete: 0
+    author:
+      grant_view: 1
+      grant_update: 1
+      grant_delete: 0
+    administrator:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    courses:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    events:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    active_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    associate_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    board_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    corporation_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    honourary_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    industry_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    lifetime_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    ofcaaa_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    retired_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+  event:
+    anonymous:
+      grant_view: 1
+      grant_update: 0
+      grant_delete: 0
+    authenticated:
+      grant_view: 1
+      grant_update: 0
+      grant_delete: 0
+    author:
+      grant_view: 1
+      grant_update: 1
+      grant_delete: 0
+    administrator:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    courses:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    events:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    active_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    associate_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    board_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    corporation_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    honourary_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    industry_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    lifetime_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    ofcaaa_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    retired_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+  homepage:
+    anonymous:
+      grant_view: 1
+      grant_update: 0
+      grant_delete: 0
+    authenticated:
+      grant_view: 1
+      grant_update: 0
+      grant_delete: 0
+    author:
+      grant_view: 1
+      grant_update: 1
+      grant_delete: 0
+    administrator:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    courses:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    events:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    active_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    associate_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    board_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    corporation_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    honourary_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    industry_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    lifetime_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    ofcaaa_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    retired_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+  job_post:
+    anonymous:
+      grant_view: 1
+      grant_update: 0
+      grant_delete: 0
+    authenticated:
+      grant_view: 1
+      grant_update: 0
+      grant_delete: 0
+    author:
+      grant_view: 1
+      grant_update: 1
+      grant_delete: 0
+    administrator:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    courses:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    events:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    active_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    associate_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    board_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    corporation_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    honourary_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    industry_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    lifetime_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    ofcaaa_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    retired_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+  member_only_page:
+    administrator:
+      grant_view: 1
+      grant_update: 0
+      grant_delete: 0
+    active_member:
+      grant_view: 1
+      grant_update: 0
+      grant_delete: 0
+    associate_member:
+      grant_view: 1
+      grant_update: 0
+      grant_delete: 0
+    board_member:
+      grant_view: 1
+      grant_update: 0
+      grant_delete: 0
+    industry_member:
+      grant_view: 1
+      grant_update: 0
+      grant_delete: 0
+    lifetime_member:
+      grant_view: 1
+      grant_update: 0
+      grant_delete: 0
+    ofcaaa_member:
+      grant_view: 1
+      grant_update: 0
+      grant_delete: 0
+    retired_member:
+      grant_view: 1
+      grant_update: 0
+      grant_delete: 0
+    author:
+      grant_view: 1
+      grant_update: 1
+      grant_delete: 0
+    anonymous:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    authenticated:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    courses:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    events:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    corporation_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    honourary_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+  news_article:
+    anonymous:
+      grant_view: 1
+      grant_update: 0
+      grant_delete: 0
+    authenticated:
+      grant_view: 1
+      grant_update: 0
+      grant_delete: 0
+    author:
+      grant_view: 1
+      grant_update: 1
+      grant_delete: 0
+    administrator:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    courses:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    events:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    active_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    associate_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    board_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    corporation_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    honourary_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    industry_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    lifetime_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    ofcaaa_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    retired_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+  page:
+    anonymous:
+      grant_view: 1
+      grant_update: 0
+      grant_delete: 0
+    authenticated:
+      grant_view: 1
+      grant_update: 0
+      grant_delete: 0
+    author:
+      grant_view: 1
+      grant_update: 1
+      grant_delete: 0
+    administrator:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    courses:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    events:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    active_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    associate_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    board_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    corporation_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    honourary_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    industry_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    lifetime_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    ofcaaa_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    retired_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+  partner:
+    anonymous:
+      grant_view: 1
+      grant_update: 0
+      grant_delete: 0
+    authenticated:
+      grant_view: 1
+      grant_update: 0
+      grant_delete: 0
+    author:
+      grant_view: 1
+      grant_update: 1
+      grant_delete: 0
+    administrator:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    courses:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    events:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    active_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    associate_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    board_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    corporation_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    honourary_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    industry_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    lifetime_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    ofcaaa_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    retired_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+  profile:
+    anonymous:
+      grant_view: 1
+      grant_update: 0
+      grant_delete: 0
+    authenticated:
+      grant_view: 1
+      grant_update: 0
+      grant_delete: 0
+    author:
+      grant_view: 1
+      grant_update: 1
+      grant_delete: 0
+    administrator:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    courses:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    events:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    active_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    associate_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    board_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    corporation_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    honourary_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    industry_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    lifetime_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    ofcaaa_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    retired_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+  training_centre:
+    anonymous:
+      grant_view: 1
+      grant_update: 0
+      grant_delete: 0
+    authenticated:
+      grant_view: 1
+      grant_update: 0
+      grant_delete: 0
+    author:
+      grant_view: 1
+      grant_update: 1
+      grant_delete: 0
+    administrator:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    courses:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    events:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    active_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    associate_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    board_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    corporation_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    honourary_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    industry_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    lifetime_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    ofcaaa_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+    retired_member:
+      grant_view: 0
+      grant_update: 0
+      grant_delete: 0
+grants_tab_availability:
+  classified_ad: true
+  course: true
+  event: true
+  homepage: true
+  job_post: true
+  member_only_page: true
+  news_article: true
+  page: true
+  partner: true
+  profile: true
+  training_centre: true
+map_rid_gid:
+  anonymous: 1
+  authenticated: 2
+  administrator: 3
+  active_member: 5
+  associate_member: 6
+  retired_member: 7
+  industry_member: 8
+  corporation_member: 9
+  honourary_member: 10
+  events: 11
+  courses: 12
+  board_member: 13
+  ofcaaa_member: 14
+  lifetime_member: 15
+roles_settings:
+  anonymous:
+    display_name: 'Anonymous user'
+    name: 'Anonymous user'
+    weight: 0
+    selected: true
+  authenticated:
+    display_name: 'Authenticated user'
+    name: 'Authenticated user'
+    weight: 0
+    selected: true
+  administrator:
+    display_name: Administrator
+    name: Administrator
+    weight: 0
+    selected: false
+  active_member:
+    display_name: 'Individual Member'
+    name: 'Individual Member'
+    weight: 0
+    selected: true
+  associate_member:
+    display_name: 'Associate Member'
+    name: 'Associate Member'
+    weight: 0
+    selected: true
+  retired_member:
+    display_name: 'Retired Member'
+    name: 'Retired Member'
+    weight: 0
+    selected: true
+  industry_member:
+    display_name: 'Industry Member'
+    name: 'Industry Member'
+    weight: 0
+    selected: true
+  corporation_member:
+    display_name: 'Corporation Member'
+    name: 'Corporation Member'
+    weight: 0
+    selected: false
+  honourary_member:
+    display_name: 'Honourary Member'
+    name: 'Honourary Member'
+    weight: 0
+    selected: false
+  events:
+    display_name: Events
+    name: Events
+    weight: 0
+    selected: true
+  courses:
+    display_name: Courses
+    name: Courses
+    weight: 0
+    selected: true
+  board_member:
+    display_name: 'Board of Directors'
+    name: 'Board of Directors'
+    weight: 0
+    selected: true
+  ofcaaa_member:
+    display_name: 'OFCAAA Member'
+    name: 'OFCAAA Member'
+    weight: 0
+    selected: true
+  lifetime_member:
+    display_name: 'Lifetime member'
+    name: 'Lifetime member'
+    weight: 0
+    selected: true

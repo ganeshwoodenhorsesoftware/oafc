@@ -1,0 +1,22 @@
+uuid: 4bbef677-9e52-418f-a24a-6407cb203957
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.member_only_page
+id: node.member_only_page.promote
+field_name: promote
+entity_type: node
+bundle: member_only_page
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

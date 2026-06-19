@@ -1,0 +1,112 @@
+<?php
+
+/**
+ * @file
+ * Installation/uninstallation scripts.
+ */
+
+use Drupal\taxonomy\Entity\Vocabulary;
+use Drupal\taxonomy\Entity\Term;
+
+/**
+ * Add more terms to "Product Categories".
+ */
+function oafc_base_update_8001(&$sandbox) {
+  $vocabulary = Vocabulary::load('industry_member_categories');
+  $term_names = [
+    'Absorbants',
+    'Aerials',
+    'Alarms/Sprinklers',
+    'Bags',
+    'Boats',
+    'Chassis',
+    'Chemical Systems',
+    'Cleaning Systems',
+    'Clothing:Protective',
+    'Clothing:Uniform',
+    'Crisis Communications',
+    'Communications',
+    'Compartments',
+    'Compressors',
+    'Computers',
+    'Consulting Services',
+    'Decals',
+    'Engines',
+    'Extrication',
+    'Filtration',
+    'Fireworks',
+    'First Aid',
+    'Flow Meters',
+    'Foam Systems',
+    'Footwear',
+    'Gas Detection',
+    'Generators',
+    'Giftware',
+    'HazMat',
+    'Horns',
+    'Hoses',
+    'Instrument Panels',
+    'Insurance',
+    'Ladders',
+    'Lights',
+    'Monitoring',
+    'Nozzles',
+    'Occupational Medical Programs',
+    'Publications',
+    'Pumpers',
+    'Reels',
+    'Rescue Equipment and Vehicles',
+    'Rustproofing',
+    'Safety Equipment',
+    'Safety Inspection',
+    'SCBA',
+    'Sirens',
+    'Software',
+    'Supplier Agents',
+    'Tankers',
+    'Thermal Imaging Equipment',
+    'TIC',
+    'Tire Chains',
+    'Tools',
+    'Training',
+    'Vehicle Exhaust Extrication',
+    'Ventilation',
+  ];
+
+  foreach ($term_names as $term_name) {
+    $term = Term::create([
+      'name' => $term_name,
+      'vid' => $vocabulary->id(),
+    ]);
+    $term->save();
+  }
+}
+
+/**
+ * Update obsolete entity action plugins to new definitions (workaround).
+ *
+ * See https://www.drupal.org/project/drupal/issues/3045570
+ *
+ * Implements hook_update_N().
+ */
+function oafc_base_update_9002() {
+  $old_new_action_id_map = [
+    'node_publish_action' => 'entity:publish_action:node',
+    'node_unpublish_action' => 'entity:unpublish_action:node',
+    'node_save_action' => 'entity:save_action:node',
+    'node_delete_action' => 'entity:delete_action:node',
+    'comment_publish_action' => 'entity:publish_action:comment',
+    'comment_unpublish_action' => 'entity:unpublish_action:comment',
+    'comment_save_action' => 'entity:save_action:comment',
+    'comment_delete_action' => 'entity:delete_action:comment',
+  ];
+
+  /** @var \Drupal\system\Entity\Action[] $actions */
+  $actions = \Drupal::entityTypeManager()->getStorage('action')->loadMultiple();
+  foreach ($actions as $action) {
+    if (isset($old_new_action_id_map[$action->id()])) {
+      $action->setPlugin($old_new_action_id_map[$action->id()]);
+      $action->save();
+    }
+  }
+}

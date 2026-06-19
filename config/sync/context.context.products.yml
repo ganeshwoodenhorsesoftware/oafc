@@ -1,0 +1,28 @@
+uuid: d67ef4ee-9491-4a93-b591-44c9326cf1dc
+langcode: en
+status: true
+dependencies:
+  module:
+    - context_active_trail
+    - system
+label: Products
+name: products
+group: null
+description: ''
+requireAllConditions: false
+disabled: false
+conditions:
+  request_path:
+    id: request_path
+    negate: false
+    uuid: f010403d-c832-41c2-a8b7-4f59e9f0cebd
+    context_mapping: {  }
+    pages: '/marketplace-careers/directory/*'
+reactions:
+  active_trail:
+    id: active_trail
+    trail: 'main:menu_link_content:ffbe7b87-eca1-4925-88fb-7f2de928d290'
+    breadcrumbs: 1
+    uuid: ef197030-c234-4df4-9caa-2f863a09e52e
+    breadcrumb_title: false
+weight: 0

@@ -1,0 +1,192 @@
+/**
+ * Jobs teaser.
+ */
+.home-job-listing {
+  margin: 0 0 40px 0;
+  padding: 0;
+
+  @media (min-width: $screen-md-min) {
+    margin: 0;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    > li {
+      float: none;
+      margin: 0 0 15px 0;
+      padding: 0 0 24px 0;
+      border-bottom: 1px solid #ccc;
+    }
+  }
+}
+.job-teaser-item {
+  position: relative;
+  margin: 0;
+  padding: 0 0 0 116px;
+  min-height: 102px;
+}
+.job-teaser-item__image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 102px;
+
+  a {
+    position: relative;
+    display: block;
+    opacity: 0.8;
+    border: 1px solid #ccc;
+
+    &:hover,
+    &:focus {
+      opacity: 0.7;
+      border-color: $c-link;
+    }
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+}
+.job-teaser-item__title {
+  margin: 0 0 2px 0;
+  padding: 3px 0 0 0;
+  font-family: $f-primary;
+  font-size: 20px;
+  line-height: 1.1;
+  font-weight: 600;
+  color: $c-body;
+
+  a {
+    color: $c-body;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      color: $c-link;
+    }
+  }
+}
+.job-teaser-item__date {
+  margin: 0 0 10px 0;
+  padding: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: $c-link;
+
+  div {
+    display: inline-block;
+  }
+}
+.job-teaser-item__body {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+
+  p {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+/**
+ * Job node.
+ */
+.page-node-type-job-post .page-title {
+  margin: 0 0 15px 0;
+  padding: 0 0 16px 0;
+  font-size: 35px;
+  line-height: 1.0;
+  font-weight: 600;
+  color: $c-body;
+  border-bottom: 1px solid #ccc;
+
+  @media (min-width: $screen-sm-min) {
+    padding: 0 200px 16px 0;
+  }
+  @media (min-width: $screen-md-min) {
+    font-size: 50px;
+  }
+}
+.job-post {
+  position: relative;
+  margin: 0;
+  padding: 0;
+
+  @media (min-width: $screen-xs-min) {
+    padding: 0 0 0 130px;
+  }
+  @media (min-width: $screen-sm-min) {
+    padding: 0 0 0 250px;
+  }
+}
+.job-post__image {
+  position: relative;
+  top: 0;
+  left: 0;
+  margin: 0 0 20px 0;
+  width: auto;
+  max-width: 200px;
+
+  @media (min-width: $screen-xs-min) {
+    position: absolute;
+    margin: 0;
+    width: 102px;
+    max-width: none;
+  }
+  @media (min-width: $screen-sm-min) {
+    width: 202px;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ccc;
+  }
+}
+.job-post__title {
+  margin: 0 0 2px 0;
+  padding: 3px 0 0 0;
+  font-family: $f-primary;
+  font-size: 30px;
+  line-height: 1.1;
+  font-weight: 600;
+  color: $c-body;
+}
+.job-post__date {
+  margin: 0 0 10px 0;
+  padding: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: $c-link;
+
+  div {
+    display: inline-block;
+  }
+}
+.job-post__location {
+  position: relative;
+  display: inline-block;
+  margin: 0 0 0 8px;
+  padding: 0 0 0 13px;
+  color: $c-body;
+  vertical-align: top;
+
+  // Line break.
+  &:before {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 0;
+    display: block;
+    width: 1px;
+    height: 12px;
+    background: #ccc;
+  }
+}

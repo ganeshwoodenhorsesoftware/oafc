@@ -1,0 +1,100 @@
+<footer class="site-footer">
+  <div class="site-footer__top">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 clearfix">
+          <a href="{{ front_page }}" class="site-footer__logo">
+            <img src="{{ base_path ~ directory }}/gfx/logo_oafc.png" alt="{{ site_name ? site_name }}" />
+            <span>{{ 'Ontario Association of Fire Chiefs'|t }}</span>
+          </a>
+
+          {% if page.footer_contact_info %}
+            <div class="site-footer__contact-info">
+              {{ page.footer_contact_info }}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="site-footer__body">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9">
+          {% if page.footer_nav %}
+            <div class="site-footer-nav">
+              {{ page.footer_nav }}
+            </div>
+          {% endif %}
+        </div>
+        <div class="col-md-3">
+          {# Social Media Links. #}
+          {# Set from theme settings. #}
+          {% if facebook_url or twitter_url or instagram_url or youtube_url or linkedin_url or pinterest_url or flickr_url %}
+            <div class="social-media-nav">
+              <h2>{{ 'Social Media Links'|t }}</h2>
+              <nav role="navigation" class="block block-menu navigation menu--social-media">
+                <ul class="menu menu--social-media">
+                  {% if facebook_url %}
+                    <li class="menu__item menu__item--facebook">
+                      <a href="{{ facebook_url }}" class="menu__link" target="_blank" title="{{ 'Follow us on Facebook'|t }}">{{ 'Facebook'|t }}</a>
+                    </li>
+                  {% endif %}
+                  {% if twitter_url %}
+                    <li class="menu__item menu__item--twitter">
+                      <a href="{{ twitter_url }}" class="menu__link" target="_blank" title="{{ 'Follow us on Twitter'|t }}">{{ 'Twitter'|t }}</a>
+                    </li>
+                  {% endif %}
+                  {% if linkedin_url %}
+                    <li class="menu__item menu__item--linkedin">
+                      <a href="{{ linkedin_url }}" class="menu__link" target="_blank" title="{{ 'Follow us on LinkedIn'|t }}">{{ 'LinkedIn'|t }}</a>
+                    </li>
+                  {% endif %}
+                  {% if flickr_url %}
+                    <li class="menu__item menu__item--flickr">
+                      <a href="{{ flickr_url }}" class="menu__link" target="_blank" title="{{ 'Follow us on Flickr'|t }}">{{ 'Flickr'|t }}</a>
+                    </li>
+                  {% endif %}
+                  {% if instagram_url %}
+                    <li class="menu__item menu__item--instagram">
+                      <a href="{{ instagram_url }}" class="menu__link" target="_blank" title="{{ 'Follow us on Instagram'|t }}">{{ 'Instagram'|t }}</a>
+                    </li>
+                  {% endif %}
+                  {% if youtube_url %}
+                    <li class="menu__item menu__item--youtube">
+                      <a href="{{ youtube_url }}" class="menu__link" target="_blank" title="{{ 'Follow us on YouTube'|t }}">{{ 'YouTube'|t }}</a>
+                    </li>
+                  {% endif %}
+                  {% if pinterest_url %}
+                    <li class="menu__item menu__item--pinterest">
+                      <a href="{{ pinterest_url }}" class="menu__link" target="_blank" title="{{ 'Follow us on Pinterest'|t }}">{{ 'Pinterest'|t }}</a>
+                    </li>
+                  {% endif %}
+                </ul>
+              </nav>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="site-footer__bottom">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 clearfix">
+          {% if page.footer_bottom_nav %}
+            <div class="site-footer-bottom-nav">
+              {{ page.footer_bottom_nav }}
+            </div>
+          {% endif %}
+
+          <div class="site-footer__copyright">
+            {{ 'Copyright &copy; @year'|t({'@year': 'now'|date('Y')}) }}
+            <a href="{{ front_page }}">{{ 'Ontario Association of Fire Chiefs'|t }}</a>.
+            {{ 'All rights reserved.'|t }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

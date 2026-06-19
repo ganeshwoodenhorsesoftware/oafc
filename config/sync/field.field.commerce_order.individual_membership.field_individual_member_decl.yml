@@ -1,0 +1,23 @@
+uuid: 1ed23697-54e2-4ee2-8ad0-987867c7f678
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_order.commerce_order_type.individual_membership
+    - field.storage.commerce_order.field_individual_member_decl
+id: commerce_order.individual_membership.field_individual_member_decl
+field_name: field_individual_member_decl
+entity_type: commerce_order
+bundle: individual_membership
+label: 'Membership declaration'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'I hereby declare that I DO hold an active membership with an association or union that represents firefighters in collective bargaining.'
+  off_label: 'I hereby declare that I DO NOT hold an active membership with an association or union that represents firefighters in collective bargaining.'
+field_type: boolean

@@ -1,0 +1,348 @@
+/**
+ * Checkout.
+ */
+.commerce-checkout-flow {
+  fieldset {
+    display: block;
+    margin: 20px 0 30px 0;
+    padding: 0 0 30px 0;
+    border: none;
+    border-bottom: 1px solid #ccc;
+
+    legend {
+      display: block;
+      margin: 0;
+      padding: 0;
+      font-size: 24px;
+      color: $c-body;
+      background: none;
+      border: none;
+    }
+
+    &#edit-login-returning-customer,
+    &#edit-oafc-membership-login-returning-customer,
+    &#edit-login-guest {
+      border: none;
+
+      legend {
+        margin: 0 0 20px 0;
+      }
+
+      // Add some right margin to space out text beside button.
+      #edit-login-returning-customer-submit,
+      #edit-oafc-membership-login-returning-customer-submit {
+        margin-right: 15px;
+      }
+    }
+
+    // OAFC Membership - Individual Membership Declaration Options.
+    fieldset[id*='edit-oafc-membership-individual-membership-declaration-options--wrapper'] {
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+
+    // Payment Information - Payment Method.
+    fieldset[id*='edit-payment-information-payment-method'] {
+      legend .form-optional {
+        display: none;
+      }
+    }
+  }
+
+  // Phone number field.
+  .field--name-field-phone {
+    position: relative;
+    display: block;
+    margin-right: 0;
+    padding-bottom: 0;
+    width: auto;
+    vertical-align: top;
+
+    @media (min-width: $screen-sm-ph) {
+      display: inline-block;
+      margin-right: 1em;
+      width: 140px;
+    }
+
+    input {
+      width: 140px;
+    }
+
+    .description {
+      white-space: normal;
+
+      @media (min-width: $screen-sm-ph) {
+        white-space: nowrap;
+      }
+    }
+  }
+  // Phone number extension field.
+  .field--name-field-phone-ext {
+    display: block;
+    width: 108px;
+    vertical-align: top;
+
+    @media (min-width: $screen-sm-ph) {
+      display: inline-block;
+    }
+  }
+
+  // Credit card number.
+  .form-item-payment-information-add-payment-method-payment-details-number {
+    width: 158px;
+  }
+
+  // Credit card security code.
+  .form-item-payment-information-add-payment-method-payment-details-security-code {
+    display: inline-block;
+    // Set top & bottom margins the same as .form-item.
+    margin: 1em 0;
+    padding: 0;
+    width: 60px;
+    vertical-align: top;
+  }
+
+  // Credit card divider.
+  // Remove if you want that silly slash visible.
+  .credit-card-form__divider {
+    margin: 0;
+    padding: 0;
+    width: 15px;
+    font-size: 0;
+  }
+
+  // Credit card expiration.
+  .credit-card-form__expiration {
+    display: inline-block;
+    // Set top & bottom margins the same as .form-item.
+    margin: 1em 20px 1em 0;
+    padding: 0;
+    vertical-align: top;
+  }
+
+  // Coupon Redemption.
+  .checkout-pane-coupon-redemption {
+    .btn {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+
+  // Industry Member: Membership Details - Product / Service Categories.
+  .form-checkboxes[id*='edit-oafc-membership-industry-product-categories-product-categories'] {
+    column-count: unset;
+    column-gap: unset;
+
+    @media (min-width: $screen-xs-min) {
+      column-count: 2;
+      column-gap: 25px;
+    }
+
+    @media (min-width: $screen-md-min) {
+      column-count: 3;
+    }
+
+    @media (min-width: $screen-lg-min) {
+      column-count: 4;
+    }
+
+    > div {
+      display: inline-block;
+      width: 100%;
+      vertical-align: top;
+    }
+  }
+
+  // Edit Shipping Information / Shipping Profile.
+  .checkout-pane-shipping-information .fieldset-wrapper > .form-wrapper[id*='edit-shipping-information-shipping-profile'] {
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+
+    .btn {
+      margin-bottom: 15px;
+    }
+  }
+
+  div[id*='edit-shipping-information-shipments'] fieldset {
+    padding-bottom: 0;
+    border: 0;
+  }
+}
+
+.layout-region-checkout-footer {
+  .form-actions {
+    .btn {
+      margin-right: 15px;
+    }
+    a {
+      display: inline-block;
+      padding-top: 9px;
+      vertical-align: top;
+    }
+  }
+}
+
+.layout-region-checkout-secondary {
+  margin-bottom: 40px;
+}
+
+/**
+ * Checkout Progress/Breadcrumbs.
+ */
+.checkout-progress {
+  clear: both;
+  display: block;
+  margin: 20px 0 15px 0;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+}
+.checkout-progress--step {
+  position: relative;
+  display: block;
+  margin: 0 22px 5px 0;
+  padding: 0 0 6px 15px;
+  vertical-align: top;
+  font-size: 16px;
+  line-height: 1.0;
+  color: $c-body;
+
+  @media (min-width: $screen-xs-min) {
+    display: inline-block;
+    padding: 0 0 6px 0;
+  }
+
+  // Hide numbers.
+  &:before {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    @media (min-width: $screen-xs-min) {
+      display: none;
+    }
+  }
+  // Arrow icon.
+  &:after {
+    @include fa-icon();
+    content: $fa-var-chevron-right;
+    position: absolute;
+    top: 3px;
+    right: -19px;
+    display: none;
+    font-size: 12px;
+    color: $c-body;
+
+    @media (min-width: $screen-xs-min) {
+      display: block;
+    }
+  }
+
+  // Last item.
+  &:last-child {
+    margin-right: 0;
+    padding-right: 0;
+
+    // Arrow icon.
+    &:after {
+      display: none;
+    }
+  }
+}
+.checkout-progress--step__current {
+  color: $c-body;
+  font-weight: bold;
+  border-bottom: none;
+
+  &:before {
+    color: $c-body;
+  }
+
+  @media (min-width: $screen-xs-min) {
+    color: $c-body;
+    border-bottom: 1px solid $c-link;
+  }
+}
+
+/**
+ * Order Summary.
+ */
+.checkout-order-summary {
+  margin: 0 0 20px 0;
+  padding: 20px;
+  border: 1px solid #ccc;
+}
+.checkout-order-summary__items {
+  margin: 0 0 20px 0;
+  padding: 0;
+}
+.checkout-order-summary__item {
+  display: flex;
+  margin: 0 0 20px;
+  padding: 0 0 20px;
+  border-bottom: 1px solid #ccc;
+}
+.checkout-order-summary__item-product {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  width: 70%;
+}
+.checkout-order-summary__item-price-total {
+  width: 30%;
+  text-align: right;
+  font-weight: bold;
+}
+.order-total-line {
+  margin: 0;
+  padding: 0;
+}
+.order-total-line__edit-cart {
+  padding-top: 20px;
+}
+.view-commerce-cart-form .order-total-line__edit-cart {
+  display: none;
+}
+
+.form-item-sidebar-coupon-redemption-form-code {
+  input {
+    max-width: 200px;
+    width: 100%;
+  }
+}
+
+/**
+ * Checkout Complete.
+ */
+.checkout-complete__order-number {
+  font-weight: bold;
+}
+
+/**
+ * Checkout Pane OAFC Membership Login.
+ */
+.commerce-checkout-flow .checkout-pane-login,
+.commerce-checkout-flow .checkout-pane-oafc-membership-login {
+  .form-optional {
+    display: none;
+  }
+
+  fieldset {
+    border: 0;
+  }
+
+  .form-wrapper__login-option input.button {
+    margin: 0 15px 15px 0;
+  }
+
+  .form-wrapper__login-option a[id*='edit-oafc-membership-login-returning-customer-forgot-password'],
+  .form-wrapper__login-option a[id*='edit-login-returning-customer-forgot-password'] {
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 10px;
+  }
+}

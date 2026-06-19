@@ -1,0 +1,124 @@
+name: oafc
+recipe: drupal9
+config:
+  php: '8.1'
+  webroot: web
+  via: nginx
+  database: mariadb:10.6
+  xdebug: true
+
+env_file:
+  - env
+
+proxy:
+ mailhog:
+  - mail.oafc.lndo.site
+
+services:
+  acro:
+    type: compose
+    services:
+      image: acromedia/php-burrito:php8.0
+      command: /opt/bin/entry_point.sh
+    overrides:
+      environment:
+        DRUPAL_TEST_BASE_URL: http://oafc.lndo.site
+        DRUPAL_TEST_DB_URL: mysql://drupal9:drupal9@database/drupal9
+        PHP_IDE_CONFIG: "serverName=oafc.lndo.site"
+        SIMPLETEST_BASE_URL: "http://oafc.lndo.site"
+        # For use with the selenium image provided.
+        # Comment the 3 lines below out if using your local Chrome.
+        DRUPAL_TEST_WEBDRIVER_HOSTNAME: selenium
+        DRUPAL_TEST_WEBDRIVER_PORT: 4444
+        DRUPAL_TEST_WEBDRIVER_PATH_PREFIX: /wd/hub
+        # Uncomment the 2 below lines to use your local Chrome install.
+        #DRUPAL_TEST_WEBDRIVER_HOSTNAME: PUT YOUR LOCAL IP HERE, run lando ssh -c "env" | grep LANDO_HOST_IP
+        #DRUPAL_TEST_WEBDRIVER_PORT: 9515
+        DRUPAL_TEST_CHROMEDRIVER_AUTOSTART: 'false'
+        DRUPAL_NIGHTWATCH_OUTPUT: reports/nightwatch
+        DRUPAL_NIGHTWATCH_IGNORE_DIRECTORIES: node_modules,vendor,.*,sites/*/files,sites/*/private,sites/simpletest
+  database:
+    config:
+      confd: .lando/mysql/my.cnf
+  appserver:
+    build:
+      - composer install
+  forumdb:
+    type: mariadb
+    portforward: true
+    creds:
+      user: forum
+      password: forum
+      database: forum
+  node:
+    type: node:20
+    build:
+      # Install Chromium for Puppeteer (used by pa11y)
+      - apt-get update && apt-get install -y chromium chromium-sandbox
+      # Compile custom theme styles (with Puppeteer env vars set)
+      - cd /app/web/themes/custom/oafc && PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium npm i && npm run compile
+    overrides:
+      environment:
+        PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: "true"
+        PUPPETEER_EXECUTABLE_PATH: "/usr/bin/chromium"
+
+  # Spin up a mailhog container called "mailhog"
+  # NOTE: "mailhog" is arbitrary, you could just as well call this "blackhole" or "weezer"
+  # Mailhog things
+  mailhog:
+    # Use the latest mailhog version
+    type: mailhog
+    # List of services that we want to capture mail from
+    # You can run `lando info` to get a list of services that are available
+    # Mailhog expects that these services will be php services
+    hogfrom:
+      - appserver
+    # Optionally allow access to the smtp service at localhost:1026
+    # You will need to make sure port 1026 is open on your machine
+    #
+    # You can also set `portforward: true` to have Lando dynamically assign
+    # an open port. Unlike specifying an actual port setting this to true will give you
+    # a different port every time you restart your app
+    portforward: true
+
+  index:
+    type: solr:8
+    portforward: true
+    core: oafc
+    config:
+      conf: solr-config
+
+  phpmyadmin:
+    type: phpmyadmin
+    hosts:
+      - database
+      - forumdb
+
+events:
+  post-start:
+    - appserver: cd /app/.lando/scripts && ./setup-site.sh
+
+tooling:
+  drush:
+    service: appserver
+    env:
+      DRUSH_OPTIONS_URI: "https://oafc.lndo.site"
+  code-standards:
+    service: acro
+    cmd: scripts/code-standards.sh
+  phpunit:
+    service: appserver
+    cmd:
+      - /app/vendor/phpunit/phpunit/phpunit
+  node:
+    service: node
+  npm:
+    service: node
+  bower:
+    service: node
+  theme-compile:
+    service: node
+    cmd: cd /app/web/themes/custom/oafc && npm i && npm run compile
+  theme-watch:
+    service: node
+    cmd: cd /app/web/themes/custom/oafc && npm i && npm run watch

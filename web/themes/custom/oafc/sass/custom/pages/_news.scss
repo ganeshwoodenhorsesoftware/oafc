@@ -1,0 +1,126 @@
+/**
+ * News Articles.
+ */
+.home-news-listing {
+  margin: 0 0 40px 0;
+  padding: 0;
+
+  @media (min-width: $screen-md-min) {
+    margin: 0;
+  }
+
+  .view {
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+
+      > li {
+        float: none;
+        margin: 0 0 15px 0;
+        padding: 0 0 15px 0;
+        border-bottom: 1px solid #ccc;
+      }
+    }
+  }
+
+  .nav-tabs {
+    display: flex;
+    margin: 0 0 30px 0;
+    padding: 0;
+    border: none;
+
+    > li {
+      float: left;
+      display: flex;
+      margin: 0;
+      padding: 0;
+      width: 50%;
+
+      > a {
+        position: relative;
+        display: block;
+        margin: 0;
+        padding: 10px;
+        width: 100%;
+        font-size: 14px;
+        color: $c-link;
+        font-weight: 600;
+        text-align: center;
+        background: #fbfaf9;
+        border: 1px solid #ccc;
+        outline: none;
+
+        // Down arrow.
+        &:after {
+          content: '';
+          position: absolute;
+          bottom: -12px;
+          left: 44%;
+          display: block;
+          width: 0;
+          height: 0;
+          border-left: 13px solid transparent;
+          border-right: 13px solid transparent;
+          border-top: 13px solid transparent;
+          z-index: 10;
+          transition: color .2s ease-in-out, background-color .2s ease-in-out, border-color .2s ease-in-out;
+        }
+
+        &:hover,
+        &:focus {
+          background: #edeceb;
+        }
+      }
+
+      // Active state.
+      &.active > a {
+        color: #fff;
+        background: $c-link;
+        border: 1px solid $c-link;
+
+        // Down arrow.
+        &:after {
+          border-top: 13px solid $c-link;
+        }
+      }
+    }
+  }
+}
+.news-teaser-item__title {
+  margin: 0 0 8px 0;
+  padding: 3px 0 0 0;
+  font-family: $f-primary;
+  font-size: 20px;
+  line-height: 1.1;
+  font-weight: 600;
+  color: $c-body;
+
+  a {
+    color: $c-body;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      color: $c-link;
+    }
+  }
+}
+.news-teaser-item__date {
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: $c-link;
+}
+
+// News Item.
+.news-item__date {
+  margin: 0 0 15px 0;
+  padding: 0;
+  font-weight: bold;
+}
+.news-item__body {
+  margin: 0 0 15px 0;
+  padding: 0;
+}

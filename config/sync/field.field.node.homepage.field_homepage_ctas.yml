@@ -1,0 +1,33 @@
+uuid: c49a8d4f-111d-4d28-9a0a-b5035ba1cb47
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_homepage_ctas
+    - node.type.homepage
+    - paragraphs.paragraphs_type.homepage_cta
+  module:
+    - entity_reference_revisions
+id: node.homepage.field_homepage_ctas
+field_name: field_homepage_ctas
+entity_type: node
+bundle: homepage
+label: 'Homepage CTAs'
+description: 'The CTAs that appear below the banner slider.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      homepage_cta: homepage_cta
+    target_bundles_drag_drop:
+      homepage_cta:
+        weight: 3
+        enabled: true
+      slider_banner:
+        weight: 4
+        enabled: false
+field_type: entity_reference_revisions

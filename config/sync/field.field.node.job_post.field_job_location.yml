@@ -1,0 +1,19 @@
+uuid: c9ca4b63-3733-415c-908c-940f7b0c73dc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_job_location
+    - node.type.job_post
+id: node.job_post.field_job_location
+field_name: field_job_location
+entity_type: node
+bundle: job_post
+label: 'Job Location'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

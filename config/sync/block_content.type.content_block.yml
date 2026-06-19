@@ -1,0 +1,8 @@
+uuid: 41d1b18d-ca7a-4a47-af12-4694e58716df
+langcode: en
+status: true
+dependencies: {  }
+id: content_block
+label: 'Content Block'
+revision: false
+description: 'A standard block containing editor copy.'

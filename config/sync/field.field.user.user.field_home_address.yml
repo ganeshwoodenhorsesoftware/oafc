@@ -1,0 +1,35 @@
+uuid: 60d15388-8157-46ff-8ce3-efa4c54d6681
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_home_address
+  module:
+    - address
+    - user
+id: user.user.field_home_address
+field_name: field_home_address
+entity_type: user
+bundle: user
+label: Address
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  available_countries:
+    CA: CA
+    US: US
+  langcode_override: ''
+  field_overrides:
+    givenName:
+      override: hidden
+    additionalName:
+      override: hidden
+    familyName:
+      override: hidden
+    organization:
+      override: hidden
+  fields: {  }
+field_type: address

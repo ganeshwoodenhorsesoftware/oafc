@@ -1,0 +1,19 @@
+uuid: 261b62f0-bcb7-410f-9674-f017e7d6fc55
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_price
+    - node
+id: node.field_price
+field_name: field_price
+entity_type: node
+type: commerce_price
+settings: {  }
+module: commerce_price
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

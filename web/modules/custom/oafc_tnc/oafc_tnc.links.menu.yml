@@ -1,0 +1,5 @@
+oafc_tnc.admin_settings:
+  title: Administer Terms and Conditions
+  description: 'Administer Terms and Conditions.'
+  route_name: oafc_tnc.admin_settings
+  parent: oafc_base.admin_oafc

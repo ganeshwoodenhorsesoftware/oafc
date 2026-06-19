@@ -1,0 +1,33 @@
+uuid: 66c219b9-8126-4af5-9bc9-f50c434266c4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.media.private_image.field_private_image
+    - image.style.large
+    - media.type.private_image
+  module:
+    - image
+id: media.private_image.default
+targetEntityType: media
+bundle: private_image
+mode: default
+content:
+  field_private_image:
+    type: image
+    label: visually_hidden
+    settings:
+      image_link: ''
+      image_style: large
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  created: true
+  langcode: true
+  name: true
+  search_api_excerpt: true
+  thumbnail: true
+  uid: true

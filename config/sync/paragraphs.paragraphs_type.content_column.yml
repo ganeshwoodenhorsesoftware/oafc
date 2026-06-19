@@ -1,0 +1,9 @@
+uuid: 92247fd8-0e36-4fbf-8b7b-cedf5c8ea0b8
+langcode: en
+status: true
+dependencies: {  }
+id: content_column
+label: 'Content Column'
+icon_uuid: null
+description: 'A column of content.'
+behavior_plugins: {  }

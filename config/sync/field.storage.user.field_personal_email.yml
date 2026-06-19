@@ -1,0 +1,18 @@
+uuid: 91fa277e-f21b-4236-b208-8a5e8aeba6da
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+id: user.field_personal_email
+field_name: field_personal_email
+entity_type: user
+type: email
+settings: {  }
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

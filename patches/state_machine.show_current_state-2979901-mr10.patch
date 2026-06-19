@@ -1,0 +1,82 @@
+diff --git a/config/schema/state_machine.schema.yml b/config/schema/state_machine.schema.yml
+index 8d9a124..63557ba 100644
+--- a/config/schema/state_machine.schema.yml
++++ b/config/schema/state_machine.schema.yml
+@@ -18,6 +18,9 @@ field.formatter.settings.state_transition_form:
+     use_modal:
+       type: boolean
+       label: 'Display confirmation in a modal dialog.'
++    show_current_state:
++      type: boolean
++      label: 'Show current state'
+ 
+ field.value.state:
+   type: mapping
+diff --git a/src/Form/StateTransitionForm.php b/src/Form/StateTransitionForm.php
+index 6ebbb54..6cac32b 100644
+--- a/src/Form/StateTransitionForm.php
++++ b/src/Form/StateTransitionForm.php
+@@ -83,6 +83,12 @@ class StateTransitionForm extends FormBase implements StateTransitionFormInterfa
+     /** @var \Drupal\state_machine\Plugin\Field\FieldType\StateItemInterface $state_item */
+     $state_item = $this->entity->get($this->fieldName)->first();
+ 
++    if ($form_state->get('show_current_state')) {
++      $form['current_state'] = [
++        '#markup' => '<div>' . $state_item->getLabel() . '</div>',
++      ];
++    }
++
+     $form['actions'] = [
+       '#type' => 'container',
+     ];
+diff --git a/src/Plugin/Field/FieldFormatter/StateTransitionFormFormatter.php b/src/Plugin/Field/FieldFormatter/StateTransitionFormFormatter.php
+index a036dc0..5570162 100644
+--- a/src/Plugin/Field/FieldFormatter/StateTransitionFormFormatter.php
++++ b/src/Plugin/Field/FieldFormatter/StateTransitionFormFormatter.php
+@@ -112,7 +112,9 @@ class StateTransitionFormFormatter extends FormatterBase implements ContainerFac
+     $form_object = $this->classResolver->getInstanceFromDefinition(StateTransitionForm::class);
+     $form_object->setEntity($entity);
+     $form_object->setFieldName($items->getFieldDefinition()->getName());
+-    $form_state_additions = [];
++    $form_state_additions = [
++      'show_current_state' => (bool) $this->getSetting('show_current_state'),
++    ];
+     if ($this->supportsConfirmationForm()) {
+       $form_state_additions += [
+         // Store in the form state whether a confirmation is required before
+@@ -135,6 +137,7 @@ class StateTransitionFormFormatter extends FormatterBase implements ContainerFac
+    */
+   public static function defaultSettings() {
+     return [
++      'show_current_state' => FALSE,
+       'require_confirmation' => FALSE,
+       'use_modal' => FALSE,
+     ] + parent::defaultSettings();
+@@ -146,6 +149,13 @@ class StateTransitionFormFormatter extends FormatterBase implements ContainerFac
+   public function settingsForm(array $form, FormStateInterface $form_state) {
+     $form = parent::settingsForm($form, $form_state);
+ 
++    $form['show_current_state'] = [
++      '#title' => $this->t('Display current state'),
++      '#description' => $this->t('Display the current workflow state above the buttons that apply the state transitions.'),
++      '#type' => 'checkbox',
++      '#default_value' => $this->getSetting('show_current_state'),
++    ];
++
+     $supports_confirmation_form = $this->supportsConfirmationForm();
+     $form['require_confirmation'] = [
+       '#title' => $this->t('Require confirmation before applying the state transition'),
+@@ -176,6 +186,13 @@ class StateTransitionFormFormatter extends FormatterBase implements ContainerFac
+   public function settingsSummary() {
+     $summary = parent::settingsSummary();
+ 
++    if ($this->getSetting('show_current_state')) {
++      $summary[] = $this->t('Display current state.');
++    }
++    else {
++     $summary[] = $this->t('Do not display current state.');
++    }
++
+     if (!$this->supportsConfirmationForm()) {
+       return $summary;
+     }

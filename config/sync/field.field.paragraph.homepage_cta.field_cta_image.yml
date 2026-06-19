@@ -1,0 +1,38 @@
+uuid: d8e957e4-fbe2-4b3d-817d-8f26015cccec
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_cta_image
+    - paragraphs.paragraphs_type.homepage_cta
+  module:
+    - image
+id: paragraph.homepage_cta.field_cta_image
+field_name: field_cta_image
+entity_type: paragraph
+bundle: homepage_cta
+label: 'CTA Image'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: homepage-ctas
+  file_extensions: 'png gif jpg jpeg'
+  max_filesize: ''
+  max_resolution: ''
+  min_resolution: ''
+  alt_field: true
+  alt_field_required: true
+  title_field: false
+  title_field_required: false
+  default_image:
+    uuid: ''
+    alt: ''
+    title: ''
+    width: null
+    height: null
+field_type: image

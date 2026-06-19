@@ -1,0 +1,154 @@
+{#
+/**
+ * @file
+ * Theme implementation for a page node.
+ *
+ * Available variables:
+ * - page_header_image_url: The header image's image style url for the field,
+ *   "field_page_header_image".
+ *
+ * @see template_preprocess_node()
+ */
+#}
+{% if view_mode == 'teaser' %}
+
+  <div class="job-teaser-item">
+    <div class="job-teaser-item__image">
+      <a href="{{ url }}">
+        {% if node.field_featured_image.entity.fileuri %}
+          <img src="{{ node.field_featured_image.entity.fileuri|image_style('logo_listing') }}" alt="{{ node.field_featured_image.alt }}" />
+        {% else %}
+          <img src="{{ base_path ~ directory }}/gfx/listing_placeholder.jpg" alt="{{ node.field_featured_image.alt }}" />
+        {% endif %}
+      </a>
+    </div>
+    <h4 class="job-teaser-item__title">
+      <a href="{{ url }}">{{ node.title.value }}</a>
+    </h4>
+    {% if node.field_date.value %}
+      <div class="job-teaser-item__date">
+        {{ content.field_date }}
+      </div>
+    {% endif %}
+    {% if node.field_job_position.entity %}
+      <div class="job-teaser-item__body">
+        {{ node.field_job_position.entity.name.value }}
+      </div>
+    {% endif %}
+  </div>
+
+{% elseif view_mode == 'listing' %}
+
+  <div class="listing-item">
+    <div class="listing-item__image">
+      <a href="{{ url }}" aria-label="{{ 'View Details'|t }}">
+        {% if node.field_featured_image.entity.fileuri %}
+          <img src="{{ node.field_featured_image.entity.fileuri|image_style('logo_listing') }}" alt="{{ node.field_featured_image.alt }}" />
+        {% else %}
+          <img src="{{ base_path ~ directory }}/gfx/listing_placeholder.jpg" alt="{{ node.field_featured_image.alt }}" />
+        {% endif %}
+      </a>
+    </div>
+    <div class="listing-item__title">
+      <h3><a href="{{ url }}">{{ node.title.value }}</a></h3>
+    </div>
+    <div class="listing-item__sub-title">
+      {% if node.field_date.value %}
+        {{ content.field_date }}
+      {% endif %}
+      {% if node.field_location_details.value %}
+        <div class="job-post__location">
+          {{ content.field_location_details }}
+        </div>
+      {% endif %}
+    </div>
+    <div class="listing-item__body">
+      {{ content.body }}
+    </div>
+    <a href="{{ url }}" class="btn btn--sm btn--red">{{ 'View Details'|t }}</a>
+  </div>
+
+{% else %}
+
+  {%
+    set classes = [
+      'job-post',
+      'node',
+      'node--type-' ~ node.bundle|clean_class,
+      node.isPromoted() ? 'node--promoted',
+      node.isSticky() ? 'node--sticky',
+      not node.isPublished() ? 'node--unpublished',
+      view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+      'clearfix',
+    ]
+  %}
+  <div class="entity-header clearfix">
+    <div class="entity-header__back-button">
+      <a href="{{ base_path }}marketplace-careers/job-postings" class="btn btn--cta btn--cta-left">{{ 'Return to View All'|t }}</a>
+    </div>
+
+    {# Social Media Sharing. #}
+    <div class="entity-header__social-media-sharing">
+      <div class="social-media-sharing-nav">
+        <ul class="social-media-sharing-menu clearfix">
+          <li class="social-media-sharing-menu__item">
+            <a class="social-media-sharing-menu__link social-media-sharing-menu__link--email" href="mailto:?subject={{ encoded_title }}&amp;body={{ absolute_encoded_path }}" target="_blank" aria-label="{{ 'E-Mail'|t }}" title="{{ 'E-Mail'|t }}"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>
+          </li>
+          <li class="social-media-sharing-menu__item">
+            <a class="social-media-sharing-menu__link social-media-sharing-menu__link--facebook" href="https://facebook.com/sharer/sharer.php?u={{ absolute_encoded_path }}" target="_blank" aria-label="{{ 'Share on Facebook'|t }}" title="{{ 'Share on Facebook'|t }}"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+          </li>
+          <li class="social-media-sharing-menu__item">
+            <a class="social-media-sharing-menu__link social-media-sharing-menu__link--linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ absolute_encoded_path }}&amp;title={{ encoded_title }}&amp;summary={{ encoded_title }}&amp;source={{ absolute_encoded_path }}" target="_blank" aria-label="{{ 'Share on LinkedIn'|t }}" title="{{ 'Share on LinkedIn'|t }}"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+          </li>
+          <li class="social-media-sharing-menu__item">
+            <a class="social-media-sharing-menu__link social-media-sharing-menu__link--twitter" href="https://twitter.com/intent/tweet/?text={{ encoded_title }}&amp;url={{ absolute_encoded_path }}" target="_blank" aria-label="{{ 'Share on Twitter'|t }}" title="{{ 'Share on Twitter'|t }}"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+          </li>
+          <li class="social-media-sharing-menu__item">
+            <a class="social-media-sharing-menu__link social-media-sharing-menu__link--pinterest" href="https://pinterest.com/pin/create/button/?url={{ absolute_encoded_path }}&amp;media={{ absolute_encoded_path }}&amp;description={{ encoded_title }}" target="_blank" aria-label="{{ 'Share on Pinterest'|t }}" title="{{ 'Share on Pinterest'|t }}"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    {# / Social Media Sharing. #}
+
+    {% if is_admin %}
+      <div class="entity-header__action">
+        <a href="{{ base_path }}node/add/job_post?field_ad_type=25" class="btn btn--plus">{{ 'Post a Job'|t }}</a>
+      </div>
+    {% endif %}
+  </div>
+
+  <article{{ attributes.addClass(classes) }}>
+    <div class="job-post__image">
+      {% if node.field_featured_image.entity.fileuri %}
+        <img src="{{ node.field_featured_image.entity.fileuri|image_style('logo_listing') }}" alt="{{ node.field_featured_image.alt }}" />
+      {% else %}
+        <img src="{{ base_path ~ directory }}/gfx/listing_placeholder.jpg" alt="{{ node.field_featured_image.alt }}" />
+      {% endif %}
+    </div>
+    <h4 class="job-post__title">
+      {{ node.title.value }}
+    </h4>
+    <div class="job-post__date">
+      {% if node.field_date.value %}
+        {{ content.field_date }}
+      {% endif %}
+      {% if node.field_location_details.value %}
+        <div class="job-post__location">
+          {{ content.field_location_details }}
+        </div>
+      {% endif %}
+    </div>
+    <div{{ content_attributes.addClass('node__content', 'clearfix') }}>
+      <h3>{{ 'Job Description'|t }}</h3>
+      {{ content.body }}
+    </div>
+    {% if node.field_contact_details.value %}
+      <div class="job-post__contact-details">
+        <h3>{{ 'Contact Details'|t }}</h3>
+        {{ content.field_contact_details }}
+      </div>
+    {% endif %}
+  </article>
+
+{% endif %}

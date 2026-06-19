@@ -1,0 +1,79 @@
+uuid: 23239d8d-717c-453e-aa21-85f5a4af2d45
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_payment
+    - commerce_paypal
+    - commerce_promotion
+    - commerce_shipping
+    - oafc_membership
+label: 'Industry membership'
+id: industry_membership
+plugin: oafc_membership_membership
+configuration:
+  display_checkout_progress: true
+  display_checkout_progress_breadcrumb_links: 0
+  panes:
+    oafc_membership_login:
+      allow_guest_checkout: false
+      allow_registration: true
+      step: login
+      weight: '0'
+    oafc_membership_industry_product_categories:
+      step: membership_details
+      weight: '1'
+    oafc_membership_membership_tnc:
+      step: membership_details
+      weight: '2'
+    contact_information:
+      double_entry: false
+      step: order_information
+      weight: '4'
+    payment_information:
+      step: order_information
+      weight: '5'
+    review:
+      step: review
+      weight: '6'
+    payment_process:
+      capture: true
+      step: payment
+      weight: '7'
+    paypal_checkout_payment_process:
+      capture: true
+      step: payment
+      weight: '8'
+    completion_message:
+      message:
+        value: "Your order number is [commerce_order:order_number].\r\nYou can view your order on your account page when logged in."
+        format: plain_text
+      step: complete
+      weight: '9'
+    completion_register:
+      step: complete
+      weight: '10'
+    oafc_membership_individual_email_communication:
+      step: membership_details
+      weight: '3'
+    order_summary:
+      view: ''
+      step: _sidebar
+      weight: '11'
+    coupon_redemption:
+      allow_multiple: false
+      step: _sidebar
+      weight: '12'
+    login:
+      allow_guest_checkout: true
+      allow_registration: false
+      step: _disabled
+      weight: '13'
+    shipping_information:
+      auto_recalculate: true
+      require_shipping_profile: true
+      step: _disabled
+      weight: '14'
+    oafc_membership_individual_membership_declaration:
+      step: _disabled
+      weight: '15'

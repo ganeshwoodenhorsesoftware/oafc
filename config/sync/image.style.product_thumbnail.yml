@@ -1,0 +1,35 @@
+uuid: 368ba8bd-b0e0-4e95-b83a-c2fdf37b3655
+langcode: en
+status: true
+dependencies:
+  module:
+    - image_effects
+name: product_thumbnail
+label: 'Product Thumbnail'
+effects:
+  80ef3b29-eb21-4110-a2ff-57e8dc553ffc:
+    uuid: 80ef3b29-eb21-4110-a2ff-57e8dc553ffc
+    id: image_scale
+    weight: -10
+    data:
+      width: 600
+      height: 600
+      upscale: false
+  1e64e0f1-fef7-4308-827c-9bcac3692a16:
+    uuid: 1e64e0f1-fef7-4308-827c-9bcac3692a16
+    id: image_effects_set_canvas
+    weight: -9
+    data:
+      canvas_size: exact
+      canvas_color: '#FFFFFFFF'
+      exact:
+        width: '600'
+        height: '600'
+        placement: center-center
+        x_offset: 0
+        y_offset: 0
+      relative:
+        left: 0
+        right: 0
+        top: 0
+        bottom: 0

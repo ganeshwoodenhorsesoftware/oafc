@@ -1,0 +1,5 @@
+On local development environments, add the following to your `settings.local.php` file.
+
+```
+$config['config_split.config_split.local']['status'] = TRUE;
+```

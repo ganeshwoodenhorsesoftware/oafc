@@ -1,0 +1,15 @@
+uuid: cf2bad09-5bbc-45ca-a037-49b066872aa9
+langcode: en
+status: true
+dependencies: {  }
+name: homepage_banner
+label: 'Homepage Banner'
+effects:
+  cecfb2d7-b261-476a-bd84-34a339b0fee1:
+    uuid: cecfb2d7-b261-476a-bd84-34a339b0fee1
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 1210
+      height: 461
+      anchor: center-center

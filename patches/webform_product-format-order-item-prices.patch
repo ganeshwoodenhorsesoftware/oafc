@@ -1,0 +1,50 @@
+diff --git a/src/WebFormProductFormHelper.php b/src/WebFormProductFormHelper.php
+index b8eb8b9..d2f30fb 100644
+--- a/src/WebFormProductFormHelper.php
++++ b/src/WebFormProductFormHelper.php
+@@ -69,7 +69,10 @@ class WebFormProductFormHelper {
+             'type' => 'webform',
+             'title' => $webform_title . $elements[$key]['#title'],
+             // TODO I don't think this supports prices with '*', does it?
+-            'unit_price' => ['number' => $prices[$key]['top'], 'currency_code' => $currencyCode],
++            'unit_price' => [
++              'number' => static::formatOrderItemPriceNumber($prices[$key]['top']),
++              'currency_code' => $currencyCode,
++            ],
+           ]);
+           $orderItem->setData('webform_id', $webform->id());
+           $orderItem->setData('submision_id', $submission->id());
+@@ -134,7 +137,10 @@ class WebFormProductFormHelper {
+       if (is_numeric($value[$option_key]) && strpos($prices[$option_key], '*') === 0) {
+         $price = substr($prices[$option_key], 1) * $value[$option_key];
+       }
+-      $price = ['number' => $price, 'currency_code' => $currencyCode];
++      $price = [
++        'number' => static::formatOrderItemPriceNumber($price),
++        'currency_code' => $currencyCode,
++      ];
+       $title = isset($elements_info[$option_key]['#title']) ? $elements_info[$option_key]['#title'] : $elements_info[$option];
+       $orderItem = OrderItem::create([
+         'type' => 'webform',
+@@ -147,4 +153,21 @@ class WebFormProductFormHelper {
+     }
+   }
+ 
++  /**
++   * Formats the given price number as expected by order item price fields.
++   *
++   * Some webform configuration settings mistakenly contain prices prefixed with
++   * the currency symbol and even spaces e.g. ` $100`. We format it in the way
++   * expected when creating order items e.g. `100`.
++   *
++   * @param string|int $number
++   *   The price number.
++   *
++   * @return string
++   *   The formatted price number.
++   */
++  public static function formatOrderItemPriceNumber($number) {
++    return trim((string) $number, ' $');
++  }
++
+ }

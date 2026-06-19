@@ -1,0 +1,22 @@
+uuid: 8ab27297-3512-4053-8937-89ef82ffe24f
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: classified_ads_used_equipment
+label: 'Classified Ads / Used Equipment'
+type: 'canonical_entities:node'
+pattern: 'marketplace-careers/used-equipment/[node:title]'
+selection_criteria:
+  18ae94e6-a7cb-48bb-9828-296d71ecd6e0:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: 18ae94e6-a7cb-48bb-9828-296d71ecd6e0
+    context_mapping:
+      node: node
+    bundles:
+      classified_ad: classified_ad
+selection_logic: and
+weight: -7
+relationships: {  }

@@ -1,0 +1,35 @@
+uuid: 2ce73968-9783-4661-8f53-5569985b4a93
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.event
+    - node.type.page
+  module:
+    - contextual
+    - file
+    - node
+    - oafc_mini
+    - system
+    - webform
+id: events
+label: Events
+weight: -6
+is_admin: null
+permissions:
+  - 'access contextual links'
+  - 'access webform overview'
+  - 'add oafc mini entities'
+  - 'administer webform element access'
+  - 'create event content'
+  - 'create page content'
+  - 'create webform'
+  - 'delete own files'
+  - 'edit own event content'
+  - 'edit own oafc mini entities'
+  - 'edit own page content'
+  - 'edit own webform'
+  - 'edit own webform submission'
+  - 'edit webform source'
+  - 'view own webform submission'
+  - 'view the administration theme'

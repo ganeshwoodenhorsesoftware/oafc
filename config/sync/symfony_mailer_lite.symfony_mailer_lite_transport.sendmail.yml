@@ -1,0 +1,10 @@
+uuid: c0cb72a1-966b-445e-ba7f-98429063669b
+langcode: en
+status: true
+dependencies: {  }
+id: sendmail
+label: Sendmail
+plugin: sendmail
+configuration:
+  query:
+    command: '/usr/bin/msmtp -t -i'

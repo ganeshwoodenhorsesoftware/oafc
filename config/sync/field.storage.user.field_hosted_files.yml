@@ -1,0 +1,23 @@
+uuid: 225e6e2a-a751-40ca-a2c5-4e62acf6614b
+langcode: en
+status: true
+dependencies:
+  module:
+    - file
+    - user
+id: user.field_hosted_files
+field_name: field_hosted_files
+entity_type: user
+type: file
+settings:
+  target_type: file
+  display_field: false
+  display_default: false
+  uri_scheme: public
+module: file
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

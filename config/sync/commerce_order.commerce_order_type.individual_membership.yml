@@ -1,0 +1,27 @@
+uuid: 3be86b2f-d87a-4f1b-838a-ad58c0d186ac
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_cart
+    - commerce_checkout
+    - commerce_shipping
+third_party_settings:
+  commerce_cart:
+    cart_block_view: commerce_cart_block
+    cart_form_view: commerce_cart_form
+    cart_expiration: {  }
+  commerce_checkout:
+    checkout_flow: individual_membership
+  commerce_shipping:
+    shipment_type: ''
+id: individual_membership
+label: 'Individual membership'
+traits: {  }
+locked: false
+workflow: order_default_validation
+numberPattern: null
+refresh_mode: customer
+refresh_frequency: 300
+sendReceipt: true
+receiptBcc: 'laura.aivaliotis@oafc.on.ca,info@oafc.on.ca'

@@ -1,0 +1,20 @@
+uuid: 046fe341-088a-488d-a888-b43a10297809
+langcode: en
+status: false
+dependencies: {  }
+id: local
+label: 'Local development environments'
+description: 'Configuration splits specific to local development environments.'
+weight: 0
+stackable: false
+no_patching: false
+storage: folder
+folder: ../config/split/local
+module:
+  config_inspector: 0
+  devel: 0
+  stage_file_proxy: 0
+theme: {  }
+complete_list: {  }
+partial_list:
+  - system.logging

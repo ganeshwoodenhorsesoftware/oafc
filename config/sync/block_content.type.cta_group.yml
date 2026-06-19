@@ -1,0 +1,8 @@
+uuid: 0fda370e-ff5c-4a54-a22d-1f74797f1c0b
+langcode: en
+status: true
+dependencies: {  }
+id: cta_group
+label: 'CTA Group'
+revision: false
+description: 'A group of CTAs.'

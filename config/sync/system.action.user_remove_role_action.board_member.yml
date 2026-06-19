@@ -1,0 +1,14 @@
+uuid: d172565a-354c-4450-84f9-51a562ccb348
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.board_member
+  module:
+    - user
+id: user_remove_role_action.board_member
+label: 'Remove the Board of Directors role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: board_member

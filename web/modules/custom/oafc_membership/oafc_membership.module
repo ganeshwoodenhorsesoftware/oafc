@@ -1,0 +1,152 @@
+<?php
+
+/**
+ * @file
+ * Support module for memberships in OAFC.
+ */
+
+use Drupal\oafc_membership\CommerceLicense\LicenseStorage;
+
+use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ */
+function oafc_membership_form_commerce_order_item_add_to_cart_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  \Drupal::service('oafc_membership.hook.add_to_cart_form')->alter(
+    $form,
+    $form_state
+  );
+}
+
+/**
+ * Validates add to cart form for memberships.
+ *
+ * @ingroup forms
+ */
+function oafc_membership_membership_validate(array &$form, FormStateInterface $form_state) {
+  $membership_bundles = [
+    'individual_membership',
+    'industry_membership',
+  ];
+  /** @var \Drupal\commerce_cart\CartProviderInterface $cart_provider */
+  $cart_provider = \Drupal::service('commerce_cart.cart_provider');
+  /** @var \Drupal\Core\Session\AccountProxyInterface $current_user */
+  $current_user = \Drupal::service('current_user');
+  /** @var \Drupal\commerce_order\Entity\OrderInterface[] $orders */
+  $orders = $cart_provider->getCarts($current_user->getAccount());
+
+  foreach ($orders as $order) {
+    /** @var \Drupal\commerce_order\Entity\OrderItemInterface[] $order_items */
+    $order_items = $order->getItems();
+
+    foreach ($order_items as $item) {
+      if (in_array($item->bundle(), $membership_bundles)) {
+        $form_state->setError($form, t('More than one membership cannot be purchased at the same time.'));
+      }
+    }
+  }
+}
+
+/**
+ * Redirects user after adding membership to the cart.
+ *
+ * @ingroup forms
+ */
+function oafc_membership_add_to_cart_redirect(array $form, FormStateInterface $form_state) {
+  $membership_types = [
+    'individual_membership',
+    'industry_membership',
+  ];
+  $cart_id = $form_state->getStorage()['cart_id'];
+
+  $store = \Drupal::service('commerce_store.current_store')->getStore();
+  $cart_provider = \Drupal::service('commerce_cart.cart_provider');
+
+  /*
+   * Redirect the user directly to checkout.
+   */
+  foreach ($membership_types as $membership_type) {
+    $order = $cart_provider->getCart($membership_type, $store);
+
+    /*
+     * TODO Remove this check once
+     * https://www.drupal.org/project/commerce_license/issues/2941243
+     * is committed.
+     */
+    if (!$order) {
+      continue;
+    }
+    if (!$order->hasItems()) {
+      continue;
+    }
+    if ($order->id() != $cart_id) {
+      continue;
+    }
+
+    $form_state->setRedirect(
+      'commerce_checkout.form',
+      ['commerce_order' => $order->id()]
+    );
+    break;
+  }
+}
+
+/**
+ * Implements hook_ENTITY_access().
+ */
+function oafc_membership_entity_access($entity, $operation, $account) {
+  $entity_type = $entity->getEntityTypeId();
+  if ($entity_type == "menu") {
+    // Set edit permission to menu based on the third party settings provided
+    // by menu_section module.
+    $current_user = $account->id();
+    if ($current_user == 1) {
+      return AccessResult::allowed();
+    }
+    if ($entity->get('third_party_settings')) {
+      $settings = $entity->get('third_party_settings');
+      if ($settings['menu_section']['uid'] == $current_user) {
+        return AccessResult::allowed();
+      }
+    }
+  }
+  return AccessResult::neutral();
+}
+
+/**
+ * {@inheritdoc}
+ *
+ * @see hook_commerce_license_type_info_alter()
+ * @see \Drupal\oafc_membership\Plugin\Commerce\LicenseType\Role
+ */
+function oafc_membership_commerce_license_type_info_alter(array &$definitions) {
+  $definitions['role']['class'] = '\Drupal\oafc_membership\Plugin\Commerce\LicenseType\Role';
+}
+
+/**
+ * {@inheritdoc}
+ *
+ * @see hook_entity_type_alter()
+ */
+function oafc_membership_entity_type_alter(array &$entity_types) {
+  $entity_types['commerce_license']->setStorageClass(LicenseStorage::class);
+}
+
+/**
+ * {@inheritdoc}
+ *
+ * @see hook_entity_type_build()
+ */
+function oafc_membership_entity_type_build(array &$entity_types) {
+  $entity_types['commerce_license']
+    ->setFormClass(
+      'transfer',
+      'Drupal\oafc_membership\Form\TransferLicense'
+    )
+    ->setLinkTemplate(
+      'transfer-form',
+      '/admin/commerce/licenses/{commerce_license}/transfer'
+    );
+}

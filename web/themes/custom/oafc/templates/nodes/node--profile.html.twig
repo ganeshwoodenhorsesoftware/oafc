@@ -1,0 +1,199 @@
+{#
+/**
+ * @file
+ * Theme implementation for a page node.
+ *
+ * Available variables:
+ * - page_header_image_url: The header image's image style url for the field,
+ *   "field_page_header_image".
+ *
+ * @see template_preprocess_node()
+ */
+#}
+
+{% if view_mode == 'listing' %}
+
+  <div class="listing-item listing-item--type-profile {{ node.isSticky() ? 'listing-item--featured' }}">
+    {% if node.isSticky() %}
+      <div class="listing-item__featured-title">{{ 'Featured Listing'|t }}</div>
+    {% endif %}
+    <div class="listing-item__image">
+      <a href="{{ url }}" aria-label="{{ 'View Company Details'|t }}">
+        {% if node.field_industry_directory_logo.entity.fileuri %}
+          <img src="{{ node.field_industry_directory_logo.entity.fileuri|image_style('logo_listing') }}" alt="{{ node.field_industry_directory_logo.alt }}" />
+        {% else %}
+          <img src="{{ base_path ~ directory }}/gfx/listing_placeholder.jpg" alt="{{ node.field_industry_directory_logo.alt }}" />
+        {% endif %}
+      </a>
+    </div>
+
+    <div class="listing-item__title">
+      <h3><a href="{{ url }}">{{ node.field_member_company.value }}</a></h3>
+    </div>
+
+    <div class="listing-item__sub-title">
+      {% if (node.field_member_address.0.locality) and (node.field_member_address.0.administrative_area) %}
+        {% set member_address = node.field_member_address.0.locality ~ ', ' ~ node.field_member_address.0.administrative_area %}
+        {{ member_address }}
+      {% elseif node.field_member_address.0.locality  %}
+        {{ node.field_member_address.0.locality }}
+      {% endif %}
+    </div>
+
+    {% if node.field_member_categories.0.entity %}
+      <div class="listing-item__body">
+        <div class="listing-item__body-scroller">
+          {% for category in node.field_member_categories %}
+            {{ category.entity.name.value }}{% if not loop.last %},{% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+
+    <a href="{{ url }}" class="btn btn--sm btn--red">{{ 'View Company Details'|t }}</a>
+  </div>
+
+{% else %}
+
+  {%
+    set classes = [
+      'member-profile',
+      'node',
+      'node--type-' ~ node.bundle|clean_class,
+      node.isPromoted() ? 'node--promoted',
+      node.isSticky() ? 'node--sticky',
+      not node.isPublished() ? 'node--unpublished',
+      view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+      'clearfix',
+    ]
+  %}
+  <article{{ attributes.addClass(classes) }}>
+    <div{{ content_attributes.addClass('node__content', 'clearfix') }}>
+      <h1 class="page-title page-title--underline">{{ 'Company Profile'|t }}</h1>
+
+      <header class="profile__header">
+        {# Social Media Sharing. #}
+        <div class="profile__header-social-media-sharing">
+          <div class="social-media-sharing-nav">
+            <ul class="social-media-sharing-menu clearfix">
+              <li class="social-media-sharing-menu__item">
+                <a class="social-media-sharing-menu__link social-media-sharing-menu__link--email" href="mailto:?subject={{ encoded_title }}&amp;body={{ absolute_encoded_path }}" target="_blank" aria-label="{{ 'E-Mail'|t }}" title="{{ 'E-Mail'|t }}"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>
+              </li>
+              <li class="social-media-sharing-menu__item">
+                <a class="social-media-sharing-menu__link social-media-sharing-menu__link--facebook" href="https://facebook.com/sharer/sharer.php?u={{ absolute_encoded_path }}" target="_blank" aria-label="{{ 'Share on Facebook'|t }}" title="{{ 'Share on Facebook'|t }}"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+              </li>
+              <li class="social-media-sharing-menu__item">
+                <a class="social-media-sharing-menu__link social-media-sharing-menu__link--linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ absolute_encoded_path }}&amp;title={{ encoded_title }}&amp;summary={{ encoded_title }}&amp;source={{ absolute_encoded_path }}" target="_blank" aria-label="{{ 'Share on LinkedIn'|t }}" title="{{ 'Share on LinkedIn'|t }}"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+              </li>
+              <li class="social-media-sharing-menu__item">
+                <a class="social-media-sharing-menu__link social-media-sharing-menu__link--twitter" href="https://twitter.com/intent/tweet/?text={{ encoded_title }}&amp;url={{ absolute_encoded_path }}" target="_blank" aria-label="{{ 'Share on Twitter'|t }}" title="{{ 'Share on Twitter'|t }}"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+              </li>
+              <li class="social-media-sharing-menu__item">
+                <a class="social-media-sharing-menu__link social-media-sharing-menu__link--pinterest" href="https://pinterest.com/pin/create/button/?url={{ absolute_encoded_path }}&amp;media={{ absolute_encoded_path }}&amp;description={{ encoded_title }}" target="_blank" aria-label="{{ 'Share on Pinterest'|t }}" title="{{ 'Share on Pinterest'|t }}"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        {# / Social Media Sharing. #}
+
+        {% if node.field_industry_directory_logo.entity %}
+          <div class="profile__header-logo">
+            {% if node.field_industry_directory_logo.entity.fileuri %}
+              {{ content.field_industry_directory_logo }}
+            {% else %}
+              <img src="{{ base_path ~ directory }}/gfx/listing_placeholder.jpg" alt="{{ node.field_industry_directory_logo.alt }}" />
+            {% endif %}
+          </div>
+        {% endif %}
+        <div>
+          <h2 class="profile__header-name">{{ label }}</h2>
+          {% if content.field_member_address %}
+            <div class="profile__header-address">
+              {{ content.field_member_address }}
+            </div>
+          {% endif %}
+          <div class="profile__header-links clearfix">
+            {% if node.field_vcard.entity %}
+              <div class="profile__header-vcard profile__header-link">
+                <a href="{{ file_url(node.field_vcard.entity.fileuri) }}">{{ 'V-Card'|t }}</a>
+              </div>
+            {% endif %}
+            <div class="profile__header-links-right">
+              {% if node.field_email.value is not empty %}
+                <div class="profile__header-email profile__header-link">
+                  <a href="mailto:{{ content.field_email.0 }}">{{ 'Email'|t }}</a>
+                </div>
+              {% endif %}
+              <div class="profile__header-print profile__header-link">
+                <a href="javascript:window.print();">{{ 'Print'|t }}</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <div class="row">
+        <div class="col-sm-4 col-profile__content-sidebar">
+          <div class="profile__content-sidebar">
+            {% if node.field_phone.value is not empty %}
+              <div class="profile__phone">
+                {{ content.field_phone }}
+              </div>
+            {% endif %}
+            {% if node.field_fax.value is not empty %}
+              <div class="profile__fax">
+                {{ content.field_fax }}
+              </div>
+            {% endif %}
+            {% if content.field_member_address %}
+              <div class="profile__address">
+                {{ content.field_member_address }}
+              </div>
+            {% endif %}
+            {% if node.field_email.value is not empty %}
+              <div class="profile__email">
+                <div class="field__label">{{ 'Email'|t }}</div>
+                <a href="mailto:{{ content.field_email.0 }}">{{ content.field_email.0 }}</a>
+              </div>
+            {% endif %}
+            {% if node.field_website.value is not empty %}
+              <div class="profile__website">
+                <div class="field__label">{{ 'Website'|t }}</div>
+                <a href="http://{{ content.field_website.0 }}">{{ content.field_website.0 }}</a>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+        <div class="col-sm-8">
+          <div class="profile__overview-content">
+            <h3>{{ 'Company Overview'|t }}</h3>
+            {{ content|without('field_industry_directory_logo','field_member_address','field_email','field_website','field_vcard','field_fax','field_phone','field_member_categories','field_file') }}
+
+            {% if node.field_file.entity.fileuri %}
+              <div class="profile__downloads">
+                <h3>{{ 'Downloads'|t }}</h3>
+                <ul>
+                  {% for file in node.field_file %}
+                    {% set file_name = file.description ? file.description : file.entity.get('filename').value %}
+                    <li>
+                      <div class="profile__file">
+                        <a href="{{ file_url(file.entity.fileuri) }}" class="profile__file-name">{{ file_name }}</a> {% if file.description %}<span class="profile__file-filename">({{ file.entity.get('filename').value }})</span>{% endif %}
+                      </div>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </div>
+            {% endif %}
+
+            {% if node.field_member_categories.entity %}
+              <div class="profile__categories">
+                <h3>{{ 'Company Offerings'|t }}</h3>
+                {{ content.field_member_categories }}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+{% endif %}

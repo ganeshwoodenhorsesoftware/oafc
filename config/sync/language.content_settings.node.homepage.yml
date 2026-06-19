@@ -1,0 +1,11 @@
+uuid: adeca38b-b8b4-4d80-9b66-88733b33c995
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.homepage
+id: node.homepage
+target_entity_type_id: node
+target_bundle: homepage
+default_langcode: site_default
+language_alterable: false

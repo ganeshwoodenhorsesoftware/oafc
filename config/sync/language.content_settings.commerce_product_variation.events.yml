@@ -1,0 +1,11 @@
+uuid: aa582b40-c525-41b6-85b5-f06539754f23
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_variation_type.events
+id: commerce_product_variation.events
+target_entity_type_id: commerce_product_variation
+target_bundle: events
+default_langcode: site_default
+language_alterable: false

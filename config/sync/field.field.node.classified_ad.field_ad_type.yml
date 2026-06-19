@@ -1,0 +1,28 @@
+uuid: e6dc2d03-9ccc-4f58-b2ac-4a492a1cf2ff
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_variation_type.classified_ad
+    - field.storage.node.field_ad_type
+    - node.type.classified_ad
+id: node.classified_ad.field_ad_type
+field_name: field_ad_type
+entity_type: node
+bundle: classified_ad
+label: 'Ad type'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:commerce_product_variation'
+  handler_settings:
+    target_bundles:
+      classified_ad: classified_ad
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

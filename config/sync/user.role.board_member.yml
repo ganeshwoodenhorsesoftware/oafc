@@ -1,0 +1,14 @@
+uuid: 563235cd-d42c-4ec2-89b5-6a9109da52fd
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_order
+    - file
+id: board_member
+label: 'Board of Directors'
+weight: -2
+is_admin: null
+permissions:
+  - 'delete own files'
+  - 'view own commerce_order'

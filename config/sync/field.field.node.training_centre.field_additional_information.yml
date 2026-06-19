@@ -1,0 +1,21 @@
+uuid: 442e4ccf-5888-44e3-ba55-5a89cfa9f23f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_additional_information
+    - node.type.training_centre
+  module:
+    - text
+id: node.training_centre.field_additional_information
+field_name: field_additional_information
+entity_type: node
+bundle: training_centre
+label: 'Additional Information'
+description: 'Additional information like contact details, phone numbers, emails etc.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

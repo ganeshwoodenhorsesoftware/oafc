@@ -1,0 +1,23 @@
+uuid: 50768645-4814-4e19-8e12-3c0d17ce7c91
+langcode: en
+status: true
+dependencies:
+  module:
+    - file
+    - node
+id: node.field_vcard
+field_name: field_vcard
+entity_type: node
+type: file
+settings:
+  target_type: file
+  display_field: false
+  display_default: false
+  uri_scheme: public
+module: file
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,8 @@
+name: Webform Vertical Tabs
+type: module
+description: 'Enables arranging a webform element into vertical tabs.'
+package: Webform
+core_version_requirement: ^9 || ^10
+configure: entity.webform.collection
+dependencies:
+  - webform

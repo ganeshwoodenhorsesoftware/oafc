@@ -1,0 +1,59 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a view of unformatted rows.
+ *
+ * Available variables:
+ * - title: The title of this group of rows. May be empty.
+ * - rows: A list of the view's row items.
+ *   - attributes: The row's HTML attributes.
+ *   - content: The row's content.
+ * - view: The view object.
+ * - default_row_class: A flag indicating whether default classes should be
+ *   used on rows.
+ *
+ * @see template_preprocess_views_view_unformatted()
+ *
+ * @ingroup themeable
+ */
+#}
+{% if title %}
+  <h3>{{ title }}</h3>
+{% endif %}
+
+<div class="row row--eq-height">
+{% for row in rows %}
+  {% set rows_count = loop.length %}
+
+  {% if loop.first %}
+    {% if rows_count < 2 %}
+      {%
+        set col_classes = [
+          'col-md-12',
+        ]
+      %}
+    {% else %}
+      {%
+        set col_classes = [
+          'col-md-8',
+        ]
+      %}
+    {% endif %}
+    <div{{ row.attributes.addClass(col_classes) }}>
+      {{ row.content }}
+    </div>
+
+    {# Open second column if there's more than 1 result. #}
+    {% if rows_count > 1 %}
+      <div class="col-md-4">
+    {% endif %}
+  {% else %}
+    {{ row.content }}
+  {% endif %}
+
+  {# Close second column if there's more than 1 result. #}
+  {% if (loop.last) and (rows_count > 1) %}
+    </div>
+  {% endif %}
+{% endfor %}
+</div>

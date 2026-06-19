@@ -1,0 +1,25 @@
+uuid: e4659f16-d92f-4597-9d46-c7618cdb0831
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.content_column.field_paragraph_reference
+    - paragraphs.paragraphs_type.content_column
+  module:
+    - entity_reference_revisions
+id: paragraph.content_column.default
+targetEntityType: paragraph
+bundle: content_column
+mode: default
+content:
+  field_paragraph_reference:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  search_api_excerpt: true

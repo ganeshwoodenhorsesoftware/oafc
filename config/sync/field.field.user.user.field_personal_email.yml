@@ -1,0 +1,20 @@
+uuid: 2f1e46a5-ff3c-4635-8418-d9987faa8f5a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_personal_email
+  module:
+    - user
+id: user.user.field_personal_email
+field_name: field_personal_email
+entity_type: user
+bundle: user
+label: Email
+description: 'We may contact you on this email for non-professional communications.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: email

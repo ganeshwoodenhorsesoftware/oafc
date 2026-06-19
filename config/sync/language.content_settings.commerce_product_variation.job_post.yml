@@ -1,0 +1,11 @@
+uuid: 601d8d2d-7062-42ab-82e0-6d7aac754461
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_variation_type.job_post
+id: commerce_product_variation.job_post
+target_entity_type_id: commerce_product_variation
+target_bundle: job_post
+default_langcode: site_default
+language_alterable: false

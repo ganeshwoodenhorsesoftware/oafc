@@ -1,0 +1,112 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for oafc base module.
+ */
+
+use Drupal\oafc_base\Node\Entity\Node;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
+
+/**
+ * {@inheritdoc}
+ *
+ * @see hook_entity_type_alter()
+ */
+function oafc_base_entity_type_alter(array &$entity_types)
+{
+  $entity_types['node']->setClass(Node::class);
+
+  $entity_types['webform']->setLinkTemplate(
+    'settings-oafc',
+    "/admin/structure/webform/manage/{webform}/settings/oafc"
+  );
+  $handlers = $entity_types['webform']->getHandlerClasses();
+  $handlers['form']['settings_oafc'] = 'Drupal\oafc_base\Webform\Entity\Form\OafcSettings';
+  $entity_types['webform']->setHandlerClass('form', $handlers['form']);
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function oafc_base_form_user_form_alter(&$form, FormStateInterface $form_state, $form_id)
+{
+
+  $roles = \Drupal::currentUser()->getRoles();
+  if (!in_array('administrator', $roles)) {
+    $form['field_mailchimp_subscription']['#access'] = FALSE;
+  }
+}
+
+/**
+ * {@inheritdoc}
+ *
+ * @see hook_form_alter()
+ */
+function oafc_base_form_node_form_alter(
+  array &$form,
+  FormStateInterface $form_state,
+  string $form_id
+) {
+  // Course and event content items get a menu created for them and an Overview
+  // menu link is added to it that links to the node view page. The menu details
+  // exposed by the Menu UI module allows the node menu link to be edited. Due
+  // to unknown reasons, this menu link is automatically removed upon form
+  // submission on course node items and it gets switched to the main menu
+  // raising an error on event node items without any relevant actions by the
+  // content editor. We therefore disallow these form elements from being edited
+  // as they shouldn't really be edited at all. This seems to resolve the
+  // problem.
+  $node = $form_state->getFormObject()->getEntity();
+  if (!in_array($node->bundle(), ['course', 'event'])) {
+    return;
+  }
+
+  $form['menu']['#access'] = FALSE;
+}
+
+/**
+ * {@inheritdoc}
+ *
+ * @see hook_commerce_payment_method_type_info_alter()
+ */
+function oafc_base_commerce_payment_method_type_info_alter(
+  array &$definitions
+) {
+  if (!isset($definitions['paypal_checkout'])) {
+    return;
+  }
+
+  $definitions['paypal_checkout']['create_label'] = new TranslatableMarkup(
+    'Credit card/PayPal'
+  );
+}
+
+/**
+ * Implements hook_preprocess_page().
+ *
+ * Sets variables for the order print button and footer (theme-agnostic).
+ * Only runs logic when the route is the user order view to avoid loading
+ * the order entity on every page.
+ */
+function oafc_base_preprocess_page(&$variables)
+{
+  $variables['show_order_print_footer'] = FALSE;
+  $variables['order_print_footer_hst_number'] = NULL;
+
+  if (\Drupal::routeMatch()->getRouteName() !== 'entity.commerce_order.user_view') {
+    return;
+  }
+
+  $order = \Drupal::routeMatch()->getParameter('commerce_order');
+  if (!$order) {
+    return;
+  }
+
+  $variables['show_order_print_footer'] = TRUE;
+  $store = $order->getStore();
+  $variables['order_print_footer_hst_number'] = ($store && $store->hasField('field_hst_number'))
+    ? $store->get('field_hst_number')->value
+    : NULL;
+}

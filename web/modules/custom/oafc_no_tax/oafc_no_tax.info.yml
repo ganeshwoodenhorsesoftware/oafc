@@ -1,0 +1,7 @@
+name: OAFC no tax
+description: Adds functionality related to tax exemptions.
+type: module
+core_version_requirement: ^9 || ^10
+dependencies:
+  - commerce:commerce_tax
+package: oafc

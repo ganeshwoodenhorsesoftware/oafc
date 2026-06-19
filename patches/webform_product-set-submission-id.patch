@@ -1,0 +1,39 @@
+diff --git a/src/WebFormProductFormHelper.php b/src/WebFormProductFormHelper.php
+index d2f30fb..f504064 100644
+--- a/src/WebFormProductFormHelper.php
++++ b/src/WebFormProductFormHelper.php
+@@ -84,7 +84,7 @@ class WebFormProductFormHelper {
+         // key. Others, like custom_composite, have `elements`.
+         if (!empty($prices[$key]['options'])) {
+           $options = $elements[$key]['#options'];
+-          static::createOptionOrderItem($value, $prices[$key]['options'], $options, $cartOrder, $currencyCode, $webform_title, $webform->id());
++          static::createOptionOrderItem($value, $prices[$key]['options'], $options, $cartOrder, $currencyCode, $webform_title, $webform->id(), $submission->id());
+         }
+         elseif (!empty($prices[$key]['elements'])) {
+           $composite_elements = $elements[$key]['#webform_composite_elements'];
+@@ -94,7 +94,7 @@ class WebFormProductFormHelper {
+           // composite element).
+           if (isset($value[0]) && is_array($value[0])) {
+             foreach ($value as $val) {
+-              static::createOptionOrderItem($val, $prices[$key]['elements'], $composite_elements, $cartOrder, $currencyCode, $webform_title, $webform->id());
++              static::createOptionOrderItem($val, $prices[$key]['elements'], $composite_elements, $cartOrder, $currencyCode, $webform_title, $webform->id(), $submission->id());
+             }
+           }
+         }
+@@ -122,7 +122,7 @@ class WebFormProductFormHelper {
+    * @param string $prependTitle
+    *   A value to prepend the order item's title with.
+    */
+-  public static function createOptionOrderItem($value, array $prices, array $elements_info, OrderInterface $cartOrder, string $currencyCode, string $prependTitle = NULL, string $webformId = NULL) {
++  public static function createOptionOrderItem($value, array $prices, array $elements_info, OrderInterface $cartOrder, string $currencyCode, string $prependTitle = NULL, string $webformId = NULL, string $submission_id) {
+     if (!is_array($value)) {
+       $value = [$value];
+     }
+@@ -148,6 +148,7 @@ class WebFormProductFormHelper {
+         'unit_price' => $price,
+       ]);
+       $orderItem->setData('webform_id', $webformId);
++      $orderItem->setData('submision_id', $submission_id);
+       $orderItem->save();
+       $cartOrder->addItem($orderItem);
+     }

@@ -1,0 +1,21 @@
+uuid: 916dfa1d-c2b6-4b03-a1cd-3532ab4bb91c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_contact_details
+    - node.type.job_post
+  module:
+    - text
+id: node.job_post.field_contact_details
+field_name: field_contact_details
+entity_type: node
+bundle: job_post
+label: 'Contact Details'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

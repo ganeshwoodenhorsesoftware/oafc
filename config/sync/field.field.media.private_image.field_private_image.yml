@@ -1,0 +1,38 @@
+uuid: 2bfc7e71-41fa-46c1-80df-48f3262b120f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_private_image
+    - media.type.private_image
+  module:
+    - image
+id: media.private_image.field_private_image
+field_name: field_private_image
+entity_type: media
+bundle: private_image
+label: 'Private image'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'png gif jpg jpeg'
+  max_filesize: ''
+  max_resolution: ''
+  min_resolution: ''
+  alt_field: true
+  alt_field_required: true
+  title_field: false
+  title_field_required: false
+  default_image:
+    uuid: ''
+    alt: ''
+    title: ''
+    width: null
+    height: null
+field_type: image

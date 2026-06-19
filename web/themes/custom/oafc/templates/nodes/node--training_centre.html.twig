@@ -1,0 +1,116 @@
+
+{% if view_mode == 'teaser' %}
+
+  {#<div class="job-teaser-item">#}
+    {#<div class="job-teaser-item__image">#}
+      {#<a href="{{ url }}">#}
+        {#{% if node.field_featured_image.entity.fileuri %}#}
+          {#<img src="{{ node.field_featured_image.entity.fileuri|image_style('logo_listing') }}" alt="{{ node.field_featured_image.alt }}" />#}
+        {#{% else %}#}
+          {#<img src="{{ base_path ~ directory }}/gfx/listing_placeholder.jpg" alt="{{ node.field_featured_image.alt }}" />#}
+        {#{% endif %}#}
+      {#</a>#}
+    {#</div>#}
+    {#<h4 class="job-teaser-item__title">#}
+      {#<a href="{{ url }}">{{ node.title.value }}</a>#}
+    {#</h4>#}
+    {#<div class="job-teaser-item__date">#}
+      {#Dec. 11, 2017#}
+      {#{{ node.field_date.value|date('F N, Y') }}#}
+    {#</div>#}
+  {#</div>#}
+
+{% elseif view_mode == 'listing' %}
+
+  <div class="training-centre-listing-item">
+    <div class="training-centre-listing-item__image">
+      <a href="{{ url }}">
+        {% if node.field_logo.entity.fileuri %}
+          {%
+            set logo_image = {
+              '#theme':      'image_style',
+              '#style_name': 'logo_listing',
+              '#uri':        node.field_logo.entity.uri.value,
+              '#alt':        node.field_logo.alt,
+            }
+          %}
+          {{ logo_image }}
+        {% else %}
+          <img src="{{ base_path ~ directory }}/gfx/listing_placeholder.jpg" alt="{{ node.field_logo.alt }}" />
+        {% endif %}
+      </a>
+    </div>
+    <div class="training-centre-listing-item__title">
+      <a href="{{ url }}">{{ node.title.value }}</a>
+    </div>
+    {% if content.field_address %}
+      <div class="training-centre-listing-item__address">
+        {{ content.field_address }}
+      </div>
+    {% endif %}
+  </div>
+
+  {#<div class="listing-item">#}
+    {#<div class="listing-item__image">#}
+      {#<a href="{{ url }}" aria-label="{{ 'View Details'|t }}">#}
+        {#{% if node.field_featured_image.entity.fileuri %}#}
+          {#<img src="{{ node.field_featured_image.entity.fileuri|image_style('logo_listing') }}" alt="{{ node.field_featured_image.alt }}" />#}
+        {#{% else %}#}
+          {#<img src="{{ base_path ~ directory }}/gfx/listing_placeholder.jpg" alt="{{ node.field_featured_image.alt }}" />#}
+        {#{% endif %}#}
+      {#</a>#}
+    {#</div>#}
+    {#<div class="listing-item__title">#}
+      {#<h3><a href="{{ url }}">{{ node.title.value }}</a></h3>#}
+    {#</div>#}
+    {#<div class="listing-item__sub-title">#}
+      {#Dec. 11, 2017#}
+      {#{{ node.field_date.value|date('F N, Y') }}#}
+    {#</div>#}
+    {#<div class="listing-item__body">#}
+      {#{% if node.body.summary %}#}
+        {#{{ node.body.summary }}#}
+      {#{% else %}#}
+        {#{% set teaser_text = node.body.value|raw|striptags %}#}
+        {#{{ teaser_text|length > 200 ? teaser_text|slice(0, 200) ~ '...' : teaser_text }}#}
+      {#{% endif %}#}
+    {#</div>#}
+    {#<a href="{{ url }}" class="btn btn--sm btn--red">{{ 'View Details'|t }}</a>#}
+  {#</div>#}
+
+{% else %}
+
+  {%
+  set classes = [
+  'node',
+  'node--type-' ~ node.bundle|clean_class,
+  node.isPromoted() ? 'node--promoted',
+  node.isSticky() ? 'node--sticky',
+  not node.isPublished() ? 'node--unpublished',
+  view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+  'clearfix',
+  ]
+  %}
+
+  <article{{ attributes.addClass(classes) }}>
+    <div{{ content_attributes.addClass('node__content', 'clearfix') }}>
+      <div class="row">
+        <div class="col-md-5">
+          {{ content.field_logo }}
+        </div>
+        <div class="col-md-7">
+          <h3 class="node__title">{{ node.title.value }}</h3>
+          {{ content.field_address }}
+          {{ content.field_additional_information }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <p class="view-all-at-training-centre"><a href="{{ base_path }}education-training?f%5B0%5D=education_training_training_centres%3A{{ node.id }}">{{ 'View all courses available at this Training Centre >'|t }}</a></p>
+          {{ content|without('field_logo','field_address','field_additional_information') }}
+        </div>
+      </div>
+    </div>
+  </article>
+
+{% endif %}

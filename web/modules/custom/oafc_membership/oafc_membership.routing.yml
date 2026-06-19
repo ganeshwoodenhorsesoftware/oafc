@@ -1,0 +1,7 @@
+entity.commerce_license.transfer_form:
+  path: '/admin/commerce/licenses/{commerce_license}/transfer'
+  defaults:
+    _entity_form: 'commerce_license.transfer'
+    _title: 'Transfer license'
+  requirements:
+    _permission: 'transfer any commerce_license'

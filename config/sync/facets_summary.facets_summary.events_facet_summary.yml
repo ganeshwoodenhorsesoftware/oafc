@@ -1,0 +1,46 @@
+uuid: e2c730a5-80a0-4365-8032-1e0a817c14c9
+langcode: en
+status: true
+dependencies:
+  config:
+    - search_api.index.default
+    - views.view.events
+  module:
+    - search_api
+id: events_facet_summary
+name: 'Events Facet Summary'
+facet_source_id: 'search_api:views_page__events__events'
+processor_configs:
+  hide_when_not_rendered:
+    processor_id: hide_when_not_rendered
+    weights:
+      build: '10'
+    settings: {  }
+  reset_facets:
+    processor_id: reset_facets
+    weights:
+      build: '-10'
+    settings:
+      link_text: 'Clear Filters'
+      position: before
+  show_text_when_empty:
+    processor_id: show_text_when_empty
+    weights:
+      build: '-10'
+    settings:
+      text:
+        value: 'There is no current search in progress.'
+        format: plain_text
+facets:
+  category:
+    checked: true
+    label: Category
+    separator: ', '
+    show_count: false
+    weight: 0
+  location:
+    checked: true
+    label: Location
+    separator: ', '
+    show_count: false
+    weight: 0

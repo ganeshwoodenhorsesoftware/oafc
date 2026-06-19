@@ -1,0 +1,11 @@
+uuid: b7aff610-e393-4264-928f-a6798a2c1ce0
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_shipping
+id: commerce_shipment.checkout
+label: Checkout
+description: ''
+targetEntityType: commerce_shipment
+cache: true

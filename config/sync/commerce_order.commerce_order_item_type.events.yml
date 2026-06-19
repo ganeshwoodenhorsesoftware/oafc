@@ -1,0 +1,15 @@
+uuid: 6bf66bae-7dcc-46b5-aeb7-f304f64bdeec
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_tax
+third_party_settings:
+  commerce_tax:
+    taxable_type: events
+id: events
+label: Events
+traits: {  }
+locked: false
+purchasableEntityType: commerce_product_variation
+orderType: default

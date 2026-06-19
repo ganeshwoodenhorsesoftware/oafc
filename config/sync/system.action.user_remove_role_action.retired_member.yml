@@ -1,0 +1,14 @@
+uuid: 9da7eddd-05b0-432e-90c0-f7c5811c40fc
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.retired_member
+  module:
+    - user
+id: user_remove_role_action.retired_member
+label: 'Remove the Retired Member role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: retired_member

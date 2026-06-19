@@ -1,0 +1,7 @@
+name: oafc_mini
+type: module
+description: OAFC mini entities
+core_version_requirement: ^9 || ^10
+package: oafc
+dependencies:
+  - image

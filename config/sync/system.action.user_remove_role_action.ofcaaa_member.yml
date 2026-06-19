@@ -1,0 +1,14 @@
+uuid: df5da6a3-29ae-4712-8416-b70fdbc76ebb
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.ofcaaa_member
+  module:
+    - user
+id: user_remove_role_action.ofcaaa_member
+label: 'Remove the OFCAAA Member role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: ofcaaa_member

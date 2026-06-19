@@ -1,0 +1,5 @@
+services:
+  oafc_job_post.order_attach_job_post_subscriber:
+    class: Drupal\oafc_job_post\EventSubscriber\OrderAttachJobPostSubscriber
+    tags:
+      - { name: event_subscriber }

@@ -1,0 +1,259 @@
+/**
+ * Used Equipment.
+ */
+
+// Node.
+.product__body {
+  .field {
+    clear: both;
+    margin: 10px 0;
+    padding: 20px 0 0 0;
+    border-top: 1px solid #ccc;
+
+    &:first-child {
+      margin: 0;
+      padding: 0;
+      border: none;
+    }
+  }
+  .field__label {
+    margin: 0 0 10px 0;
+    padding: 0;
+  }
+}
+
+// Slider.
+.block-views-blockclassified-ads-slider-slider-block {
+  position: relative;
+  margin-top: 30px;
+  overflow: hidden;
+
+  // Block title.
+  > h2 {
+    position: relative;
+    margin: 0 0 15px 0;
+    padding: 0 0 12px 0;
+    font-size: 24px;
+    color: $c-body;
+    font-weight: 600;
+    border-bottom: 1px solid #ccc;
+
+    a {
+      position: relative;
+      display: block;
+      margin: 0;
+      padding: 12px 0 0 54px;
+      font-size: 24px;
+      color: $c-body;
+      font-weight: 600;
+      text-decoration: none;
+
+      // Bullseye icon.
+      &:after {
+        @include oafc-icon();
+        content: $oafc-var-truck;
+        position: absolute;
+        top: 0;
+        left: 0;
+        color: $c-link;
+        font-size: 46px;
+      }
+
+      &:hover,
+      &:focus {
+        color: $c-link;
+      }
+    }
+  }
+}
+
+// Partners Slider.
+.product-teaser-item,
+.slider-item {
+  position: relative;
+
+  > a {
+    display: block;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+
+      .product-teaser-item__image,
+      .slider-item__image {
+        opacity: 0.8;
+      }
+    }
+  }
+
+  // Bottom bar.
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 41px;
+    z-index: 20;
+    @include background-opacity(#fff, 0.8);
+  }
+}
+.product-teaser-item__title,
+.slider-item__title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 12px;
+  width: 100%;
+  min-height: 44px;
+  font-size: 17px;
+  font-weight: 600;
+  color: #fff;
+  z-index: 1;
+  @include background-opacity(#000, 0.8);
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+
+  strong {
+    color: $c-link;
+    font-weight: 600;
+  }
+}
+.product-teaser-item__image,
+.slider-item__image {
+  position: relative;
+  transition: color .2s ease-in-out, background-color .2s ease-in-out, border-color .2s ease-in-out, opacity .2s ease-in-out;
+
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+.used-equipment-slider {
+  margin: 0 0 1px 0;
+  padding: 0;
+  // Set max width so slider matches image width on smaller devices.
+  max-width: 570px;
+
+  // Slider arrows.
+  .slick-prev,
+  .slick-next {
+    position: absolute;
+    bottom: 4px;
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    height: auto;
+    font-size: 0;
+    line-height: 1.0;
+    background: none;
+    border: none;
+    outline: none;
+    vertical-align: middle;
+    z-index: 30;
+  }
+
+  .slick-prev {
+    left: 14px;
+
+    // Arrow.
+    &:before {
+      @include fa-icon();
+      content: $fa-var-angle-left;
+      display: inline-block;
+      margin: 0;
+      padding: 0;
+      color: #6a6a6a;
+      font-size: 36px;
+      text-align: center;
+      outline: none;
+    }
+    &:hover:before {
+      opacity: 0.6;
+    }
+  }
+  .slick-next {
+    right: 14px;
+
+    // Arrow.
+    &:before {
+      @include fa-icon();
+      content: $fa-var-angle-right;
+      display: inline-block;
+      margin: 0;
+      padding: 0;
+      color: #6a6a6a;
+      font-size: 36px;
+      text-align: center;
+      outline: none;
+    }
+    &:hover:before {
+      opacity: 0.6;
+    }
+  }
+
+  // Slider navigation.
+  .slick-dots {
+    position: absolute;
+    bottom: 8px;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: auto;
+    line-height: 1.0;
+    text-align: center;
+    list-style: none;
+    z-index: 20;
+
+    > li {
+      display: inline-block;
+      margin: 0 5px;
+      padding: 0;
+      background: none;
+
+      button {
+        position: relative;
+        display: block;
+        margin: 0;
+        padding: 0;
+        width: 10px;
+        height: 10px;
+        text-align: left;
+        text-indent: -9999px;
+        outline: none;
+        overflow: hidden;
+        background: #959595;
+        border: none;
+        cursor: pointer;
+        border-radius: 50%;
+        opacity: 1;
+
+        &:hover,
+        &:focus {
+          outline: none;
+          background: $c-link;
+          opacity: 1;
+        }
+      }
+      &.slick-active {
+        button {
+          outline: none;
+          background: $c-link;
+          opacity: 1;
+        }
+      }
+    }
+  }
+}

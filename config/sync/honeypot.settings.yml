@@ -1,0 +1,28 @@
+_core:
+  default_config_hash: jEhrePho9bAz_8-E-zPMXvlx4knpphzUdaiQJX-xc8Q
+protect_all_forms: false
+unprotected_forms:
+  - user_login_form
+  - search_form
+  - search_block_form
+  - views_exposed_form
+  - honeypot_settings_form
+log: false
+element_name: url
+time_limit: 5
+expire: 300
+form_settings:
+  user_register_form: false
+  user_pass: false
+  contact_message_personal_form: false
+  node_classified_ad_form: true
+  node_course_form: false
+  node_event_form: false
+  node_homepage_form: false
+  node_job_post_form: true
+  node_member_only_page_form: false
+  node_news_article_form: false
+  node_page_form: false
+  node_partner_form: false
+  node_profile_form: false
+  node_training_centre_form: false

@@ -1,0 +1,22 @@
+uuid: e99e3326-62d9-4065-82fe-6f221b32946d
+langcode: en
+status: true
+dependencies:
+  module:
+    - imce
+    - node
+label: Standard
+id: standard
+description: ''
+matchers:
+  aee50d4d-9f03-47ba-911c-a29f9b36169e:
+    id: 'entity:node'
+    uuid: aee50d4d-9f03-47ba-911c-a29f9b36169e
+    settings:
+      metadata: Content
+      bundles: {  }
+      group_by_bundle: false
+      substitution_type: canonical
+      limit: 100
+      include_unpublished: false
+    weight: 0

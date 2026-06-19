@@ -1,0 +1,24 @@
+{#
+/**
+ * @file
+ * Theme implementation for a page node.
+ *
+ * Available variables:
+ * - page_header_image_url: The header image's image style url for the field,
+ *   "field_page_header_image".
+ *
+ * @see template_preprocess_node()
+ */
+#}
+<article class="slider-item">
+  <a href="{{ url }}">
+    <div class="slider-item__title">
+      <strong>{{ 'For Sale'|t }}</strong>
+      {{ label }}
+    </div>
+
+    <div class="slider-item__image">
+      {{ content.field_image.0 }}
+    </div>
+  </a>
+</article>

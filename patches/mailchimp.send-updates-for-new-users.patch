@@ -1,0 +1,26 @@
+diff --git a/modules/mailchimp_lists/mailchimp_lists.module b/modules/mailchimp_lists/mailchimp_lists.module
+index 8fd6960..90c6d9a 100644
+--- a/modules/mailchimp_lists/mailchimp_lists.module
++++ b/modules/mailchimp_lists/mailchimp_lists.module
+@@ -184,12 +184,15 @@ function mailchimp_lists_process_subscribe_form_choices(array $choices, Mailchim
+         break;
+ 
+       case 'update':
+-        if (_mailchimp_lists_subscription_has_changed($instance, $entity, $email, $choices)) {
+-          $ret = mailchimp_update_member($settings['mc_list_id'], $email, $mergevars, $interests);
+-        }
+-        else {
+-          $ret = TRUE;
+-        }
++        // We have patched to remove the check on whether there have been
++        // changes because it is buggy and the logic is pretty complicated with
++        // different cases, for example, depending on whether the contact
++        // already exists in MailChimp we may have an update for a new user that
++        // ends up flagged as having no changes. For this project that we only
++        // export users it's worth spending tones of time to troubleshoot and
++        // fix this; there's no harm in always sending the update even if in
++        // some cases it is redundant.
++        $ret = mailchimp_update_member($settings['mc_list_id'], $email, $mergevars, $interests);
+         break;
+     }
+     if (empty($ret)) {

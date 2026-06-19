@@ -1,0 +1,272 @@
+uuid: d7c1ae2f-9ffd-46f8-acec-775b87a8b205
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.user.user.commerce_remote_id
+    - field.field.user.user.field_address
+    - field.field.user.user.field_designation
+    - field.field.user.user.field_fax_number
+    - field.field.user.user.field_fire_service_join_year
+    - field.field.user.user.field_home_address
+    - field.field.user.user.field_home_phone_number
+    - field.field.user.user.field_hosted_files
+    - field.field.user.user.field_is_tax_exempt
+    - field.field.user.user.field_mailchimp_subscription
+    - field.field.user.user.field_mobile_number
+    - field.field.user.user.field_notes
+    - field.field.user.user.field_oafc_join_year
+    - field.field.user.user.field_personal_email
+    - field.field.user.user.field_phone_number
+    - field.field.user.user.field_secondary_contact_email
+    - field.field.user.user.field_secondary_contact_name
+    - field.field.user.user.field_service_categories
+  module:
+    - address
+    - field_group
+    - file
+    - telephone
+    - user
+third_party_settings:
+  field_group:
+    group_work_contact_details:
+      children:
+        - field_phone_number
+        - field_mobile_number
+        - field_fax_number
+        - field_address
+      label: 'Work contact details'
+      parent_name: ''
+      region: content
+      weight: 1
+      format_type: details
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        open: false
+        description: ''
+        required_fields: false
+    group_personal_contact_details:
+      children:
+        - field_personal_email
+        - field_home_phone_number
+        - field_home_address
+      label: 'Personal contact details'
+      parent_name: ''
+      region: content
+      weight: 2
+      format_type: details
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        open: false
+        description: ''
+        required_fields: false
+    group_secondary_contact:
+      children:
+        - field_secondary_contact_name
+        - field_secondary_contact_email
+      label: 'Secondary contact'
+      parent_name: ''
+      region: content
+      weight: 3
+      format_type: details
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        open: false
+        description: ''
+        required_fields: false
+    group_profile:
+      children:
+        - profile
+      label: Profile
+      parent_name: ''
+      region: content
+      weight: 4
+      format_type: details
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        open: false
+        description: ''
+        required_fields: false
+    group_notes_and_metadata:
+      children:
+        - field_service_categories
+        - field_notes
+        - field_fire_service_join_year
+        - field_oafc_join_year
+        - field_hosted_files
+      label: 'Notes and metadata'
+      parent_name: ''
+      region: content
+      weight: 5
+      format_type: details
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        open: false
+        description: ''
+        required_fields: false
+id: user.user.default
+targetEntityType: user
+bundle: user
+mode: default
+content:
+  field_address:
+    type: address_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 8
+    region: content
+  field_designation:
+    type: string
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_fax_number:
+    type: telephone_link
+    label: inline
+    settings:
+      title: ''
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_fire_service_join_year:
+    type: timestamp
+    label: inline
+    settings:
+      date_format: medium
+      custom_date_format: ''
+      timezone: ''
+      tooltip:
+        date_format: ''
+        custom_date_format: ''
+      time_diff:
+        enabled: false
+        future_format: '@interval hence'
+        past_format: '@interval ago'
+        granularity: 2
+        refresh: 60
+    third_party_settings: {  }
+    weight: 8
+    region: content
+  field_home_address:
+    type: address_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 11
+    region: content
+  field_home_phone_number:
+    type: telephone_link
+    label: inline
+    settings:
+      title: ''
+    third_party_settings: {  }
+    weight: 9
+    region: content
+  field_hosted_files:
+    type: file_default
+    label: above
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    weight: 10
+    region: content
+  field_mobile_number:
+    type: telephone_link
+    label: inline
+    settings:
+      title: ''
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_notes:
+    type: basic_string
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_oafc_join_year:
+    type: timestamp
+    label: inline
+    settings:
+      date_format: medium
+      custom_date_format: ''
+      timezone: ''
+      tooltip:
+        date_format: ''
+        custom_date_format: ''
+      time_diff:
+        enabled: false
+        future_format: '@interval hence'
+        past_format: '@interval ago'
+        granularity: 2
+        refresh: 60
+    third_party_settings: {  }
+    weight: 9
+    region: content
+  field_personal_email:
+    type: email_mailto
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 8
+    region: content
+  field_phone_number:
+    type: telephone_link
+    label: inline
+    settings:
+      title: ''
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_secondary_contact_email:
+    type: email_mailto
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_secondary_contact_name:
+    type: string
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_service_categories:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  profile:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  commerce_remote_id: true
+  customer_profiles: true
+  field_is_tax_exempt: true
+  field_mailchimp_subscription: true
+  langcode: true
+  member_for: true
+  profile_customer: true
+  search_api_excerpt: true

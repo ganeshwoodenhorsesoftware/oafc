@@ -1,0 +1,30 @@
+uuid: 4ee5f937-1963-420f-8f5b-afdf578add7a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_service_categories
+    - taxonomy.vocabulary.industry_member_categories
+  module:
+    - user
+id: user.user.field_service_categories
+field_name: field_service_categories
+entity_type: user
+bundle: user
+label: 'Service categories'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      industry_member_categories: industry_member_categories
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

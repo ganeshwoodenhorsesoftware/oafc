@@ -1,0 +1,8 @@
+uuid: a4842704-9235-4b53-8000-a300a0094e56
+langcode: en
+status: true
+dependencies: {  }
+id: cta
+label: CTA
+revision: false
+description: 'A Call-To-Action or ad that can be placed on sidebars.'

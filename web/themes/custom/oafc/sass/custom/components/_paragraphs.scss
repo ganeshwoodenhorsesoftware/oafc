@@ -1,0 +1,20 @@
+/**
+ * Paragraphs.
+ */
+
+// Content Rows.
+.paragraph--type--content-row {
+  .field--name-field-paragraph-reference.row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .field--name-field-paragraph-reference > [class*='col-'] {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .field--name-field-paragraph-reference > .col-sm-12 {
+    width: 100%;
+  }
+}

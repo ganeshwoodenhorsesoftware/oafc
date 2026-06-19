@@ -1,0 +1,24 @@
+uuid: f19b7bdd-06db-4782-9404-ce568200bbb4
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_product
+    - ctools
+id: membership
+label: Membership
+type: 'canonical_entities:commerce_product'
+pattern: 'membership/[commerce_product:title]'
+selection_criteria:
+  49cd1be8-be32-43b9-996f-b4033d2f64d4:
+    id: 'entity_bundle:commerce_product'
+    negate: false
+    uuid: 49cd1be8-be32-43b9-996f-b4033d2f64d4
+    context_mapping:
+      commerce_product: commerce_product
+    bundles:
+      individual_membership: individual_membership
+      industry_membership: industry_membership
+selection_logic: and
+weight: -3
+relationships: {  }

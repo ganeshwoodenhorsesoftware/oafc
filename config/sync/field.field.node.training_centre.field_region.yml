@@ -1,0 +1,29 @@
+uuid: 9d351f10-97e6-42b8-b713-0bf98d98a681
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_region
+    - node.type.training_centre
+    - taxonomy.vocabulary.training_centre_regions
+id: node.training_centre.field_region
+field_name: field_region
+entity_type: node
+bundle: training_centre
+label: Region
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      training_centre_regions: training_centre_regions
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

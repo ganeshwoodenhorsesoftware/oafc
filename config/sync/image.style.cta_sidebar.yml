@@ -1,0 +1,15 @@
+uuid: afdcd42c-35ce-4473-b28b-4f354aba5401
+langcode: en
+status: true
+dependencies: {  }
+name: cta_sidebar
+label: 'CTA - Sidebar'
+effects:
+  b57c3d22-3bd8-4826-85dd-54ba222e3489:
+    uuid: b57c3d22-3bd8-4826-85dd-54ba222e3489
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 285
+      height: 104
+      anchor: center-center

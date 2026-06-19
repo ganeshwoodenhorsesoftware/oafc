@@ -1,0 +1,22 @@
+uuid: b3ad7f2d-608b-43e2-b4d3-eeed87cf9b6f
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.news_article
+id: node.news_article.sticky
+field_name: sticky
+entity_type: node
+bundle: news_article
+label: 'Sticky at top of lists'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

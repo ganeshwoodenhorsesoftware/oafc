@@ -1,0 +1,5 @@
+entity.webform.settings_oafc:
+  title: 'OAFC'
+  route_name: entity.webform.settings_oafc
+  parent_id: entity.webform.settings
+  weight: -10

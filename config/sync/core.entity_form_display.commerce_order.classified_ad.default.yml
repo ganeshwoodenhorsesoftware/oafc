@@ -1,0 +1,65 @@
+uuid: dfa15eb9-1c75-4708-861e-7d0c6974d169
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_order.commerce_order_type.classified_ad
+    - field.field.commerce_order.classified_ad.field_classified_ad
+  module:
+    - commerce_order
+    - inline_entity_form
+id: commerce_order.classified_ad.default
+targetEntityType: commerce_order
+bundle: classified_ad
+mode: default
+content:
+  adjustments:
+    type: commerce_adjustment_default
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  billing_profile:
+    type: commerce_billing_profile
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  cart:
+    type: boolean_checkbox
+    weight: 3
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  coupons:
+    type: entity_reference_autocomplete
+    weight: 5
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  order_items:
+    type: inline_entity_form_complex
+    weight: 2
+    region: content
+    settings:
+      form_mode: default
+      override_labels: true
+      label_singular: 'order item'
+      label_plural: 'order items'
+      allow_new: true
+      allow_existing: false
+      match_operator: CONTAINS
+    third_party_settings: {  }
+hidden:
+  field_classified_ad: true
+  ip_address: true
+  mail: true
+  order_number: true
+  state: true
+  store_id: true
+  uid: true

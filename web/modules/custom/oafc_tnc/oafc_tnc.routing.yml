@@ -1,0 +1,7 @@
+oafc_tnc.admin_settings:
+  path: '/admin/config/oafc/admin-tnc'
+  defaults:
+    _form: '\Drupal\oafc_tnc\Form\ConfigurationForm'
+    _title: 'Administer Terms and Conditions'
+  requirements:
+    _permission: 'administer site configuration'

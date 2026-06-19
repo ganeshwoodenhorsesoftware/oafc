@@ -1,0 +1,85 @@
+uuid: 7949c5ff-2f8c-4b1d-a164-8eb82703f4f6
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_payment
+    - commerce_paypal
+    - commerce_promotion
+    - commerce_shipping
+    - oafc_membership
+label: 'PayPal Checkout'
+id: paypal_checkout
+plugin: paypal_checkout
+configuration:
+  display_checkout_progress: true
+  display_checkout_progress_breadcrumb_links: 0
+  panes:
+    paypal_checkout_payment_process:
+      capture: true
+      step: payment
+      weight: '0'
+    review:
+      step: review
+      weight: '1'
+    completion_message:
+      message:
+        value: "Your order number is [commerce_order:order_number].\r\nYou can view your order on your account page when logged in."
+        format: plain_text
+      step: complete
+      weight: '3'
+    order_summary:
+      view: ''
+      step: _sidebar
+      weight: '4'
+    completion_register:
+      step: complete
+      weight: '10'
+    contact_information:
+      double_entry: false
+      step: _disabled
+      weight: '10'
+    login:
+      allow_guest_checkout: true
+      allow_registration: false
+      step: _disabled
+      weight: '10'
+    payment_information:
+      step: _disabled
+      weight: '10'
+    payment_process:
+      capture: true
+      step: _disabled
+      weight: '10'
+    coupon_redemption:
+      allow_multiple: false
+      step: _sidebar
+      weight: '10'
+    shipping_information:
+      auto_recalculate: true
+      require_shipping_profile: true
+      step: _disabled
+      weight: '10'
+    oafc_membership_individual_membership_declaration:
+      step: _disabled
+      weight: '10'
+    oafc_membership_individual_membership_option:
+      step: _disabled
+      weight: '10'
+    oafc_membership_industry_membership_option:
+      step: _disabled
+      weight: '10'
+    oafc_membership_industry_product_categories:
+      step: _disabled
+      weight: '10'
+    oafc_membership_membership_details:
+      step: _disabled
+      weight: '10'
+    oafc_membership_login:
+      allow_guest_checkout: true
+      allow_registration: false
+      step: _disabled
+      weight: '10'
+    oafc_membership_membership_tnc:
+      step: _disabled
+      weight: '10'

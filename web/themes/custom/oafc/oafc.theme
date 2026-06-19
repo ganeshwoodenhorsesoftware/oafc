@@ -1,0 +1,703 @@
+<?php
+
+/**
+ * @file
+ * Functions to support theming.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\image\Entity\ImageStyle;
+use Drupal\Core\Render\Markup;
+use Drupal\Core\Url;
+use Drupal\user\Entity\User;
+
+/**
+ * Implements hook_form_system_theme_settings_alter().
+ *
+ * Theme settings.
+ */
+function oafc_form_system_theme_settings_alter(&$form, FormStateInterface $form_state, $form_id = NULL) {
+  // Work-around for a core bug affecting admin themes.
+  // See issue https://www.drupal.org/project/drupal/issues/943212.
+  if (isset($form_id)) {
+    return;
+  }
+
+  // Social Media Links.
+  $form['social_media'] = [
+    '#type' => 'details',
+    '#title' => t('Social Media Links'),
+    '#description' => t('Social media links that are displayed on the site and in the footer of emails that the site sends out.'),
+    '#open' => TRUE,
+  ];
+  $form['social_media']['facebook_url'] = [
+    '#type' => 'textfield',
+    '#title' => t('Facebook URL'),
+    '#default_value' => theme_get_setting('facebook_url'),
+  ];
+  $form['social_media']['twitter_url'] = [
+    '#type' => 'textfield',
+    '#title' => t('Twitter URL'),
+    '#default_value' => theme_get_setting('twitter_url'),
+  ];
+  $form['social_media']['instagram_url'] = [
+    '#type' => 'textfield',
+    '#title' => t('Instagram URL'),
+    '#default_value' => theme_get_setting('instagram_url'),
+  ];
+  $form['social_media']['youtube_url'] = [
+    '#type' => 'textfield',
+    '#title' => t('YouTube URL'),
+    '#default_value' => theme_get_setting('youtube_url'),
+  ];
+  $form['social_media']['linkedin_url'] = [
+    '#type' => 'textfield',
+    '#title' => t('LinkedIn URL'),
+    '#default_value' => theme_get_setting('linkedin_url'),
+  ];
+  $form['social_media']['pinterest_url'] = [
+    '#type' => 'textfield',
+    '#title' => t('Pinterest URL'),
+    '#default_value' => theme_get_setting('pinterest_url'),
+  ];
+  $form['social_media']['flickr_url'] = [
+    '#type' => 'textfield',
+    '#title' => t('Flickr URL'),
+    '#default_value' => theme_get_setting('flickr_url'),
+  ];
+
+  // Email Configuration.
+  $form['email_config'] = [
+    '#type' => 'details',
+    '#title' => t('Email Configuration'),
+    '#open' => TRUE,
+  ];
+  $form['email_config']['email_wrapper_bg_color'] = [
+    '#type' => 'textfield',
+    '#title' => t('Wrapper Background Color'),
+    '#default_value' => theme_get_setting('email_wrapper_bg_color'),
+    '#description' => t('The HTML hex color used for the wrapping area around the email body.<br>Example: efefef'),
+    '#size' => 6,
+    '#maxlength' => 6,
+    '#field_prefix' => '#',
+    '#attributes' => [
+      'placeholder' => 'efefef',
+    ],
+  ];
+  $form['email_config']['email_footer_text'] = [
+    '#type' => 'text_format',
+    '#title' => t('Footer Text'),
+    '#description' => t('Text that is displayed at the very bottom of the email footer.'),
+    '#format' => 'html',
+    '#default_value' => Markup::create(theme_get_setting('email_footer_text.value')),
+  ];
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ *
+ * Adds template suggestions.
+ */
+function oafc_theme_suggestions_page_alter(array &$suggestions, array $variables) {
+  // Add content type suggestions.
+  if ($node = \Drupal::request()->attributes->get('node')) {
+    array_splice($suggestions, 1, 0, 'page__type__' . $node->getType());
+  }
+
+  // Add taxonomy vocabulary suggestions.
+  if ($term = \Drupal::request()->attributes->get('taxonomy_term')) {
+    array_splice($suggestions, 1, 0, 'page__taxonomy__' . $term->bundle());
+  }
+
+  // Add page path alias suggestions.
+  $page_current_path = \Drupal::service('path.current')->getPath();
+
+  if (!empty($page_current_path)) {
+    $page_current_alias = \Drupal::service('path_alias.manager')->getAliasByPath($page_current_path);
+  }
+  if (!empty($page_current_alias)) {
+    $search_for = '/';
+    $page_current_alias = str_replace('-', '_', $page_current_alias);
+    $pos_page_current_alias = strpos($page_current_alias, $search_for);
+
+    if ($pos_page_current_alias !== FALSE) {
+      $page_current_alias_formatted = substr_replace($page_current_alias, '', $pos_page_current_alias, strlen($search_for));
+      $page_current_alias_formatted = str_replace('/', '__', $page_current_alias_formatted);
+    }
+    if ($page_current_alias_formatted) {
+      array_splice($suggestions, 1, 0, 'page__' . $page_current_alias_formatted);
+    }
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for form templates.
+ */
+function oafc_theme_suggestions_block_alter(array &$suggestions, array $variables) {
+  // Block suggestions for custom block bundles.
+  if (isset($variables['elements']['content']['#block_content'])) {
+    array_splice($suggestions, 1, 0, 'block__bundle__' . $variables['elements']['content']['#block_content']->bundle());
+  }
+}
+
+/**
+ * Implements hook_preprocess_block().
+ */
+function oafc_preprocess_block(&$variables) {
+  // Set base path variable since it's not available by default.
+  $variables['base_path'] = base_path();
+
+  if ($variables['base_plugin_id'] === 'facet_block') {
+    if (isset($variables['content'][0]['#attributes']['class'])) {
+      $classes = $variables['content'][0]['#attributes']['class'];
+      if (is_array($classes)) {
+        if (in_array('facet-hide-when-empty', $classes) || in_array('facet-empty', $classes)) {
+          $variables['attributes']['class'][] = 'block--empty';
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for HTML document templates.
+ *
+ * Add body classes if certain regions have content.
+ */
+function oafc_preprocess_html(&$variables) {
+  // Page title variable.
+  $request = \Drupal::request();
+  $route_match = \Drupal::routeMatch();
+  $title = \Drupal::service('title_resolver')->getTitle($request, $route_match->getRouteObject());
+  if ($title && is_string($title)) {
+    $variables['page_title'] = $title;
+  }
+
+  // Current path variable.
+  $current_path = \Drupal::service('path.current')->getPath();
+  $variables['current_path'] = \Drupal::service('path_alias.manager')->getAliasByPath($current_path);
+
+  // Commerce Product.
+  if ($commerce_product = \Drupal::request()->attributes->get('commerce_product')) {
+    $variables['commerce_product_bundle'] = $commerce_product->bundle();
+  }
+
+  // Taxonomy term variables.
+  if ($term = \Drupal::request()->attributes->get('taxonomy_term')) {
+    // Set variable for taxonomy term's vocabulary.
+    $variables['term_vocabulary'] = $term->bundle();
+
+    // Set variable for taxonomy term's name.
+    $variables['term_name'] = $term->getName();
+  }
+
+  // Check if on the user profile page, eg: "/user/1".
+  if (preg_match('/^\/user\/[0-9]*$/', $current_path)) {
+    $variables['user_profile'] = TRUE;
+  }
+}
+
+/**
+ * Implements hook__preprocess_comment_HOOK() for Comments.
+ */
+function oafc_preprocess_comment(&$variables) {
+  $comment = $variables['elements']['#comment'];
+
+  $variables['created'] = t('@comment_date at @comment_time', [
+    '@comment_date' => \Drupal::service('date.formatter')->format($comment->getCreatedTime(), 'custom', 'F j, Y'),
+    '@comment_time' => \Drupal::service('date.formatter')->format($comment->getCreatedTime(), 'custom', 'g:i a'),
+  ]);
+}
+
+/**
+ * Implements hook_preprocess_node().
+ */
+function oafc_preprocess_node(&$variables) {
+  if (isset($variables['node'])) {
+    $node = $variables['node'];
+
+    // Base path variable.
+    $variables['base_path'] = base_path();
+
+    // Absolute path variable.
+    $node_absolute_url = Url::fromRoute('entity.node.canonical', ['node' => $node->id()], ['absolute' => TRUE])->toString();
+    $variables['absolute_path'] = $node_absolute_url;
+
+    // Encoded fields for social media sharing.
+    $node_absolute_encoded_url = urlencode($node_absolute_url);
+    $variables['absolute_encoded_path'] = $node_absolute_encoded_url;
+
+    $encoded_title = rawurlencode($node->title->value);
+    $variables['encoded_title'] = $encoded_title;
+
+    // Page.
+    if ($node->getType() === 'page') {
+      // Page Header Image.
+      if (isset($node->field_page_header_image->entity)) {
+        $variables['page_header_image_url'] = ImageStyle::load('banner')->buildUrl($node->field_page_header_image->entity->getFileUri());
+      }
+    }
+
+    // Homepage Carousel Slide.
+    if ($node->getType() === 'homepage_carousel_slide') {
+      // Image.
+      if (isset($node->field_carousel_slide_image->entity)) {
+        $variables['slide_image_url'] = ImageStyle::load('homepage_carousel_slide_image')->buildUrl($node->field_carousel_slide_image->entity->getFileUri());
+        $variables['slide_mobile_image_url'] = ImageStyle::load('homepage_carousel_slide_image_mobile')->buildUrl($node->field_carousel_slide_image->entity->getFileUri());
+      }
+      // Mobile image.
+      if (isset($node->field_carousel_slide_image_sml->entity)) {
+        $variables['slide_mobile_image_url'] = ImageStyle::load('homepage_carousel_slide_image_mobile')->buildUrl($node->field_carousel_slide_image_sml->entity->getFileUri());
+      }
+      // Link URL.
+      if (isset($node->field_carousel_slide_link->uri)) {
+        $carousel_link = $node->field_carousel_slide_link->uri;
+        $variables['slide_link_url'] = Url::fromUri($carousel_link);
+      }
+    }
+
+    // Blog Post.
+    if ($node->getType() === 'blog_post') {
+      // User.
+      if (isset($node->get('uid')->entity)) {
+        $blog_author_id = $node->get('uid')->entity->id();
+        $blog_author_name = $node->get('uid')->entity->getAccountName();
+
+        $variables['blog_author_id'] = $blog_author_id;
+        $variables['blog_author_name'] = $blog_author_name;
+      }
+
+      // Date.
+      if (!empty($node->field_post_date)) {
+        $post_date = strtotime($node->field_post_date->value);
+        $variables['blog_post_date'] = \Drupal::service('date.formatter')->format($post_date, 'custom', 'M j, Y');
+      }
+
+      // Image.
+      if (isset($node->field_blog_image->entity)) {
+        $variables['blog_image_url'] = ImageStyle::load('banner')->buildUrl($node->field_blog_image->entity->getFileUri());
+      }
+    }
+
+    // Image Gallery.
+    if ($node->getType() === 'image_gallery') {
+      if (isset($node->field_gallery_image->entity)) {
+        $field_gallery_image = $node->field_gallery_image;
+
+        // Create array to push field data into.
+        $image_gallery_images = [];
+
+        foreach ($field_gallery_image as $key => $image) {
+          // Image.
+          $image_gallery_images[$key]['image_gallery_image_url'] = ImageStyle::load('image_gallery_image')->buildUrl($image->entity->getFileUri());
+          // Image thumbnail.
+          $image_gallery_images[$key]['image_gallery_thumb_url'] = ImageStyle::load('image_gallery_thumb')->buildUrl($image->entity->getFileUri());
+          // Image title.
+          if (!empty($image->title)) {
+            $image_gallery_images[$key]['title'] = $image->title;
+          }
+          // Image alt.
+          $image_gallery_images[$key]['alt'] = $image->alt;
+        }
+
+        $variables['image_gallery'] = $image_gallery_images;
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function oafc_preprocess_page(&$variables) {
+  // Order print footer and button: provided by oafc_base_preprocess_page().
+  // Defaults so templates work if the module is disabled.
+  if (!isset($variables['show_order_print_footer'])) {
+    $variables['show_order_print_footer'] = FALSE;
+  }
+  if (!isset($variables['order_print_footer_hst_number'])) {
+    $variables['order_print_footer_hst_number'] = NULL;
+  }
+
+  // Load the site name out of configuration.
+  $config = \Drupal::config('system.site');
+  $variables['site_name'] = $config->get('name');
+
+  // Set variables from theme settings.
+  $variables['facebook_url'] = theme_get_setting('facebook_url');
+  $variables['twitter_url'] = theme_get_setting('twitter_url');
+  $variables['instagram_url'] = theme_get_setting('instagram_url');
+  $variables['youtube_url'] = theme_get_setting('youtube_url');
+  $variables['linkedin_url'] = theme_get_setting('linkedin_url');
+  $variables['pinterest_url'] = theme_get_setting('pinterest_url');
+  $variables['flickr_url'] = theme_get_setting('flickr_url');
+
+  // Get user information.
+  if (\Drupal::currentUser()->isAuthenticated()) {
+    $current_user = \Drupal::currentUser();
+    $user = User::load($current_user->id());
+    $user_name = $user->getAccountName();
+    $variables['current_user_name'] = $user_name;
+    $variables['current_user_id'] = $current_user->id();
+  }
+
+  // Homepage.
+  if (\Drupal::service('path.matcher')->isFrontPage()) {
+    // Homepage carousel view.
+    $homepage_carousel_view_name = 'homepage_carousel';
+    $homepage_carousel_view_display = 'default';
+    $homepage_carousel_view_results = views_get_view_result($homepage_carousel_view_name, $homepage_carousel_view_display);
+    $result = count($homepage_carousel_view_results);
+    // Set variable if the view has results.
+    if ($result) {
+      $variables['homepage_carousel_view'] = views_embed_view($homepage_carousel_view_name, $homepage_carousel_view_display);
+    }
+  }
+
+  // Node.
+  if (isset($variables['node'])) {
+    $node = $variables['node'];
+
+    // Homepage.
+    if ($node->getType() === 'homepage') {
+      // Partners slider view.
+      $partners_view_name = 'partners';
+      $partners_view_display = 'partners_slider';
+      $partners_view_results = views_get_view_result($partners_view_name, $partners_view_display);
+      $partners_view_result = count($partners_view_results);
+
+      if ($partners_view_result) {
+        $variables['partners_slider_view'] = views_embed_view($partners_view_name, $partners_view_display);
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_taxonomy_term().
+ */
+function oafc_preprocess_taxonomy_term(&$variables) {
+  if (isset($variables['term'])) {
+    // Set base path variable.
+    $variables['base_path'] = base_path();
+  }
+}
+
+/**
+ * Implements hook_preprocess_commerce_order_receipt().
+ */
+function oafc_preprocess_commerce_order_receipt(&$variables) {
+  $order = $variables['order_entity'];
+  $variables['hst_number'] = \Drupal::service('oafc_no_tax.hst_helper')
+    ->getHstNumberForOrder($order);
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function oafc_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Comment form.
+  if ($form_id == 'comment_node_comment_form') {
+    // Update submit button text.
+    $form['actions']['submit']['#value'] = t('Post Comment');
+  }
+
+  // Commerce Add To Cart form.
+  if ((strpos($form_id, 'commerce_order_item_add_to_cart_form') === 0)) {
+
+    // Check for existing variation.
+    if (isset($form['purchased_entity']['widget'][0]['variation']['#value'])) {
+      // Set data attribute for the product variation id.
+      $product_variation_id = $form['purchased_entity']['widget'][0]['variation']['#value'];
+      $form['#attributes']['data-product-variation-id'] = $product_variation_id;
+      $form['#product_variation_id'] = $product_variation_id;
+    }
+  }
+
+  // Commerce Cart form.
+  if ((strpos($form_id, 'views_form_commerce_cart_form') === 0)) {
+    if (isset($form['actions']['checkout'])) {
+      // Make checkout button the primary button.
+      $form['actions']['checkout']['#button_type'] = 'primary';
+    }
+  }
+
+  // Commerce Cart form.
+  if ((strpos($form_id, 'commerce_checkout_flow') === 0)) {
+    if (isset($form['contact_information']['email'])) {
+      $form['contact_information']['email']['#description'] = t("We'll email your order confirmation to this address.");
+      $form['contact_information']['email']['#attributes']['placeholder'] = t('email@address.com');
+    }
+    if (isset($form['contact_information']['email_confirm'])) {
+      $form['contact_information']['email_confirm']['#attributes']['placeholder'] = t('email@address.com');
+    }
+  }
+
+  // Commerce Checkout Flow Multistep Default form.
+  if ($form_id == 'commerce_checkout_flow_multistep_default') {
+    // Set submit button types as primary.
+    if (isset($form['login']['returning_customer']['submit'])) {
+      $form['login']['returning_customer']['submit']['#button_type'] = 'primary';
+    }
+    if (isset($form['login']['guest']['continue'])) {
+      $form['login']['guest']['continue']['#button_type'] = 'primary';
+    }
+    if (isset($form['login']['register']['register']['submit'])) {
+      $form['login']['register']['register']['#button_type'] = 'primary';
+    }
+  }
+
+  // User Login form.
+  if ($form_id == 'user_login_form') {
+    // Make checkout button the primary button.
+    $form['actions']['submit']['#button_type'] = 'primary';
+  }
+
+  // User Reset Password form.
+  if ($form_id == 'user_pass') {
+    // Make checkout button the primary button.
+    $form['actions']['submit']['#button_type'] = 'primary';
+
+    // Remove mail which was markup.
+    // And assign new text to the name field description instead.
+    $form['mail'] = [];
+    $form['name']['#description'] = t("Password reset instructions will be sent to your registered email address.");
+  }
+}
+
+/**
+ * Implements hook_preprocess().
+ */
+function oafc_preprocess(&$variables, $hook) {
+  // Commerce Product.
+  if (isset($variables['elements']['#entity_type']) && $hook == 'commerce_product') {
+    if (isset($variables['elements']['#commerce_product'])) {
+      $product = $variables['elements']['#commerce_product'];
+
+      // Set base path variable since it's not available by default.
+      $variables['base_path'] = base_path();
+
+      // Absolute path variable.
+      $product_absolute_url = Url::fromRoute('entity.commerce_product.canonical', ['commerce_product' => $product->id()], ['absolute' => TRUE])->toString();
+      $variables['absolute_path'] = $product_absolute_url;
+
+      // Encoded fields for social media sharing.
+      $product_absolute_encoded_url = urlencode($product_absolute_url);
+      $variables['absolute_encoded_path'] = $product_absolute_encoded_url;
+
+      $encoded_title = rawurlencode($product->title->value);
+      $variables['encoded_title'] = $encoded_title;
+
+      // Get view mode & assign variable.
+      $view_mode = $variables['elements']['#view_mode'];
+      $variables['view_mode'] = $view_mode;
+
+      // Get product variations.
+      $product_variations = $product->getVariations();
+
+      // Product Images.
+      if (!empty($product_variations)) {
+        // Loop through variations and create array to feed images
+        // if the variation is active and contains an image.
+        foreach ($product_variations as $variation) {
+          if ($variation->isActive()) {
+            if (isset($variation->field_product_image->entity)) {
+              // Create array to feed images into.
+              $product_variation_images = [];
+              break;
+            }
+          }
+        }
+
+        foreach ($product_variations as $key => $variation) {
+          // If variation is active.
+          if ($variation->isActive()) {
+            // If variation has an image.
+            if (isset($variation->field_product_image->entity)) {
+              $variation_id = $variation->variation_id->value;
+              $product_variation_images[$key]['variation_id'] = $variation_id;
+
+              foreach ($variation->field_product_image as $image_key => &$variation_image) {
+                $product_variation_images[$key]['images'][$image_key] = $variation_image;
+              }
+            }
+          }
+        }
+
+        if (isset($product_variation_images)) {
+          $variables['product_variation_images'] = $product_variation_images;
+        }
+      }
+
+      // Product reviews.
+      if (isset($product->field_product_reviews)) {
+        $field_product_reviews = $product->field_product_reviews->getValue();
+
+        // Number of reviews (if there are reviews).
+        if (isset($field_product_reviews[0]['comment_count'])) {
+          $variables['product_reviews_count'] = $field_product_reviews[0]['comment_count'];
+        }
+        else {
+          // Number of reviews (if none).
+          $variables['product_reviews_count'] = 0;
+        }
+
+        // If a product has reviews, we average out the review ratings.
+        if (isset($variables['elements']['field_product_reviews'][0]['comments'])) {
+          $comments = $variables['elements']['field_product_reviews'][0]['comments'];
+          $ratingSum = 0;
+          $ratingCount = 0;
+          $ratingAverage = 0;
+
+          foreach ($comments as $comment) {
+            if (is_array($comment) && isset($comment['#comment'])) {
+              $rating = $comment['#comment']->field_review_rating->value;
+              $ratingSum += floatval($rating);
+              $ratingCount++;
+            }
+          }
+
+          if ($ratingCount !== 0) {
+            $ratingAverage = $ratingSum / $ratingCount;
+
+            // Round to nearest half integer (ie 2, 2.5, 3, 3.5 etc).
+            $ratingAverage = round($ratingAverage * 2) / 2;
+          }
+
+          // Set the variable for the product.
+          $variables['rating_average'] = $ratingAverage;
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_commerce_product_variation().
+ */
+function oafc_preprocess_commerce_product_variation(&$variables) {
+  // Commerce Product Variation.
+  if (isset($variables['elements']['#commerce_product_variation'])) {
+    // Get view mode & assign variable.
+    $view_mode = $variables['elements']['#view_mode'];
+    $variables['view_mode'] = $view_mode;
+  }
+}
+
+/**
+ * Implements hook_preprocess_input().
+ */
+function oafc_preprocess_input(&$variables) {
+  if (!isset($variables['element'])) {
+    return;
+  }
+
+  $variables['type'] = $variables['element']['#type'] ?? NULL;
+  $variables['button_type'] = $variables['element']['#button_type'] ?? NULL;
+  $variables['element_id'] = $variables['element']['#attributes']['id'] ?? NULL;
+
+  if (($variables['type'] ?? NULL) === 'submit') {
+    $variables['value'] = $variables['element']['#value'];
+  }
+
+  // Flag primary inputs (main submit/action buttons) for wrapper in template.
+  $variables['is_primary'] = FALSE;
+  if (($variables['button_type'] ?? NULL) === 'primary') {
+    $variables['is_primary'] = TRUE;
+  }
+  $classes = $variables['element']['#attributes']['class'] ?? [];
+  if (is_array($classes) && in_array('webform-button--next', $classes, TRUE)) {
+    $variables['is_primary'] = TRUE;
+  }
+  elseif (is_string($classes) && strpos($classes, 'webform-button--next') !== FALSE) {
+    $variables['is_primary'] = TRUE;
+  }
+}
+
+/**
+ * Implements hook_preprocess_form_element().
+ */
+function oafc_preprocess_form_element(&$variables) {
+  $variables['label']['#attributes']['data-element-type'] = $variables['element']['#type'];
+
+  if (isset($variables['element']['#id'])) {
+    $variables['element_id'] = $variables['element']['#id'];
+  }
+  if (isset($variables['element']['#attributes']['class'])) {
+    if (in_array('js-text-full', $variables['element']['#attributes']['class'])) {
+      $variables['is_js_text_widget'] = TRUE;
+    }
+  }
+  if (isset($variables['element']['#allowed_formats'])) {
+    if (in_array('html', $variables['element']['#allowed_formats'])) {
+      $variables['is_js_text_widget'] = TRUE;
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_form_element_label().
+ */
+function oafc_preprocess_form_element_label(&$variables) {
+  if (isset($variables['element'])) {
+    $variables['attributes'] = array_merge($variables['attributes'], $variables['element']['#attributes']);
+
+    if (isset($variables['element']['#attributes']['data-element-type'])) {
+      $variables['element_type'] = $variables['element']['#attributes']['data-element-type'];
+    }
+    if (isset($variables['element']['#id'])) {
+      $variables['element_id'] = $variables['element']['#id'];
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_fieldset().
+ */
+function oafc_preprocess_fieldset(&$variables) {
+  if (isset($variables['element']['#type'])) {
+    $variables['element_type'] = $variables['element']['#type'];
+  }
+}
+
+/**
+ * Implements hook_preprocess_symfony_mailer_lite_email().
+ */
+function oafc_preprocess_symfony_mailer_lite_email(&$variables) {
+  // Load the site name out of configuration.
+  $config = \Drupal::config('system.site');
+  $variables['site_name'] = $config->get('name');
+
+  $variables['base_path'] = base_path();
+  $variables['site_path'] = Url::fromRoute('<front>', [], ['absolute' => TRUE])->toString();
+
+  // Set variables from theme settings.
+  $variables['email_wrapper_bg_color'] = theme_get_setting('email_wrapper_bg_color');
+  $variables['email_footer_text'] = Markup::create(theme_get_setting('email_footer_text.value'));
+  $variables['facebook_url'] = theme_get_setting('facebook_url');
+  $variables['twitter_url'] = theme_get_setting('twitter_url');
+  $variables['instagram_url'] = theme_get_setting('instagram_url');
+  $variables['youtube_url'] = theme_get_setting('youtube_url');
+  $variables['linkedin_url'] = theme_get_setting('linkedin_url');
+  $variables['pinterest_url'] = theme_get_setting('pinterest_url');
+  $variables['flickr_url'] = theme_get_setting('flickr_url');
+}
+
+/**
+ * Implements hook_theme_suggestions_form_element_label_alter().
+ */
+function oafc_theme_suggestions_form_element_label_alter(array &$suggestions, array $variables) {
+  if (isset($variables['element']['#id'])) {
+    if ((strpos($variables['element']['#id'], 'edit-oafc-membership-individual-membership-option-options') !== FALSE) ||
+      (strpos($variables['element']['#id'], 'edit-oafc-membership-industry-membership-option-options') !== FALSE)) {
+
+      $suggestions[] = 'form_element_label__membership_option';
+    }
+
+    if (($variables['element']['#id'] === 'edit-oafc-membership-individual-membership-option-options-other-membership') ||
+      ($variables['element']['#id'] === 'edit-oafc-membership-industry-membership-option-options-other-membership')) {
+
+      $suggestions[] = 'form_element_label__membership_option__other_membership';
+    }
+  }
+}

@@ -1,0 +1,9 @@
+uuid: 9047986f-16d9-45f2-9160-cb51b8b8e7e9
+langcode: en
+status: true
+dependencies: {  }
+id: accordion
+label: Accordion
+icon_uuid: null
+description: 'Display a list of headings and body copy formatted in an accordion component (collapsible content).'
+behavior_plugins: {  }

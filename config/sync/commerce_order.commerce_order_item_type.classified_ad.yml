@@ -1,0 +1,15 @@
+uuid: 54c9e57f-8167-4f2d-be80-d18054cc93b2
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_tax
+third_party_settings:
+  commerce_tax:
+    taxable_type: services
+id: classified_ad
+label: 'Classified Ad'
+traits: {  }
+locked: false
+purchasableEntityType: commerce_product_variation
+orderType: classified_ad

@@ -1,0 +1,14 @@
+uuid: 6b5d69e0-0d43-4d70-a3ae-883602ab75c9
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_order
+    - file
+id: corporation_member
+label: 'Corporation Member'
+weight: -1
+is_admin: null
+permissions:
+  - 'delete own files'
+  - 'view own commerce_order'

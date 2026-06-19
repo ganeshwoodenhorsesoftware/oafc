@@ -1,0 +1,24 @@
+{#
+/**
+ * @file
+ * Theme override to display a single Drupal page while offline.
+ *
+ * All available variables are mirrored in page.html.twig.
+ * Some may be blank but they are provided for consistency.
+ *
+ * @see template_preprocess_maintenance_page()
+ */
+#}
+<div class="maintenance-page-content">
+  {% if logo %}
+    <div class="maintenance-page-logo">
+      <img src="{{ logo }}" alt="{{ 'Home'|t }}"/>
+    </div>
+  {% endif %}
+
+  {% if site_name %}
+    <h1>{{ site_name }}</h1>
+  {% endif %}
+
+  {{ page.content }}
+</div>

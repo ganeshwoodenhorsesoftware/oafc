@@ -1,0 +1,19 @@
+uuid: 7ed49b8b-98f3-456d-a165-7ca176a53a23
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_cta_title
+    - paragraphs.paragraphs_type.homepage_cta
+id: paragraph.homepage_cta.field_cta_title
+field_name: field_cta_title
+entity_type: paragraph
+bundle: homepage_cta
+label: 'CTA Title'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

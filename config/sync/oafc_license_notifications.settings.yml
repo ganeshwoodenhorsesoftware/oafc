@@ -1,0 +1,9 @@
+_core:
+  default_config_hash: Nsyu5yMTdsFk66Xf-XWS-rd2QMHBZ4oo1fA9z590uno
+first_notification_days: 30
+second_notification_days: 10
+third_notification_days: 0
+enabled: true
+from_email: ''
+bcc_email: ''
+log_notifications: true

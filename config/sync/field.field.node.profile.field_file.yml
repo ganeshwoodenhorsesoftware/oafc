@@ -1,0 +1,27 @@
+uuid: 399e2733-a3cc-4182-85de-af51d6565d7b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_file
+    - node.type.profile
+  module:
+    - file
+id: node.profile.field_file
+field_name: field_file
+entity_type: node
+bundle: profile
+label: Downloads
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: profile/files
+  file_extensions: 'txt pdf doc docx xls'
+  max_filesize: '8 MB'
+  description_field: true
+field_type: file

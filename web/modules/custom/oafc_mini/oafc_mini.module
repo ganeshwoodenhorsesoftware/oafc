@@ -1,0 +1,113 @@
+<?php
+
+use Drupal\Core\Block\BlockPluginInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\menu_link_content\Entity\MenuLinkContent;
+use Drupal\node\Entity\Node;
+use Drupal\webform\Entity\Webform;
+
+/**
+ * Implements hook_theme().
+ */
+function oafc_mini_theme($existing, $type, $theme, $path) {
+  return [
+    'oafc_mini' => [
+      'render element' => 'elements',
+    ],
+  ];
+}
+
+/**
+* Implements hook_theme_suggestions_HOOK().
+*/
+function oafc_mini_theme_suggestions_oafc_mini(array $variables) {
+  $suggestions = array();
+  $entity = $variables['elements']['#oafc_mini'];
+  $sanitized_view_mode = strtr($variables['elements']['#view_mode'], '.', '_');
+
+  $suggestions[] = 'oafc_mini__' . $sanitized_view_mode;
+  $suggestions[] = 'oafc_mini__' . $entity->bundle();
+  $suggestions[] = 'oafc_mini__' . $entity->bundle() . '__' . $sanitized_view_mode;
+  $suggestions[] = 'oafc_mini__' . $entity->id();
+  $suggestions[] = 'oafc_mini__' . $entity->id() . '__' . $sanitized_view_mode;
+  return $suggestions;
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_presave().
+ */
+function oafc_mini_block_presave(EntityInterface $entity) {
+  /** @var \Drupal\block\BlockInterface $entity */
+  if ($entity->getPluginId() == 'oafc_mini_entity_block') {
+    $settings = $entity->get('settings');
+    $settings['region'] = $entity->getRegion();
+    $entity->set('settings', $settings);
+  }
+}
+
+/**
+ * Implements hook_block_view_BASE_BLOCK_ID_alter().
+ */
+function oafc_mini_block_view_oafc_mini_entity_block_alter(array &$build, BlockPluginInterface $block) {
+  $build['#contextual_links']['block']['route_parameters']['menu'] = \Drupal::service('cache_context.current_menu')->getContext();
+  $build['#contextual_links']['block']['route_parameters']['region'] = $block->getConfiguration()['region'];
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_insert().
+ */
+function oafc_mini_menu_insert(EntityInterface $entity) {
+  /** @var \Drupal\system\MenuInterface $entity */
+  $menu_name = $entity->id();
+
+  if ($entity->getThirdPartySetting('menu_section', 'uid') && preg_match('/--(\d+)$/', $menu_name, $matches)) {
+    if ($node = Node::load($matches[1])) {
+      MenuLinkContent::create([
+        'link' => ['uri' => 'entity:node/' . $node->id()],
+        'title' => t('@type Overview', ['@type' => ucfirst($node->bundle())]),
+        'menu_name' => $menu_name,
+        'weight' => -100,
+      ])->save();
+
+      $webform_id = $node->bundle() . '__' . $node->id();
+      $webform = Webform::create([
+        'id' => $webform_id,
+        'title' => $node->getTitle() . ' Registration',
+      ]);
+      $webform->save();
+      MenuLinkContent::create([
+        'link' => ['uri' => 'entity:webform/' . $webform_id],
+        'title' => t('Register Now'),
+        'menu_name' => $menu_name,
+        'weight' => 100,
+      ])->save();
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_page(&$variables).
+ */
+function oafc_mini_preprocess_page(&$variables) {
+  $variables['is_microsite'] = !!\Drupal::service('menu_section.helper')->getSection();
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_presave().
+ */
+function oafc_mini_menu_link_content_presave(EntityInterface $entity) {
+  $menu_name = $entity->getMenuName();
+  $expanded = $entity->get('expanded')->getValue()[0]['value'];
+  $menu_section_types = \Drupal::config('menu_section.settings')->get('section_types');
+
+  // See if we can get a hit on the entity type from the menu name, according to
+  // the naming convention given by menu_section.
+  if ($length = strpos($menu_name, '--')) {
+    $type = substr($menu_name, 0, $length);
+
+    // If menu sections are enabled for the entity type, make sure menu items are always expanded.
+    if (in_array($type, $menu_section_types) && !$expanded) {
+      $entity->set('expanded', TRUE);
+    }
+  }
+}

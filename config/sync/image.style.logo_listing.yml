@@ -1,0 +1,35 @@
+uuid: a32c994d-d577-43c8-b27c-28b471537e12
+langcode: en
+status: true
+dependencies:
+  module:
+    - image_effects
+name: logo_listing
+label: 'Logo Listing'
+effects:
+  63a6f8ba-dd19-4c02-b7b5-42cf04ab1c57:
+    uuid: 63a6f8ba-dd19-4c02-b7b5-42cf04ab1c57
+    id: image_effects_set_canvas
+    weight: -9
+    data:
+      canvas_size: exact
+      canvas_color: '#FFFFFFFF'
+      exact:
+        width: '400'
+        height: '400'
+        placement: center-center
+        x_offset: 0
+        y_offset: 0
+      relative:
+        left: 0
+        right: 0
+        top: 0
+        bottom: 0
+  503d53d4-ed97-4d9b-83d0-3cb2a7e00b9e:
+    uuid: 503d53d4-ed97-4d9b-83d0-3cb2a7e00b9e
+    id: image_scale
+    weight: -10
+    data:
+      width: 350
+      height: 350
+      upscale: false

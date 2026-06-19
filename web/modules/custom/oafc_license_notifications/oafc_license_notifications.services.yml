@@ -1,0 +1,13 @@
+services:
+  oafc_license_notifications.license_checker:
+    class: Drupal\oafc_license_notifications\LicenseExpirationChecker
+    arguments:
+      - '@entity_type.manager'
+      - '@config.factory'
+      - '@datetime.time'
+      - '@logger.factory'
+      - '@queue'
+
+  logger.channel.oafc_license_notifications:
+    parent: logger.channel_base
+    arguments: ['oafc_license_notifications']

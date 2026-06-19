@@ -1,0 +1,18 @@
+uuid: 9a231cfe-21a6-4404-8a4b-0341a5b2958e
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: 'Member-only Page'
+type: member_only_page
+description: 'A page for OAFC members only.'
+help: null
+new_revision: false
+preview_mode: 1
+display_submitted: false

@@ -1,0 +1,282 @@
+# Include the Acro Standards templates.
+# Remove whichever are not needed and relevant jobs below.
+include:
+  - project: 'acro/code/standards'
+    ref: 1.3.0
+    file:
+      - '/ci-templates/variables.yml'
+      - '/ci-templates/jobs/phpunit-coverage.yml'
+      - '/ci-templates/jobs/build.yml'
+      - '/ci-templates/jobs/code-standards.yml'
+      - '/ci-templates/jobs/config-test.yml'
+      - '/ci-templates/jobs/deploy.yml'
+      - '/ci-templates/jobs/load-timer.yml'
+      - '/ci-templates/jobs/node-tests.yml'
+      - '/ci-templates/jobs/pages/pages.yml'
+      - '/ci-templates/jobs/php-debt.yml'
+      - '/ci-templates/jobs/security-advisories.yml'
+      - '/ci-templates/jobs/pages/pages.yml'
+      - "/ci-templates/jobs/phpstan.yml"
+
+  - project: "teams/id/devops/acro-helm-charts"
+    ref: main
+    file: "ci-templates/drupal/main.yml"
+
+  - template: Code-Quality.gitlab-ci.yml
+
+workflow:
+  rules:
+    # Run a merge request pipeline, but not if the merge request is from one of the long term branches.
+    - if: $CI_MERGE_REQUEST_IID
+        && $CI_COMMIT_REF_NAME != $DEV_BRANCH
+        && $CI_COMMIT_REF_NAME != $STAGING_BRANCH
+        && $CI_COMMIT_REF_NAME != $PRODUCTION_BRANCH
+    # Run a branch pipeline for long term branches.
+    - if: $CI_COMMIT_BRANCH == $DEV_BRANCH
+        || $CI_COMMIT_BRANCH == $STAGING_BRANCH
+        || $CI_COMMIT_BRANCH == $PRODUCTION_BRANCH
+
+
+variables:
+  extends: .default-variables
+  THEME_NAME: /app/web/themes/custom/oafc
+  PROJECT_NAME: oafc
+  CLUSTER_NAMESPACE_PREFIX: "oafc"
+  DEV_HOSTNAME_BASE: "gke-dev.acromedia.ca"
+  STAGING_HOSTNAME: "stg.oafc.gke-dev.acromedia.ca"
+  DEV_BRANCH: "dev"
+  STAGING_BRANCH: "staging"
+  PRODUCTION_BRANCH: "production"
+  PROD_CLUSTER_CONTEXT: teams/id/devops/gcp/acro-gcp-iac:prod-acro-shared
+  DEV_CLUSTER_CONTEXT: teams/id/devops/gcp/acro-gcp-iac:nonprod-acro-shared
+  PRODUCTION_HOSTNAME: "www.oafc.on.ca"
+  SOLR_ENABLED: "true"
+
+  # Docker file paths
+  PHP_DOCKERFILE: ".gcp/drupal/php.dockerfile"
+  NGINX_DOCKERFILE: ".gcp/drupal/nginx.dockerfile"
+  SOLR_DOCKERFILE: ".gcp/solr.dockerfile"
+
+  # Helm chart versions
+  DRUPAL_CHART_VERSION: "0.18.0"
+  SOLR_CHART_VERSION: "0.3.0"
+
+  SITE_NAME: oafc
+  SETTINGS_OWNER: oafc:oafc-srv
+  PROJECT_ROOT: /home/oafc/www/oafc
+  PRODUCTION_URL: https://www.oafc.on.ca
+
+
+stages:
+  - build
+  - test
+  - deploy
+  - cleanup
+
+# Build jobs for Docker images
+deploy_build_php:
+  extends: .deploy_build_php
+
+deploy_build_nginx:
+  extends: .deploy_build_nginx
+  needs:
+    - deploy_build_php
+
+deploy_build_solr:
+  extends: .deploy_build_solr
+
+#############
+# Build Stage
+#############
+
+build-test:
+  extends: .build-test
+
+############
+# Test Stage
+############
+
+automated-tests:
+  stage: test
+  extends: .phpunit-coverage
+
+code-standards:
+  stage: test
+  extends: .code-standards
+  allow_failure: true
+
+security-advisories:
+  stage: test
+  extends: .security-advisories
+  allow_failure: true
+
+phpstan:
+  stage: test
+  extends: .phpstan
+  allow_failure: true
+
+# Customize the shared_k8s_setup job to add oafc specific hostnames and environment variables
+.shared_k8s_setup:
+  before_script:
+    # Include the original before_script from the template
+    - echo "MR ID is $CI_MERGE_REQUEST_IID"
+    - echo "CI_COMMIT_BRANCH is $CI_COMMIT_BRANCH"
+    - if [[ "$CI_COMMIT_BRANCH" == "$PRODUCTION_BRANCH" ]]; then
+      kubectl config use-context $PROD_CLUSTER_CONTEXT;
+      else
+      kubectl config use-context $DEV_CLUSTER_CONTEXT;
+      fi
+    - export DEPLOY_TARGET=$([ "$CI_MERGE_REQUEST_IID" ] && echo -n "mr-$CI_MERGE_REQUEST_IID" || echo -n "$CI_COMMIT_REF_NAME")
+    - echo "DEPLOY_TARGET=$DEPLOY_TARGET" >> deploy.env
+    - |
+        if [[ "$CI_COMMIT_BRANCH" == "$PRODUCTION_BRANCH" ]]; then
+          HOSTNAMES=(
+            "$PRODUCTION_HOSTNAME"
+          )
+          VALUES_FILE="values/values.prod.yaml"
+        elif [[ "$CI_COMMIT_BRANCH" == "$STAGING_BRANCH" ]]; then
+          HOSTNAMES=(
+            "$STAGING_HOSTNAME"
+          )
+          VALUES_FILE="values/values.dev.yaml"
+        elif [[ "$CI_COMMIT_BRANCH" == "$DEV_BRANCH" ]]; then
+          HOSTNAMES=(
+            "dev.$PROJECT_NAME.$DEV_HOSTNAME_BASE"
+          )
+          VALUES_FILE="values/values.dev.yaml"
+        else
+          HOSTNAMES=(
+            "$PROJECT_NAME.$DEPLOY_TARGET.$DEV_HOSTNAME_BASE"
+          )
+          VALUES_FILE="values/values.mr.yaml"
+        fi
+
+    - echo "VALUES_FILE=$VALUES_FILE"
+    - echo "INGRESS_HOSTNAME=${HOSTNAMES[0]}" >> deploy.env
+    - export NAMESPACE="$CLUSTER_NAMESPACE_PREFIX-$DEPLOY_TARGET";
+    - echo "NAMESPACE=$NAMESPACE" >> deploy.env
+    - cat deploy.env
+    - mkdir -p .docker
+    - kubectl get namespace $NAMESPACE || kubectl create namespace $NAMESPACE
+    - kubectl config set-context --current --namespace=$NAMESPACE
+    - helm repo add drupal $DRUPAL_HELM_REPO_URL
+    - helm repo add solr $SOLR_HELM_REPO_URL
+    - helm repo update
+
+    # Generate dynamic Helm values
+    - DYNAMIC_HELM_VALUES=$(mktemp)
+    - |
+      yq e -i '.ingress.hosts = []' "$DYNAMIC_HELM_VALUES"
+      for HOST in "${HOSTNAMES[@]}"; do
+        yq e -i ".ingress.hosts += [\"$HOST\"]" "$DYNAMIC_HELM_VALUES"
+      done
+    - yq e -i ".php.image.repository = \"$PHP_IMAGE\"" "$DYNAMIC_HELM_VALUES"
+    - yq e -i ".nginx.image.repository = \"$NGINX_IMAGE\"" "$DYNAMIC_HELM_VALUES"
+    - yq e -i ".shared.storage.name = \"$SHARED_STORAGE_NAME\"" "$DYNAMIC_HELM_VALUES"
+    - yq e -i ".shared.storage.subpath = \"$NAMESPACE/nginx\"" "$DYNAMIC_HELM_VALUES"
+    - yq e -i ".shared.storage.private.enabled = true" "$DYNAMIC_HELM_VALUES"
+    - yq e -i ".shared.storage.private.subpath = \"$NAMESPACE/private\"" "$DYNAMIC_HELM_VALUES"
+    - yq e -i ".image.tag = \"$CI_COMMIT_SHA-$CI_COMMIT_REF_SLUG\"" "$DYNAMIC_HELM_VALUES"
+    - yq e -i ".image.pullSecret = \"regcred\"" "$DYNAMIC_HELM_VALUES"
+    - cat "$DYNAMIC_HELM_VALUES" # Review the file before anything sensitive gets added to it.
+    - yq e -i ".drupal.configmap.PAYPAL_CLIENT_ID = \"$PAYPAL_CLIENT_ID\"" "$DYNAMIC_HELM_VALUES"
+    - yq e -i ".drupal.configmap.PAYPAL_SECRET = \"$PAYPAL_SECRET\"" "$DYNAMIC_HELM_VALUES"
+    - yq e -i ".drupal.configmap.MAILCHIMP_API_KEY = \"$MAILCHIMP_API_KEY\"" "$DYNAMIC_HELM_VALUES"
+
+# Implement the centralized CI jobs
+helm_lint:
+  extends: .helm_lint
+
+.post_deploy_scripts: &post_deploy_scripts
+    - if [[ "$CI_COMMIT_BRANCH" == "$PRODUCTION_BRANCH" ]]; then
+      kubectl config use-context $PROD_CLUSTER_CONTEXT;
+      else
+      kubectl config use-context $DEV_CLUSTER_CONTEXT;
+      fi
+    - kubectl config set-context --current --namespace=$NAMESPACE
+    - while ! kubectl exec -n $NAMESPACE -i deployment/drupal-deployment -c drupal-php-fpm -- /app/vendor/bin/drush sqlq 'status'; do sleep 120; done
+    - kubectl exec -n $NAMESPACE -i deployment/drupal-deployment -c drupal-php-fpm -- /bin/bash -c 'cd /app && ./vendor/bin/drush deploy -y'
+
+deploy_drupal_branch:
+  needs:
+    - deploy_build_php
+    - deploy_build_nginx
+  environment:
+    name: $CI_COMMIT_REF_SLUG
+  variables:
+    RUNNER_SCRIPT_TIMEOUT: 30m
+    RUNNER_AFTER_SCRIPT_TIMEOUT: 60m
+  extends: .deploy_drupal_branch
+  script:
+    - !reference [ .deploy_drupal_branch, script ]
+    - *post_deploy_scripts
+
+deploy_drupal_mr:
+  needs:
+    - deploy_build_php
+    - deploy_build_nginx
+  timeout: 120m
+  variables:
+    RUNNER_SCRIPT_TIMEOUT: 30m
+    RUNNER_AFTER_SCRIPT_TIMEOUT: 60m
+  extends: .deploy_drupal_mr
+  script:
+    - !reference [ .deploy_drupal_mr, script ]
+    - *post_deploy_scripts
+
+
+# Solr deployment
+.solr_deployment:
+  script:
+    - helm upgrade --install solr solr/solr
+      --atomic
+      --set image.tag=$CI_COMMIT_SHA-$CI_COMMIT_REF_SLUG
+      --set image.repository=$SOLR_IMAGE
+      --set image.pullSecret=regcred
+      --set shared.storage.name=$SHARED_STORAGE_NAME
+      --set shared.storage.subpath=$NAMESPACE/solr
+      -f ./values/values.solr.yaml
+
+deploy_solr_branch:
+  needs:
+    - deploy_build_solr
+  extends:
+    - .deploy_solr_branch
+    - .solr_deployment
+
+deploy_solr_mr:
+  needs:
+    - deploy_build_solr
+  extends:
+    - .deploy_solr_mr
+    - .solr_deployment
+
+# clean up
+shutdown_environment_mr:
+  extends: .shutdown_environment_mr
+
+build:assets:
+  stage: build
+
+  only:
+    - /^deploy\/.*/
+
+  image: node:18-alpine
+
+  variables:
+    THEME_PATH: $WEB_ROOT/themes/custom
+    THEME_NAME: oafc
+
+  script:
+    - cd "$THEME_PATH"/"$THEME_NAME"
+    # Update `npm` first.
+    - npm install -g npm
+    - npm clean-install --cache .npm --prefer-offline
+    - npm run compile
+
+  artifacts:
+    expire_in: 90 min
+    paths:
+      - $THEME_PATH/$THEME_NAME/css/
+      - $THEME_PATH/$THEME_NAME/node_modules/video.js/dist/video-js.min.css
+      - $THEME_PATH/$THEME_NAME/node_modules/video.js/dist/video.min.js

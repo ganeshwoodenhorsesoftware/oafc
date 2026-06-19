@@ -1,0 +1,14 @@
+uuid: c6b99488-f11b-494c-a7da-904d547b865c
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.courses
+  module:
+    - user
+id: user_remove_role_action.courses
+label: 'Remove the Courses role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: courses

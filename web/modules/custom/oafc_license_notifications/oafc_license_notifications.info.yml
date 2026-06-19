@@ -1,0 +1,8 @@
+name: OAFC License Notifications
+description: Sends advance notification emails before licenses expire
+type: module
+core_version_requirement: ^9 || ^10
+dependencies:
+  - commerce:commerce_license
+  - advancedqueue:advancedqueue
+package: oafc

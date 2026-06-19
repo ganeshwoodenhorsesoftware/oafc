@@ -1,0 +1,29 @@
+uuid: 47c2d4f2-00c3-4b96-afe2-baae80c840a8
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.default
+    - field.storage.commerce_product.field_product_category
+    - taxonomy.vocabulary.oafc_product_categories
+id: commerce_product.default.field_product_category
+field_name: field_product_category
+entity_type: commerce_product
+bundle: default
+label: 'Product Category'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      oafc_product_categories: oafc_product_categories
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

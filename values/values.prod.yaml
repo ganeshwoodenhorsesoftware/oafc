@@ -1,0 +1,80 @@
+environment:
+  type: production
+
+mariadb:
+  storageSize: 30Gi
+  cpuRequests: "1"
+  memoryRequests: "3Gi"
+  cpuLimits: "1"
+  memoryLimits: "3Gi"
+  myCnf: |
+    [mariadb]
+    max_connections=200
+    max_allowed_packet=256M
+    innodb_buffer_pool_size=2G
+
+drupal:
+  webroot: '/app/web'
+  drushPath: '../vendor/bin/drush'
+  cronjobs:
+    - name: drupal-cron
+      schedule: "*/30 * * * *"
+      command: "../vendor/bin/drush core:cron"
+
+ingress:
+  #host: example.comis set by the helm deploy CI job
+  class: gce
+  gce:
+    cdn:
+      enabled: true
+    waf:
+      enabled: true
+      securityPolicyName: cloud-armor-default-backend-policy  # was created by terraform
+    frontendConfig:
+      sslPolicyName: ssl-policy-modern  # was created by terraform
+    healthCheck:
+      requestPath: /health.php
+    customResponseHeaders:
+      - "Strict-Transport-Security: max-age=2592000; includeSubDomains"
+
+backup:
+  enabled: true
+
+autoscaling:
+  enabled: true
+  minReplicas: 2
+  targetMemoryUtilizationPercentage: 50
+
+php:
+  resources:
+    requests:
+      cpu: "500m"
+      memory: "1Gi"
+    limits:
+      cpu: "2"
+      memory: "4Gi"
+  fpm:
+    configMap:
+      enabled: true
+      mountPath: /usr/local/etc/php-fpm.d/www.conf
+      subPath: www.conf
+      content: |
+        [www]
+        listen = 0.0.0.0:9000
+        pm = dynamic
+        pm.max_children = 15
+        pm.start_servers = 4
+        pm.min_spare_servers = 2
+        pm.max_spare_servers = 6
+        pm.process_idle_timeout = 60s
+        pm.max_requests = 500
+
+shared:
+  storage:
+    gcsfuse:
+      memoryRequest: "1Gi"
+
+spot:
+  enabled: false
+The only traces are these 2 patch files (which are meant to be applied to the module after Composer downloads it):
+

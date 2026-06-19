@@ -1,0 +1,9 @@
+uuid: d0091af3-ac97-4a46-afca-ccf8350d6587
+langcode: en
+status: true
+dependencies: {  }
+id: content_row
+label: 'Content Row'
+icon_uuid: null
+description: 'A row of content.'
+behavior_plugins: {  }

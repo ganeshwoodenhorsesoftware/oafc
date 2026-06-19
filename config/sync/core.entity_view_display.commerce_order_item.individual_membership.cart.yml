@@ -1,0 +1,48 @@
+uuid: 948e62e7-5539-4f31-8548-98c2b9b88c02
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_order.commerce_order_item_type.individual_membership
+    - core.entity_view_mode.commerce_order_item.cart
+    - field.field.commerce_order_item.individual_membership.license
+id: commerce_order_item.individual_membership.cart
+targetEntityType: commerce_order_item
+bundle: individual_membership
+mode: cart
+content:
+  created:
+    type: timestamp
+    label: hidden
+    settings:
+      date_format: medium
+      custom_date_format: ''
+      timezone: ''
+      tooltip:
+        date_format: ''
+        custom_date_format: ''
+      time_diff:
+        enabled: false
+        future_format: '@interval hence'
+        past_format: '@interval ago'
+        granularity: 2
+        refresh: 60
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  purchased_entity:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: cart
+      link: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  adjustments: true
+  license: true
+  quantity: true
+  search_api_excerpt: true
+  total_price: true
+  unit_price: true

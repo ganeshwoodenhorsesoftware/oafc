@@ -1,0 +1,15 @@
+uuid: e40280c5-798b-46ba-a28c-2aa9568b5641
+langcode: en
+status: true
+dependencies: {  }
+name: cta_homepage
+label: 'CTA - Homepage'
+effects:
+  483b36be-0c20-4edc-9094-701efe0e66a5:
+    uuid: 483b36be-0c20-4edc-9094-701efe0e66a5
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 154
+      height: 210
+      anchor: center-center

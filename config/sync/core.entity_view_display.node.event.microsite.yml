@@ -1,0 +1,79 @@
+uuid: e9c0d31d-dc37-4be5-a6f4-a30d298bf4a6
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.microsite
+    - field.field.node.event.body
+    - field.field.node.event.field_category
+    - field.field.node.event.field_date_range
+    - field.field.node.event.field_featured_image
+    - field.field.node.event.field_image
+    - field.field.node.event.field_location
+    - field.field.node.event.field_location_details
+    - field.field.node.event.field_logo
+    - field.field.node.event.field_meta_tags
+    - image.style.microsite_logo
+    - node.type.event
+  module:
+    - date_range_formatter
+    - image
+    - user
+id: node.event.microsite
+targetEntityType: node
+bundle: event
+mode: microsite
+content:
+  field_date_range:
+    type: date_range_without_time
+    label: hidden
+    settings:
+      timezone_override: ''
+      date_format: 'Y-m-d\TH:i:s'
+      separator: '-'
+      one_day: 'F j, Y'
+      one_month: 'F j - {j}, Y'
+      several_months: 'F j - {F} {j}, Y'
+      several_years: 'F j, Y - {F} {d}, {Y}'
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_image:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: microsite_banner
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_location:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_logo:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: microsite_logo
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  body: true
+  field_category: true
+  field_featured_image: true
+  field_location_details: true
+  field_meta_tags: true
+  langcode: true
+  links: true
+  search_api_excerpt: true

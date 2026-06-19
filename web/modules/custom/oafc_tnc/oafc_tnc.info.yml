@@ -1,0 +1,8 @@
+name: OAFC Terms and Conditions
+description: OAFC Terms and Conditions
+type: module
+core_version_requirement: ^9 || ^10
+dependencies:
+  - oafc_base
+package: oafc
+configure: oafc_tnc.admin_settings

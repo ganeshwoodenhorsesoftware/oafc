@@ -1,0 +1,11 @@
+uuid: 84601d0f-32df-4ecc-8a7e-d855b744341c
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.classified_ad
+id: node.classified_ad
+target_entity_type_id: node
+target_bundle: classified_ad
+default_langcode: site_default
+language_alterable: false

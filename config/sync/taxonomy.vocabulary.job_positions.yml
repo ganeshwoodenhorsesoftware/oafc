@@ -1,0 +1,9 @@
+uuid: 1c7b853a-fb11-43d1-9223-c6d154678550
+langcode: en
+status: true
+dependencies: {  }
+name: 'Job Titles'
+vid: job_positions
+description: null
+weight: 0
+new_revision: false

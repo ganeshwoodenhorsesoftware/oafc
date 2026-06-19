@@ -1,0 +1,22 @@
+uuid: 70bc825b-81c3-4efa-9359-b46a33fb6479
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.job_post
+id: node.job_post.status
+field_name: status
+entity_type: node
+bundle: job_post
+label: Published
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

@@ -1,0 +1,8 @@
+{
+  "gitlab-token": {
+    "git.acromedia.com": "<personal_access_token>"
+  },
+  "github-oauth": {
+    "github.com": "<personal_access_token>"
+  }
+}

@@ -1,0 +1,78 @@
+{#
+/**
+ * @file
+ * Theme implementation for a page node.
+ *
+ * Available variables:
+ * - page_header_image_url: The header image's image style url for the field,
+ *   "field_page_header_image".
+ *
+ * @see template_preprocess_node()
+ */
+#}
+{%
+set classes = [
+  'node',
+  'node--type-' ~ node.bundle|clean_class,
+  node.isPromoted() ? 'node--promoted',
+  node.isSticky() ? 'node--sticky',
+  not node.isPublished() ? 'node--unpublished',
+  view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+  'clearfix',
+]
+%}
+
+{% if view_mode == 'teaser' %}
+
+  {%
+  set partner_image = {
+  '#theme':      'image_style',
+  '#style_name': 'partner_slider',
+  '#uri':        node.field_logo.entity.uri.value,
+  '#alt':        node.field_logo.alt,
+  }
+  %}
+
+  <div class="partners-slider__item">
+    {% if node.field_link.0.url %}
+      <a href="{{ node.field_link.0.url }}">
+        {{ partner_image }}
+      </a>
+    {% else %}
+      {{ partner_image }}
+    {% endif %}
+  </div>
+
+{% else %}
+
+  <article{{ attributes.addClass(classes) }}>
+    <header>
+      {{ title_prefix }}
+      {% if not page %}
+        <h2{{ title_attributes.addClass('node__title') }}>
+          <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+        </h2>
+      {% else %}
+        <h1{{ title_attributes.addClass('page-title') }}>
+          {{ label }}
+        </h1>
+      {% endif %}
+      {{ title_suffix }}
+
+      {% if display_submitted %}
+        <div class="node__meta">
+          {{ author_picture }}
+          <span{{ author_attributes }}>
+          {% trans %}Submitted by {{ author_name }} on {{ date }}{% endtrans %}
+        </span>
+          {{ metadata }}
+        </div>
+      {% endif %}
+    </header>
+
+    <div{{ content_attributes.addClass('node__content', 'clearfix') }}>
+      {{ content }}
+    </div>
+  </article>
+
+{% endif %}

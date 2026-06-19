@@ -1,0 +1,17 @@
+name: Orange Framework
+type: theme
+description: 'Acro Media Inc. Drupal base theme.'
+package: Core
+version: '1.0.0'
+core_version_requirement: ^9 || ^10
+base theme: false
+
+libraries:
+  - orange_framework/bootstrap
+  - orange_framework/global-styling
+
+ckeditor_stylesheets:
+  - css/style.css
+
+regions:
+  content: 'Content'

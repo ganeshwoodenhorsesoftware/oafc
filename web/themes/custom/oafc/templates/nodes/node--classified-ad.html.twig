@@ -1,0 +1,182 @@
+{#
+/**
+ * @file
+ * Theme implementation for a page node.
+ *
+ * @see template_preprocess_node()
+ */
+#}
+
+{# Fallback product thumbnail placeholder. #}
+{% set product_placeholder_thumbnail_url = base_path ~ directory ~ '/gfx/listing_placeholder.jpg' %}
+{% set product_placeholder_thumbnail_alt = node.title.value %}
+
+{% if view_mode == 'teaser' %}
+
+  {# Set product thumbnail. #}
+  {% if node.field_image.entity.fileuri %}
+    {# Set thumbnail to first variation, first image. #}
+    {%
+      set product_image_thumbnail = {
+      '#theme':      'image_style',
+      '#style_name': 'product_slider_block_image',
+      '#uri':        node.field_image.0.entity.uri.value,
+      '#alt':        node.field_image.0.alt,
+    }
+    %}
+  {% endif %}
+
+  <div class="product-teaser-item">
+    <a href="{{ url }}">
+      <div class="product-teaser-item__title">
+        <strong>{{ 'For Sale'|t }}</strong>
+        {{ node.title.value }}
+      </div>
+
+      <div class="product-teaser-item__image">
+        {% if product_image_thumbnail %}
+          {{ product_image_thumbnail }}
+        {% else %}
+          <img src="{{ product_placeholder_thumbnail_url }}" alt="{{ product_placeholder_thumbnail_alt }}" />
+        {% endif %}
+      </div>
+    </a>
+  </div>
+
+{% elseif view_mode == 'listing' %}
+
+  {# Set product thumbnail. #}
+  {% if node.field_image.entity.fileuri %}
+    {# Set thumbnail to first variation, first image. #}
+    {%
+      set product_image_thumbnail = {
+      '#theme':      'image_style',
+      '#style_name': 'product_thumbnail',
+      '#uri':        node.field_image.0.entity.uri.value,
+      '#alt':        node.field_image.0.alt,
+    }
+    %}
+  {% endif %}
+
+  <div class="listing-item">
+    <div class="listing-item__image">
+      <a href="{{ url }}" aria-label="{{ 'View Details'|t }}">
+        {% if product_image_thumbnail %}
+          {{ product_image_thumbnail }}
+        {% else %}
+          <img src="{{ product_placeholder_thumbnail_url }}" alt="{{ product_placeholder_thumbnail_alt }}" />
+        {% endif %}
+      </a>
+    </div>
+    <div class="listing-item__title">
+      <h3><a href="{{ url }}">{{ node.title.value }}</a></h3>
+    </div>
+    {% if node.field_price.number %}
+      <div class="listing-item__sub-title">
+        {{ content.field_price }}
+      </div>
+    {% endif %}
+    <div class="listing-item__body">
+      {{ content.body }}
+    </div>
+    <a href="{{ url }}" class="btn btn--sm btn--red">{{ 'View Details'|t }}</a>
+  </div>
+
+{% else %}
+
+  <article{{ attributes }} class="product product--full">
+    <div class="entity-header clearfix">
+      <div class="entity-header__back-button">
+        {% set back_url = base_path ~ 'marketplace-careers/used-equipment' %}
+        <a href="{{ back_url }}" class="btn btn--cta btn--cta-left">{{ 'Return to View All'|t }}</a>
+      </div>
+
+      {# Social Media Sharing. #}
+      <div class="entity-header__social-media-sharing">
+        <div class="social-media-sharing-nav">
+          <ul class="social-media-sharing-menu clearfix">
+            <li class="social-media-sharing-menu__item">
+              <a class="social-media-sharing-menu__link social-media-sharing-menu__link--email" href="mailto:?subject={{ encoded_title }}&amp;body={{ absolute_encoded_path }}" target="_blank" aria-label="{{ 'E-Mail'|t }}" title="{{ 'E-Mail'|t }}"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>
+            </li>
+            <li class="social-media-sharing-menu__item">
+              <a class="social-media-sharing-menu__link social-media-sharing-menu__link--facebook" href="https://facebook.com/sharer/sharer.php?u={{ absolute_encoded_path }}" target="_blank" aria-label="{{ 'Share on Facebook'|t }}" title="{{ 'Share on Facebook'|t }}"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+            </li>
+            <li class="social-media-sharing-menu__item">
+              <a class="social-media-sharing-menu__link social-media-sharing-menu__link--linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ absolute_encoded_path }}&amp;title={{ encoded_title }}&amp;summary={{ encoded_title }}&amp;source={{ absolute_encoded_path }}" target="_blank" aria-label="{{ 'Share on LinkedIn'|t }}" title="{{ 'Share on LinkedIn'|t }}"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+            </li>
+            <li class="social-media-sharing-menu__item">
+              <a class="social-media-sharing-menu__link social-media-sharing-menu__link--twitter" href="https://twitter.com/intent/tweet/?text={{ encoded_title }}&amp;url={{ absolute_encoded_path }}" target="_blank" aria-label="{{ 'Share on Twitter'|t }}" title="{{ 'Share on Twitter'|t }}"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+            </li>
+            <li class="social-media-sharing-menu__item">
+              <a class="social-media-sharing-menu__link social-media-sharing-menu__link--pinterest" href="https://pinterest.com/pin/create/button/?url={{ absolute_encoded_path }}&amp;media={{ absolute_encoded_path }}&amp;description={{ encoded_title }}" target="_blank" aria-label="{{ 'Share on Pinterest'|t }}" title="{{ 'Share on Pinterest'|t }}"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      {# / Social Media Sharing. #}
+
+      {% if is_admin %}
+        <div class="entity-header__action">
+          <a href="{{ base_path }}node/add/classified_ad?field_ad_type=20" class="btn btn--plus">{{ 'Place an Ad'|t }}</a>
+        </div>
+      {% endif %}
+    </div>
+    <div class="row">
+      {% if node.field_image.entity.fileuri %}
+        <div class="col-md-5">
+          {# Set product thumbnail. #}
+          {# Set thumbnail to first variation, first image. #}
+          {%
+            set product_image_thumbnail = {
+            '#theme':      'image_style',
+            '#style_name': 'logo_listing',
+            '#uri':        node.field_image.0.entity.uri.value,
+            '#alt':        node.field_image.0.alt,
+          }
+          %}
+
+          {{ attach_library('magnific_popup/magnific_popup') }}
+
+          <div class="product-slider">
+            <div class="product-slider__main-slider">
+              {% for product_variation_image in node.field_image %}
+                <div>
+                  <div class="product-slider__main-slider__item">
+                    <a href="{{ product_variation_image.entity.uri.value|image_style('full_size') }}" class="magnific-popup-gallery">
+                      <span><img src="{{ product_variation_image.entity.uri.value|image_style('product_thumbnail') }}" alt="{{ product_variation_image.alt }}" /></span>
+                    </a>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+            <div class="product-slider__nav-slider">
+              {% for product_variation_image in node.field_image %}
+                <div>
+                  <a class="product-slider__nav-slider__item">
+                    <span><img src="{{ product_variation_image.entity.uri.value|image_style('product_thumbnail') }}" alt="{{ product_variation_image.alt }}" /></span>
+                  </a>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+
+        </div>
+      {% endif %}
+      <div class="{{ node.field_image.entity.fileuri ? 'col-md-7' : 'col-md-12' }}">
+        <div class="product_main-content">
+          <h2 class="product__title">{{ node.title.value }}</h2>
+          {% if node.field_price.number %}
+            <div class="product__price">
+              <div class="product__price-prefix">{{ 'Asking Price:'|t }}</div>
+              {{ content.field_price }}
+            </div>
+          {% endif %}
+          <div class="product__body">
+            {{ content|without('field_image','field_price') }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+{% endif %}

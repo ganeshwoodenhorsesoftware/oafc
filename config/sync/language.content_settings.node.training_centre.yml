@@ -1,0 +1,11 @@
+uuid: 53a4003c-fbd1-496d-b05f-d75f77438ebb
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.training_centre
+id: node.training_centre
+target_entity_type_id: node
+target_bundle: training_centre
+default_langcode: site_default
+language_alterable: false

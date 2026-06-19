@@ -1,0 +1,23 @@
+uuid: 8e3f7fec-a296-4428-8d3f-c39a3a886705
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_meta_tags
+    - node.type.classified_ad
+  module:
+    - metatag
+id: node.classified_ad.field_meta_tags
+field_name: field_meta_tags
+entity_type: node
+bundle: classified_ad
+label: 'Meta Tags'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 'a:0:{}'
+default_value_callback: ''
+settings: {  }
+field_type: metatag

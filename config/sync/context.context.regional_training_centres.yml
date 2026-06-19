@@ -1,0 +1,28 @@
+uuid: e7ced4b6-9574-42d8-a68e-1f40e6cd48dc
+langcode: en
+status: true
+dependencies:
+  module:
+    - context_active_trail
+    - system
+label: 'Regional Training Centres'
+name: regional_training_centres
+group: null
+description: ''
+requireAllConditions: false
+disabled: false
+conditions:
+  request_path:
+    id: request_path
+    negate: false
+    uuid: 3b701867-f359-47b4-8ea8-e6c0693be7fb
+    context_mapping: {  }
+    pages: "/regional-training-centres\r\n/regional-training-centres/*"
+reactions:
+  active_trail:
+    id: active_trail
+    trail: 'main:menu_link_content:696104d6-3774-4b6c-91b2-c0c1bef6e935'
+    breadcrumbs: 1
+    uuid: be6d6c30-ebe5-4b33-b664-b1d9e794bd81
+    breadcrumb_title: false
+weight: 0

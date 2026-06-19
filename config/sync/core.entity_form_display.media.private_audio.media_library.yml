@@ -1,0 +1,24 @@
+uuid: 141aef10-eed8-4e93-aed9-1d6442564752
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_form_mode.media.media_library
+    - field.field.media.private_audio.field_private_file
+    - media.type.private_audio
+id: media.private_audio.media_library
+targetEntityType: media
+bundle: private_audio
+mode: media_library
+content: {  }
+hidden:
+  created: true
+  field_private_file: true
+  langcode: true
+  name: true
+  path: true
+  publish_on: true
+  scheduler_settings: true
+  status: true
+  uid: true
+  unpublish_on: true

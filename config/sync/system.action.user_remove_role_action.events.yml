@@ -1,0 +1,14 @@
+uuid: f0771deb-0531-48b0-89f5-b8ff3a805ceb
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.events
+  module:
+    - user
+id: user_remove_role_action.events
+label: 'Remove the Events role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: events

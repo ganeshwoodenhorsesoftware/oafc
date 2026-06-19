@@ -1,0 +1,14 @@
+uuid: 06feaf54-111c-4239-8aa1-b0724b888b46
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.corporation_member
+  module:
+    - user
+id: user_add_role_action.corporation_member
+label: 'Add the Corporation Member role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: corporation_member

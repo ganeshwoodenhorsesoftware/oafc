@@ -1,0 +1,11 @@
+uuid: de1d759a-6024-4dd8-9e9b-1f1c40217fad
+langcode: en
+status: true
+dependencies:
+  config:
+    - media.type.private_document
+id: media.private_document
+target_entity_type_id: media
+target_bundle: private_document
+default_langcode: site_default
+language_alterable: false

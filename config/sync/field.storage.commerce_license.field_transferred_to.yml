@@ -1,0 +1,19 @@
+uuid: d01a972c-64dc-4b42-a108-d13301debe80
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_license
+id: commerce_license.field_transferred_to
+field_name: field_transferred_to
+entity_type: commerce_license
+type: entity_reference
+settings:
+  target_type: commerce_license
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

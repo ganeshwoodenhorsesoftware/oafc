@@ -1,0 +1,7 @@
+oafc_license_notifications.settings:
+  path: '/admin/commerce/config/oafc-license-notifications'
+  defaults:
+    _form: '\Drupal\oafc_license_notifications\Form\LicenseNotificationSettingsForm'
+    _title: 'License Expiration Notification Settings'
+  requirements:
+    _permission: 'administer commerce_license'

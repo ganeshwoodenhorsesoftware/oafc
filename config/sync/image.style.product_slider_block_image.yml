@@ -1,0 +1,15 @@
+uuid: 52d873dc-e781-4d69-a9f7-bd483e54bc16
+langcode: en
+status: true
+dependencies: {  }
+name: product_slider_block_image
+label: 'Product Slider Block Image'
+effects:
+  d48d4958-9e68-43fd-9e79-30e6e393eef4:
+    uuid: d48d4958-9e68-43fd-9e79-30e6e393eef4
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 570
+      height: 510
+      anchor: center-center

@@ -1,0 +1,86 @@
+uuid: 24c8ff64-ab91-45ff-99e4-6f0ed00080a6
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_form_mode.user.register
+    - field.field.user.user.commerce_remote_id
+    - field.field.user.user.field_address
+    - field.field.user.user.field_designation
+    - field.field.user.user.field_fax_number
+    - field.field.user.user.field_fire_service_join_year
+    - field.field.user.user.field_home_address
+    - field.field.user.user.field_home_phone_number
+    - field.field.user.user.field_hosted_files
+    - field.field.user.user.field_is_tax_exempt
+    - field.field.user.user.field_mailchimp_subscription
+    - field.field.user.user.field_mobile_number
+    - field.field.user.user.field_notes
+    - field.field.user.user.field_oafc_join_year
+    - field.field.user.user.field_personal_email
+    - field.field.user.user.field_phone_number
+    - field.field.user.user.field_secondary_contact_email
+    - field.field.user.user.field_secondary_contact_name
+    - field.field.user.user.field_service_categories
+  module:
+    - address
+    - telephone
+    - user
+id: user.user.register
+targetEntityType: user
+bundle: user
+mode: register
+content:
+  account:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_address:
+    type: address_default
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_designation:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_phone_number:
+    type: telephone_default
+    weight: 3
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  language:
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  commerce_remote_id: true
+  contact: true
+  customer_profiles: true
+  field_fax_number: true
+  field_fire_service_join_year: true
+  field_home_address: true
+  field_home_phone_number: true
+  field_hosted_files: true
+  field_is_tax_exempt: true
+  field_mailchimp_subscription: true
+  field_mobile_number: true
+  field_notes: true
+  field_oafc_join_year: true
+  field_personal_email: true
+  field_secondary_contact_email: true
+  field_secondary_contact_name: true
+  field_service_categories: true
+  google_analytics: true
+  langcode: true
+  path: true
+  timezone: true

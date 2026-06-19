@@ -1,0 +1,20 @@
+services:
+  # Hooks and update functions.
+  # Implemented as services for OOP.
+  oafc_membership.hook.add_to_cart_form:
+    class: Drupal\oafc_membership\Hook\AddToCartForm
+    arguments:
+      - '@current_user'
+      - '@entity_type.manager'
+      - '@string_translation'
+      - '@commerce_price.currency_formatter'
+
+  oafc_membership.updater.post_1:
+    class: Drupal\oafc_membership\Install\PostUpdater1
+    arguments:
+      - '@entity_type.manager'
+
+  oafc_membership.updater.post_2:
+    class: Drupal\oafc_membership\Install\PostUpdater2
+    arguments:
+      - '@entity_type.manager'

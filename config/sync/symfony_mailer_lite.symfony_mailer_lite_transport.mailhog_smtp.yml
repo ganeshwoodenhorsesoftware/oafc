@@ -1,0 +1,18 @@
+uuid: 3598d336-55d1-4536-ab1f-3b2fc59f743f
+langcode: en
+status: true
+dependencies: {  }
+id: mailhog_smtp
+label: 'MailHog - SMTP'
+plugin: smtp
+configuration:
+  user: ''
+  pass: ''
+  host: mailhog.oafc.internal
+  port: 1025
+  query:
+    verify_peer: false
+    local_domain: ''
+    restart_threshold: null
+    restart_threshold_sleep: null
+    ping_threshold: null

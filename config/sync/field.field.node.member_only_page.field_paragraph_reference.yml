@@ -1,0 +1,59 @@
+uuid: 5e2c627d-d961-4982-903f-058f0cc8d56a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_paragraph_reference
+    - node.type.member_only_page
+    - paragraphs.paragraphs_type.basic_content
+    - paragraphs.paragraphs_type.content_column
+    - paragraphs.paragraphs_type.content_row
+  module:
+    - entity_reference_revisions
+id: node.member_only_page.field_paragraph_reference
+field_name: field_paragraph_reference
+entity_type: node
+bundle: member_only_page
+label: 'Component Content'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      basic_content: basic_content
+      content_column: content_column
+      content_row: content_row
+    negate: 0
+    target_bundles_drag_drop:
+      accordion:
+        weight: 10
+        enabled: false
+      accordion_item:
+        weight: 11
+        enabled: false
+      basic_content:
+        weight: 12
+        enabled: true
+      card:
+        weight: 13
+        enabled: false
+      content_column:
+        weight: 14
+        enabled: true
+      content_row:
+        weight: 15
+        enabled: true
+      homepage_cta:
+        weight: 16
+        enabled: false
+      slider_banner:
+        weight: 17
+        enabled: false
+      webform:
+        weight: 18
+        enabled: false
+field_type: entity_reference_revisions

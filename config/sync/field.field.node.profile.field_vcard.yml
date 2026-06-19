@@ -1,0 +1,27 @@
+uuid: 253a9bd8-aaba-48d0-96ac-e82e49d53c37
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_vcard
+    - node.type.profile
+  module:
+    - file
+id: node.profile.field_vcard
+field_name: field_vcard
+entity_type: node
+bundle: profile
+label: V-Card
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: profile/files
+  file_extensions: vcf
+  max_filesize: '4 MB'
+  description_field: false
+field_type: file

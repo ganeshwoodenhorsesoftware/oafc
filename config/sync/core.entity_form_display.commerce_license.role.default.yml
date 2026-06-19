@@ -1,0 +1,21 @@
+uuid: c3e623b5-695a-4138-a3e0-92404a9eb404
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.commerce_license.role.field_transferred_from
+    - field.field.commerce_license.role.field_transferred_to
+  module:
+    - commerce
+    - commerce_license
+id: commerce_license.role.default
+targetEntityType: commerce_license
+bundle: role
+mode: default
+content: {  }
+hidden:
+  field_transferred_from: true
+  field_transferred_to: true
+  product_variation: true
+  state: true
+  uid: true

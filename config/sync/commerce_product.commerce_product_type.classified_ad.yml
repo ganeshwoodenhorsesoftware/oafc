@@ -1,0 +1,13 @@
+uuid: 3d5f93e3-2546-4f99-86b0-255536c4cc0b
+langcode: en
+status: true
+dependencies: {  }
+id: classified_ad
+label: 'Classified Ad'
+traits: {  }
+locked: false
+description: 'Create a classified ad product.'
+variationType: classified_ad
+variationTypes: {  }
+multipleVariations: true
+injectVariationFields: true

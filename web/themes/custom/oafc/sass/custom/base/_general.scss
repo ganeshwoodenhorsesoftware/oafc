@@ -1,0 +1,749 @@
+/**
+ * General.
+ */
+html,
+body {
+  height: 100%;
+  color: $c-body;
+  background: #fff;
+  font-family: $f-body;
+}
+html.js {
+  background: $c-site-bg;
+}
+body {
+  font-size: 16px;
+  line-height: 1.5;
+  min-width: $screen-min;
+
+  &.cke_editable {
+    padding: 20px;
+    background: #fff;
+  }
+}
+
+/**
+ * Typography.
+ */
+h1 {
+  margin-top: 30px;
+  font-family: $f-primary;
+  font-size: 35px;
+
+  @media (min-width: $screen-sm-min) {
+    font-size: 45px;
+  }
+}
+h2 {
+  margin: 30px 0 5px 0;
+  font-family: $f-primary;
+  font-size: 28px;
+  font-weight: 600;
+
+  @media (min-width: $screen-sm-min) {
+    font-size: 40px;
+  }
+}
+h3 {
+  margin-top: 30px;
+  font-family: $f-primary;
+  font-size: 24px;
+  font-weight: 600;
+  color: $c-link;
+
+  @media (min-width: $screen-sm-min) {
+    font-size: 28px;
+  }
+}
+h4 {
+  margin-top: 25px;
+  font-family: $f-secondary;
+  font-size: 20px;
+
+  @media (min-width: $screen-sm-min) {
+    font-size: 24px;
+  }
+}
+h5 {
+  margin-top: 25px;
+  font-family: $f-secondary;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+h6 {
+  margin-top: 25px;
+  font-family: $f-secondary;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+/**
+ * Content.
+ */
+p {
+  margin: 0 0 20px 0;
+  padding: 0;
+  line-height: 1.5;
+}
+ul,
+ol {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+blockquote {
+  padding: 0 20px;
+  border-left: 14px solid $c-primary;
+  font-family: $f-secondary;
+  font-style: italic;
+}
+img.align-left {
+  margin: 0 20px 20px 0;
+}
+img.align-right {
+  margin: 0 0 20px 20px;
+}
+img.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+hr.line-break {
+  clear: both;
+  margin: 30px 0;
+  padding: 0;
+  width: 100%;
+  height: 1px;
+  color: $c-border-light;
+  background: $c-border-light;
+  border: 0;
+}
+.no-bottom-margin {
+  margin-bottom: 0;
+}
+
+// Border-radius styles.
+.btn,
+.form-control,
+.pager li > a,
+.pager li > span,
+.card,
+.modal-content {
+  border-radius: $border-radius;
+}
+.card .card__image img,
+.nav-tabs > li > a {
+  @include border-top-radius($border-radius);
+}
+
+/**
+ * Links.
+ */
+a {
+  color: $c-link;
+  text-decoration: none;
+  transition: color .2s ease-in-out, background-color .2s ease-in-out, border-color .2s ease-in-out, opacity .2s ease-in-out, outline .2s ease-in-out, box-shadow .2s ease-in-out;
+
+  &:hover,
+  &:focus {
+    color: $c-link-hover;
+    text-decoration: none;
+  }
+  &:hover {
+    text-decoration: underline;
+  }
+}
+.link-arrow {
+  font-size: 14px;
+  font-weight: 600;
+
+  // Arrow icon.
+  &:after {
+    @include oafc-icon();
+    content: $oafc-var-arrow-right;
+    position: relative;
+    top: -1px;
+    margin: 0 0 0 5px;
+    padding: 0;
+    font-size: 9px;
+    transition: color .2s ease-in-out, background-color .2s ease-in-out;
+  }
+}
+
+// Body / Editor links.
+body.cke_editable,
+.field.text-formatted,
+.profile__content-sidebar {
+  a {
+    color: $c-body-link;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      color: $c-body-link-hover;
+      text-decoration: none;
+    }
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+/**
+ * Tables.
+ */
+table,
+.table {
+  margin: 0 auto 20px auto;
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+  border: none;
+  background: none;
+
+  > thead,
+  > tbody,
+  > tfoot {
+    > tr {
+      > th,
+      > td {
+        margin: 0;
+        padding: 10px;
+        line-height: 1.4;
+        vertical-align: top;
+        border: 1px solid #ddd;
+      }
+    }
+  }
+  > thead > tr > th {
+    vertical-align: bottom;
+    border: none;
+    border-bottom: 2px solid #ddd;
+  }
+  // Remove top border from thead by default.
+  > caption + thead,
+  > colgroup + thead,
+  > thead:first-child {
+    > tr:first-child {
+      > th,
+      > td {
+        border-top: 0;
+      }
+    }
+  }
+  // Account for multiple tbody instances
+  > tbody + tbody {
+    border-top: 2px solid #ddd;
+  }
+}
+.table-striped {
+  > tbody > tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
+  }
+}
+.table-bordered {
+  border: 1px solid #ddd;
+  > thead {
+    color: #fff;
+    background: #000;
+  }
+  > thead,
+  > tbody,
+  > tfoot {
+    > tr {
+      > th,
+      > td {
+        border: 1px solid #ddd;
+      }
+    }
+  }
+  > thead > tr {
+    > th,
+    > td {
+      border-bottom: none;
+    }
+  }
+}
+.table--borderless {
+  border: 0;
+  > thead,
+  > tbody,
+  > tfoot {
+    > tr {
+      border: 0;
+      > th,
+      > td {
+        border: 0;
+      }
+    }
+  }
+}
+.table--email {
+  margin: 0 0 18px;
+  padding: 0;
+  border: 0;
+  width: 100%;
+  border-collapse: collapse;
+
+  tr {
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  td,
+  th {
+    margin: 0;
+    padding: 5px 10px;
+    font-family: $f-arial;
+    font-size: 14px;
+    color: $c-email-body;
+    text-align: left;
+    border: 1px solid $c-border-light;
+  }
+
+  th {
+    font-weight: bold;
+    background: $c-border-lighter;
+  }
+}
+.table--workshop {
+  tr:first-child > th {
+    color: $c-white;
+    font-weight: bold;
+    border-color: $c-primary-dark;
+    background: $c-primary-dark;
+  }
+}
+.table--section {
+  tr:first-child > th {
+    color: $c-white;
+    font-weight: normal;
+    border-color: $c-email-body;
+    background: $c-email-body;
+  }
+}
+
+/**
+ * Buttons
+ */
+button {
+  transition: color .2s ease-in-out, opacity .2s ease-in-out, background-color .2s ease-in-out, border-color .2s ease-in-out;
+}
+
+body.cke_editable .btn,
+.btn,
+.btn-default,
+.btn--default,
+.field.text-formatted.field--name-body .btn,
+.field.text-formatted.field--name-body .btn-default,
+.field.text-formatted.field--name-body .btn--default {
+  display: inline-block;
+  margin: 0 5px;
+  padding: 10px 12px 13px 12px;
+  width: auto;
+  height: auto;
+  font-family: $f-primary;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 1.0;
+  color: $gray-darker;
+  text-decoration: none;
+  background: none;
+  border: 1px solid $gray-light;
+  border-radius: $button-border-radius;
+  transition: color .2s ease-in-out, background-color .2s ease-in-out;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $gray-darker;
+    text-decoration: none;
+    background-color: $gray-lighter;
+    border-color: $gray-light;
+    box-shadow: none;
+  }
+}
+
+.btn--cta,
+.field.text-formatted.field--name-body .btn--cta {
+  position: relative;
+  display: block;
+  margin: 0;
+  padding: 14px 40px 15px 15px;
+  font-size: 16px;
+  line-height: 1.0;
+  font-weight: 600;
+  color: #fff;
+  text-align: left;
+  background: $c-secondary;
+  border: none;
+  border-radius: $button-border-radius;
+  white-space: normal;
+
+  // Arrow icon.
+  &:after {
+    @include oafc-icon();
+    content: $oafc-var-arrow-right;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 12px;
+    color: $c-link;
+    font-size: 18px;
+    transition: color .2s ease-in-out, background-color .2s ease-in-out;
+  }
+
+  &:hover,
+  &:focus {
+    color: #fff;
+    background: $c-link;
+
+    // Arrow icon.
+    &:after {
+      color: #fff;
+    }
+  }
+}
+.btn--cta-left,
+.field.text-formatted.field--name-body .btn--cta-left {
+  padding: 14px 15px 15px 40px;
+
+  // Arrow icon.
+  &:after {
+    content: $oafc-var-arrow-left;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 12px;
+    right: auto;
+    font-size: 18px;
+  }
+}
+.btn--cta-sm,
+.field.text-formatted.field--name-body .btn--cta-sm {
+  position: relative;
+  display: block;
+  margin: 0;
+  padding: 7px 32px 7px 9px;
+  font-size: 14px;
+  line-height: 1.0;
+  font-weight: normal;
+  color: #fff;
+  text-align: left;
+  background: $c-secondary;
+  border: none;
+  border-radius: $button-border-radius;
+  white-space: normal;
+
+  // Arrow icon.
+  &:after {
+    @include oafc-icon();
+    content: $oafc-var-arrow-right;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
+    font-size: 11px;
+    color: $c-link;
+    transition: color .2s ease-in-out, background-color .2s ease-in-out;
+  }
+
+  &:hover,
+  &:focus {
+    color: #fff;
+    background: $c-link;
+
+    // Arrow icon.
+    &:after {
+      color: #fff;
+    }
+  }
+}
+.btn--plus,
+.field.text-formatted.field--name-body .btn--plus {
+  position: relative;
+  display: inline-block;
+  padding: 14px 15px 15px 40px;
+  font-size: 16px;
+  line-height: 1.0;
+  font-weight: 600;
+  color: #fff;
+  text-align: left;
+  background: $c-secondary;
+  border: none;
+  border-radius: $button-border-radius;
+  white-space: normal;
+
+  // Plus icon.
+  &:after {
+    @include fa-icon();
+    content: $fa-var-plus;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 12px;
+    color: $c-link;
+    font-size: 18px;
+    transition: color .2s ease-in-out, background-color .2s ease-in-out;
+  }
+
+  &:hover,
+  &:focus {
+    color: #fff;
+    background: $c-link;
+
+    // Plus icon.
+    &:after {
+      color: #fff;
+    }
+  }
+}
+
+// Primary button.
+body.cke_editable .btn--primary,
+.btn-primary,
+.btn--primary,
+.field.text-formatted.field--name-body .btn-primary,
+.field.text-formatted.field--name-body .btn--primary {
+  color: #fff;
+  background-color: $c-secondary;
+  border-color: $c-secondary;
+  border-radius: $button-border-radius;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: #fff;
+    background-color: $c-secondary-hover;
+    border-color: $c-secondary-hover;
+  }
+}
+
+// Primary button wrap (input + arrow): same look as primary button.
+.btn--primary-wrap {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 12px 13px 12px;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1;
+  color: #fff;
+  background-color: $c-secondary;
+  border: 1px solid $c-secondary;
+  border-radius: $button-border-radius;
+  text-decoration: none;
+  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out;
+
+  // Input inside: no chrome, same text style. Hide primary button ::after arrow (we use .btn--primary-arrow).
+  input {
+    padding: 0;
+    margin: 0;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    color: inherit;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    flex: 0 1 auto;
+    min-width: 0;
+
+    &::after {
+      display: none;
+      content: none;
+    }
+  }
+
+  // Arrow element: same as other primary buttons.
+  .btn--primary-arrow {
+    @include oafc-icon();
+    margin-left: 12px;
+    font-size: 12px;
+    color: #fff;
+    transition: color 0.2s ease-in-out;
+
+    &::before {
+      content: $oafc-var-arrow-right;
+    }
+  }
+
+  &:hover,
+  &:focus{
+    color: #fff;
+    background-color: $c-secondary-hover;
+    border-color: $c-secondary-hover;
+    text-decoration: none;
+
+    .btn--primary-arrow {
+      color: #fff;
+    }
+  }
+
+  &:focus-within {
+    color: #fff;
+    background-color: $c-secondary-hover;
+    border-color: $c-secondary-hover;
+
+    .btn--primary-arrow {
+      color: #fff;
+    }
+  }
+}
+
+.is-arrow-hovered,
+.is-arrow-hovered input {
+  color: #fff !important;
+  background-color: $c-secondary-hover !important;
+  border-color: $c-secondary-hover !important;
+  text-decoration: none !important;
+
+  .btn--primary-arrow {
+    color: #fff !important;
+  }
+}
+
+// Link button.
+.btn-link,
+.field.text-formatted.field--name-body .btn-link {
+  color: $c-link;
+
+  &:hover,
+  &:focus {
+    color: $c-link-hover;
+  }
+}
+
+// Large button.
+.btn-lg,
+.btn-group-lg > .btn {
+  font-size: 24px;
+}
+
+// Small button.
+.btn--sm {
+  padding: 7px 24px;
+  height: auto;
+  font-size: 15px;
+  line-height: 1.0;
+  color: #fff;
+  font-weight: normal;
+  text-decoration: none;
+  background: $c-body;
+  border-color: $c-body;
+  border-radius: $button-border-radius;
+}
+.btn--sm:hover,
+.btn--sm:active,
+.btn--sm:focus,
+.btn--sm:active:hover,
+.btn--sm:active:focus,
+.btn--sm:active.focus,
+.btn--sm.active:hover,
+.btn--sm.active:focus,
+.btn--sm.active.focus,
+.open > .btn--sm.dropdown-toggle:hover,
+.open > .btn--sm.dropdown-toggle:focus,
+.open > .btn--sm.dropdown-toggle.focus {
+  color: #fff;
+  background-color: $c-link;
+  border-color: $c-link;
+}
+
+.btn--red {
+  color: #fff;
+  background: $c-link;
+  border-color: $c-link;
+  border-radius: $button-border-radius;
+
+  &:hover,
+  &:active,
+  &:focus,
+  &:active:hover,
+  &:active:focus,
+  &:active.focus,
+  &.active:hover,
+  &.active:focus,
+  &.active.focus {
+    color: #fff;
+    background-color: $c-body;
+    border-color: $c-body;
+  }
+}
+
+.btn--icon--arrow-right {
+  // Icon.
+  &:after {
+    @include fa-icon();
+    content: $fa-var-caret-right;
+    position: relative;
+    top: 1px;
+    margin: 0 0 0 10px;
+    color: $c-tertiary;
+  }
+}
+
+.btn--register-now {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 5px;
+  line-height: 1.2;
+  text-align: center;
+  min-height: 57px;
+  border-radius: $button-border-radius;
+}
+
+/**
+* Site Structure.
+*/
+.site-wrapper {
+  position: relative;
+  clear: both;
+}
+
+/**
+ * Page header image.
+ */
+.page-header-image {
+  margin: 0 0 20px 0;
+  padding: 0;
+}
+
+/**
+ * Slick Slider overrides.
+ */
+.slick-list,
+.slick-list:focus,
+.slick-slide,
+.slick-slide:focus {
+  outline: none;
+}
+
+/**
+ * Bootstrap Helpers.
+ */
+.row--eq-height {
+  display: flex;
+  flex-wrap: wrap;
+
+  > [class*='col-'] {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+/**
+* Video.
+*/
+.video-container {
+  max-width: 800px;
+}
+
+.video-js {
+  // Override width/height inline styles.
+  width: 100% !important;
+  max-width: 100%;
+  height: 0 !important;
+  // 16:9 ratio.
+  padding-bottom: 56.25% !important;
+}

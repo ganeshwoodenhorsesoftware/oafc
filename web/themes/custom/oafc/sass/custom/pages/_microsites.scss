@@ -1,0 +1,714 @@
+/**
+ * Microsite Header.
+ */
+.microsite-header {
+
+}
+.microsite-header__bar {
+  clear: both;
+  display: block;
+  width: 100%;
+  height: 40px;
+  background: #de2827;
+  background: linear-gradient(to bottom, #de2827 0%, #b3201f 100%);
+}
+.microsite-header__content {
+  background: url(../gfx/bg_microsite_header_tile.png) 0 0 repeat-x;
+}
+.microsite-header__content-inner {
+  position: relative;
+}
+.microsite-header__logo {
+  position: relative;
+  float: left;
+  display: block;
+  margin: 0;
+  padding: 0 0 0 133px;
+  width: 100%;
+  max-width: 280px;
+  height: 93px;
+  text-align: left;
+  text-decoration: none;
+  z-index: 10;
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
+
+  @media (min-width: $screen-xs-min) {
+    padding: 0 0 0 133px;
+    width: 100%;
+    max-width: 380px;
+  }
+  @media (min-width: 620px) {
+    width: 450px;
+    max-width: 450px;
+  }
+
+  img {
+    position: absolute;
+    top: -29px;
+    left: 0;
+    display: block;
+    max-width: 116px;
+    height: auto;
+  }
+
+  // Logo title.
+  span {
+    display: block;
+    margin: 0;
+    padding: 18px 0 0 0;
+    font-family: $f-secondary;
+    font-size: 16px;
+    line-height: 1.2;
+    color: #fff;
+    text-transform: uppercase;
+
+    @media (min-width: $screen-xs-min) {
+      display: block;
+      font-size: 21px;
+      line-height: 1.2;
+    }
+    @media (min-width: 620px) {
+      display: block;
+      font-size: 26px;
+      line-height: 1.1;
+    }
+  }
+}
+
+.b-microsite-back {
+  display: inline-block;
+  margin: 0;
+  padding: 5px 18px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  vertical-align: top;
+  background: #000;
+  border-radius: 4px;
+  border-bottom: 1px solid #646464;
+
+  &:hover,
+  &:focus {
+    color: #fff;
+    text-decoration: none;
+    background: $c-secondary-hover;
+    border-bottom: 1px solid #5e0000;
+  }
+
+  // Icon.
+  &:after {
+    @include fa-icon();
+    content: $fa-var-undo;
+    margin: 0 0 0 5px;
+    color: $c-tertiary;
+  }
+}
+
+.microsite-header__content-inner .b-microsite-back {
+  position: absolute;
+  top: -36px;
+  right: 0;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 14px;
+
+  @media (min-width: 620px) {
+    top: 30px;
+  }
+}
+
+/**
+ * Microsite Top.
+ */
+.microsite-top {
+  margin: 0;
+  padding: 20px 0 0 0;
+  background: #efefef;
+}
+.microsite-banner {
+  margin: 0 0 20px 0;
+  padding: 0;
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+// TODO: Remove debug code.
+.user-logged-in .microsite-banner {
+  min-height: 100px;
+}
+.microsite-top__title-wrapper {
+  position: relative;
+  margin: 26px 0 26px 0;
+  padding: 0;
+
+  // If logo is present.
+  &.microsite-top__title-wrapper--logo {
+    margin-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+
+    @media (min-width: $screen-sm-min) {
+      padding-left: 260px;
+      padding-right: 25px;
+    }
+  }
+
+  // If logo is present and there's no banner.
+  &.microsite-top__title-wrapper--logo-without-banner {
+    margin-top: 0;
+
+    @media (min-width: $screen-sm-min) {
+      margin-top: 70px;
+    }
+  }
+}
+.microsite-top__title-content {
+  position: relative;
+  margin: 0 0 13px 0;
+  padding: 0 0 8px 0;
+  border-bottom: 1px solid #ccc;
+
+  @media (min-width: $screen-md-min) {
+    padding: 0 390px 8px 0;
+  }
+
+  .page-title {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    font-size: 40px;
+    color: $c-link;
+    font-weight: 600;
+    vertical-align: top;
+  }
+}
+.microsite-top__info {
+  font-size: 20px;
+  font-weight: 600;
+}
+.microsite-social-media-sharing {
+  position: relative;
+  bottom: 0;
+  right: 0;
+  margin: 0 0 30px 0;
+  text-align: center;
+
+  @media (min-width: $screen-sm-min) {
+    margin: 0 0 10px 0;
+    text-align: left;
+  }
+  @media (min-width: $screen-md-min) {
+    position: absolute;
+    bottom: 15px;
+    margin: 0;
+  }
+}
+.microsite-social-media-sharing__title {
+  display: inline-block;
+  margin: 0;
+  padding: 3px 10px;
+  font-size: 14px;
+  font-weight: 600;
+  vertical-align: top;
+}
+.microsite-social-media-sharing__list {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  vertical-align: top;
+}
+.microsite-social-media-sharing__list-item {
+  float: none;
+  display: inline-block;
+  margin: 0 5px;
+  padding: 0;
+  vertical-align: top;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  a {
+    display: block;
+    margin: 0;
+    padding: 3px 10px;
+    font-size: 14px;
+    color: $c-body;
+    font-weight: 600;
+    text-decoration: none;
+    background: #fff;
+    border: 1px solid #cecece;
+    border-radius: 2px;
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+      background: #efefef;
+    }
+
+    // Icon.
+    &:before {
+      @include fa-icon();
+      margin: 0 8px 0 0;
+    }
+  }
+}
+.microsite-social-media-sharing__list-item--facebook a:before {
+  content: $fa-var-facebook-official;
+  color: #39579a;
+}
+.microsite-social-media-sharing__list-item--twitter a:before {
+  content: $fa-var-twitter;
+  color: #00abf0;
+}
+.microsite-social-media-sharing__list-item--google a:before {
+  content: $fa-var-google-plus;
+  color: #d51700;
+}
+
+.microsite-logo {
+  position: relative;
+  top: 0;
+  left: 0;
+  margin: 0 auto 10px auto;
+  padding: 4px;
+  width: 208px;
+  height: 208px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  z-index: 2;
+
+  @media (min-width: $screen-sm-min) {
+    position: absolute;
+    top: -54px;
+    left: 26px;
+    margin: 0;
+  }
+
+  .field--type-image {
+    a {
+      display: block;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+}
+
+/**
+ * Microsite Nav / Current Menu.
+ */
+.microsite-nav {
+  position: relative;
+  margin: 0 211px 0 0;
+  padding: 0 0 0 20px;
+  top: 30px;
+  display: block;
+  min-height: 57px;
+  vertical-align: top;
+  background: $c-black url(../gfx/bg_pri_nav_tile.png) repeat-x;
+
+  // JS added if register now is not present.
+  &.microsite-nav--register-off {
+    margin-right: 0;
+  }
+  .menu {
+    font-size: 0;
+  }
+  .menu--level-0 > .menu__item {
+    position: relative;
+    display: none;
+
+    @media (min-width: $screen-sm-min) {
+      display: inline-block;
+    }
+
+    // Line break.
+    &:after {
+      position: absolute;
+      top: 35%;
+      right: 0;
+      content: '';
+      width: 1px;
+      height: 18px;
+      background: #5b5b5b;
+    }
+  }
+  // Last item.
+  .menu--level-0 > .menu__item:last-child,
+  .menu--level-0 > .menu__item:nth-last-child(2) {
+
+    // Line break.
+    &:after {
+      display: none;
+    }
+  }
+  .menu__link {
+    display: block;
+    margin: 0;
+    padding: 15px 18px 15px 12px;
+    height: 57px;
+    font-size: 18px;
+    font-weight: 600;
+    color: $c-white;
+    text-decoration: none;
+
+    @media (min-width: $screen-md-min) {
+      padding: 15px 14px 15px 8px;
+      font-size: 16px;
+    }
+    @media (min-width: $screen-lg-min) {
+      padding: 15px 18px 15px 12px;
+      font-size: 18px;
+    }
+
+    &:hover,
+    &:focus,
+    &.menu__link--active-trail {
+      color: $c-tertiary-active;
+    }
+  }
+
+  .menu--level-0 > .menu__item--register-now {
+    position: absolute;
+    display: inline-block;
+    right: -211px;
+    width: 200px;
+
+    @media (min-width: $screen-sm-min) {
+      display: inline-block;
+    }
+
+    .menu__link {
+      padding: 15px 5px;
+      color: #fff;
+      text-align: center;
+      background: $c-link;
+
+      &:hover,
+      &:focus {
+        color: #fff;
+        background: #000;
+      }
+
+      &:after {
+        @include fa-icon();
+        content: $fa-var-caret-right;
+        position: relative;
+        top: 1px;
+        margin: 0 0 0 10px;
+        color: $c-tertiary;
+      }
+    }
+  }
+}
+
+// Mobile.
+.microsite-nav .mobile-control-nav {
+  float: left;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  vertical-align: top;
+
+  @media (min-width: $screen-sm-min) {
+    display: none;
+  }
+}
+
+/**
+ * Dropdowns.
+ */
+@media (min-width: $screen-sm-min) {
+  .region-microsite-navigation {
+    .block-current-menu > nav > .menu > .menu__item--expanded > .menu--child {
+      display: none;
+      position: absolute;
+      left: 0;
+      top: 100%;
+      padding: 5px 20px 25px 20px;
+      float: left;
+      width: 100%;
+      min-width: 230px;
+      list-style: none;
+      background: #fff;
+      background-clip: padding-box;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.175);
+      border-top: 5px solid $c-primary;
+      border-bottom: 5px solid $c-primary;
+      visibility: hidden;
+      opacity: 0;
+      z-index: 1000;
+
+      .menu__item {
+        display: block;
+        margin: 0;
+        padding: 0;
+        text-align: left;
+        border-bottom: 1px solid #ccc;
+      }
+
+      .menu__link {
+        clear: both;
+        display: block;
+        margin: 0;
+        padding: 8px 0;
+        font-size: 15px;
+        height: auto;
+        color: #000;
+        font-weight: 600;
+        text-align: left;
+
+        &:hover,
+        &:focus,
+        &.menu__link--active-trail {
+          color: $c-primary;
+          text-decoration: none;
+        }
+      }
+    }
+
+    .block-current-menu > nav > .menu > .menu__item--expanded:last-child > .menu--child {
+      left: auto;
+      right: 0;
+    }
+
+    // Dropdowns - Show on hover.
+    .block-current-menu > nav > .menu > .menu__item--expanded:hover > .menu--child,
+    .block-current-menu > nav > .menu > .menu__item--expanded:focus-within > .menu--child,
+    .block-current-menu > nav > .menu > .menu__item--expanded .menu--child:hover {
+      display: block;
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .block-current-menu > nav > .menu > .menu__item--expanded > .menu__link {
+      // Down arrow.
+      &:after {
+        @include fa-icon();
+        content: $fa-var-caret-down;
+        display: inline-block;
+        margin: 0 0 0 9px;
+        padding: 0;
+        font-size: 17px;
+        color: $c-tertiary;
+      }
+
+      // Top fade.
+      &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 6px;
+        background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%,rgba(255,255,255,0) 100%);
+        opacity: 0;
+        z-index: 5;
+        transition: color .2s ease-in-out, background-color .2s ease-in-out, opacity .2s ease-in-out;
+      }
+
+      &:hover,
+      &:focus {
+        color: #fff;
+        background: $c-primary;
+
+        // Top fade.
+        &:before {
+          opacity: 1;
+        }
+
+        // Down arrow.
+        &:after {
+          color: #fff;
+        }
+      }
+    }
+
+    .block-current-menu > nav > .menu > .menu__item--expanded:hover > .menu__link {
+      color: #fff;
+      background: $c-primary;
+
+      // Top fade.
+      &:before {
+        opacity: 1;
+      }
+
+      // Down arrow.
+      &:after {
+        color: #fff;
+      }
+    }
+  }
+}
+
+/**
+ * Microsite Footer.
+ */
+.site-footer--microsite {
+
+  .site-footer__bottom {
+    padding: 20px 0;
+    border-top: 1px solid #666;
+
+    @media (min-width: 450px) {
+      padding: 25px 0;
+    }
+    @media (min-width: $screen-sm-min) {
+      padding: 12px 0;
+    }
+  }
+  .site-footer__copyright {
+    float: none;
+    text-align: center;
+
+    @media (min-width: $screen-sm-min) {
+      text-align: right;
+    }
+  }
+}
+
+/**
+ * Microsite Body.
+ */
+.site-content--microsite {
+  padding: 60px 0;
+
+  .page-title {
+    display: none;
+  }
+}
+
+.js-microsite-sidebar-register-now {
+  display: none;
+  margin: 0 0 20px;
+
+  .btn {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+/**
+ * Featured Events.
+ */
+.featured-event {
+  margin: 0 0 20px 0;
+  text-decoration: none;
+
+  @media (min-width: $screen-md-min) {
+
+  }
+
+  div,
+  a {
+    text-decoration: none;
+  }
+}
+.featured-event__image {
+  position: relative;
+  opacity: 1;
+  transition: opacity .2s ease-in-out;
+
+  img {
+    position: relative;
+  }
+}
+.featured-event__title {
+  position: relative;
+  display: block;
+  margin: 0;
+  padding: 14px 38px 15px 15px;
+  font-size: 16px;
+  line-height: 1.0;
+  font-weight: 600;
+  color: #fff;
+  text-align: left;
+  background: $c-secondary;
+  border: none;
+  white-space: normal;
+  transition: color .2s ease-in-out, background-color .2s ease-in-out;
+
+  // Arrow icon.
+  &:after {
+    @include oafc-icon();
+    content: $oafc-var-arrow-right;
+    position: absolute;
+    top: 36%;
+    right: 15px;
+    color: #fff;
+    font-size: 18px;
+    transition: color .2s ease-in-out, background-color .2s ease-in-out;
+  }
+}
+.featured-event__date {
+  margin: 5px 0 0 0;
+  padding: 0;
+  font-size: 14px;
+  color: $c-tertiary;
+}
+.featured-event__body {
+  margin: 15px 0;
+  padding: 0;
+}
+.featured-event__link {
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    .featured-event__image {
+      opacity: 0.85;
+    }
+    .featured-event__title {
+      color: #fff;
+      background: $c-link;
+
+      // Arrow icon.
+      &:after {
+        color: #fff;
+      }
+    }
+    .featured-event__date {
+      color: #fff;
+    }
+  }
+}
+
+// Featured Events View.
+.view-events-featured {
+  margin: 0 0 40px 0;
+
+  .row > div {
+    .featured-event__body,
+    .featured-event__view-more {
+      display: none;
+    }
+
+    // First event.
+    &:first-child {
+      .featured-event {
+        margin: 0 0 40px 0;
+
+        @media (min-width: $screen-md-min) {
+          margin: 0 0 20px 0;
+        }
+      }
+      .featured-event__title {
+        font-size: 26px;
+      }
+      .featured-event__body,
+      .featured-event__view-more {
+        display: block;
+      }
+    }
+  }
+}

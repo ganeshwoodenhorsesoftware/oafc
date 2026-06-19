@@ -1,0 +1,33 @@
+uuid: 6019ed87-26c3-4575-942c-61d06ebcc3e3
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+    - scheduler
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - footer
+      - header
+      - i-want-to-navigation
+      - main
+    parent: 'main:'
+  scheduler:
+    expand_fieldset: always
+    fields_display_mode: fieldset
+    publish_enable: false
+    publish_past_date: error
+    publish_required: false
+    publish_revision: false
+    publish_touch: false
+    unpublish_enable: true
+    unpublish_required: true
+    unpublish_revision: false
+name: 'Job Post'
+type: job_post
+description: 'Create a job posting.'
+help: null
+new_revision: false
+preview_mode: 0
+display_submitted: false

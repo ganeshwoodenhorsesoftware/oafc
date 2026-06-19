@@ -1,0 +1,40 @@
+global-styling:
+  version: 1.x
+  css:
+    theme:
+      '//fonts.googleapis.com/css?family=Open+Sans+Condensed:700|Open+Sans:400,400i,600': { type: external }
+      js/contrib/accessible-slick/slick.min.css: { media: all }
+      css/style.css: { media: all }
+
+  js:
+    js/contrib/accessible-slick/slick.min.js: {}
+    js/custom/script.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - magnific_popup/magnific_popup
+
+swiftmailer:
+  version: 1.x
+  css:
+    theme:
+      css/swiftmailer.css: {}
+
+videojs:
+  version: 1.x
+  css:
+    theme:
+      node_modules/video.js/dist/video-js.min.css: { media: all }
+  js:
+    node_modules/video.js/dist/video.min.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+
+maintenance_page:
+  version: 1.x
+  css:
+    theme:
+      css/maintenance-page.css: { media: all }
+  dependencies:
+    - system/maintenance

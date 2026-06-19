@@ -1,0 +1,32 @@
+uuid: 85bc969f-0505-4648-9992-e95382824447
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+    - scheduler
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+  scheduler:
+    expand_fieldset: always
+    fields_display_mode: fieldset
+    publish_enable: false
+    publish_past_date: error
+    publish_past_date_created: false
+    publish_required: false
+    publish_revision: false
+    publish_touch: false
+    show_message_after_update: true
+    unpublish_enable: true
+    unpublish_required: true
+    unpublish_revision: false
+name: 'Classified Ad'
+type: classified_ad
+description: 'Create a classified ad.'
+help: null
+new_revision: false
+preview_mode: 0
+display_submitted: false

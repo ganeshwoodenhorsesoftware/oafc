@@ -1,0 +1,19 @@
+uuid: a7560ca4-492e-4f3a-bf1d-f1963bf39781
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_store
+    - text
+id: commerce_store.field_confirmation_text
+field_name: field_confirmation_text
+entity_type: commerce_store
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

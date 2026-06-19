@@ -1,0 +1,42 @@
+uuid: b795fafa-f760-4131-b91d-442900b1f11c
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.cta_group
+    - field.field.block_content.cta_group.field_paragraph_reference
+  module:
+    - paragraphs
+id: block_content.cta_group.default
+targetEntityType: block_content
+bundle: cta_group
+mode: default
+content:
+  field_paragraph_reference:
+    type: entity_reference_paragraphs
+    weight: 27
+    region: content
+    settings:
+      title: CTA
+      title_plural: CTAs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: card
+    third_party_settings: {  }
+  info:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+hidden: {  }

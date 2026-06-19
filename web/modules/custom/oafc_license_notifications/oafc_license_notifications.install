@@ -1,0 +1,79 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for OAFC License Notifications.
+ */
+
+use Drupal\Core\Field\BaseFieldDefinition;
+
+/**
+ * Implements hook_install().
+ */
+function oafc_license_notifications_install() {
+  // Add the data field to commerce_license entity.
+  $storage_definition = BaseFieldDefinition::create('map')
+    ->setLabel(t('Data'))
+    ->setDescription(t('A serialized array of additional data.'))
+    ->setDefaultValue([]);
+
+  $update_manager = \Drupal::entityDefinitionUpdateManager();
+  $update_manager->installFieldStorageDefinition('data', 'commerce_license', 'oafc_license_notifications', $storage_definition);
+
+  // After adding the field, the database fills existing rows with
+  // NULL. We must immediately update these to a serialized empty array
+  // to prevent unserialize(NULL) errors.
+  try {
+    \Drupal::database()->update('commerce_license')
+      ->fields(['data' => serialize([])])
+      ->condition('data', NULL, 'IS NULL')
+      ->execute();
+  }
+  catch (\Exception $e) {
+    // Log the error but don't block installation.
+    \Drupal::logger('oafc_license_notifications')->error('Failed to update existing commerce_license data fields during installation: @error', ['@error' => $e->getMessage()]);
+  }
+}
+
+/**
+ * Add the data field to commerce_license for existing installs.
+ *
+ * Current DB state (local): commerce_license.data column exists (longblob).
+ */
+function oafc_license_notifications_update_10001() {
+  $update_manager = \Drupal::entityDefinitionUpdateManager();
+  if ($update_manager->getFieldStorageDefinition('data', 'commerce_license')) {
+    return;
+  }
+
+  $storage_definition = BaseFieldDefinition::create('map')
+    ->setLabel(t('Data'))
+    ->setDescription(t('A serialized array of additional data.'))
+    ->setDefaultValue([]);
+
+  $update_manager->installFieldStorageDefinition('data', 'commerce_license', 'oafc_license_notifications', $storage_definition);
+
+  try {
+    \Drupal::database()->update('commerce_license')
+      ->fields(['data' => serialize([])])
+      ->condition('data', NULL, 'IS NULL')
+      ->execute();
+  }
+  catch (\Exception $e) {
+    \Drupal::logger('oafc_license_notifications')->error('Failed to update existing commerce_license data fields: @error', ['@error' => $e->getMessage()]);
+  }
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function oafc_license_notifications_uninstall() {
+  // Remove the data field from commerce_license entity.
+  $field_storage_definition = \Drupal::entityDefinitionUpdateManager()
+    ->getFieldStorageDefinition('data', 'commerce_license');
+
+  if ($field_storage_definition) {
+    \Drupal::entityDefinitionUpdateManager()
+      ->uninstallFieldStorageDefinition($field_storage_definition);
+  }
+}

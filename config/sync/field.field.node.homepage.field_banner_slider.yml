@@ -1,0 +1,30 @@
+uuid: a4b24168-41f9-4af9-bc9e-262f5edd04f2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_banner_slider
+    - node.type.homepage
+    - paragraphs.paragraphs_type.slider_banner
+  module:
+    - entity_reference_revisions
+id: node.homepage.field_banner_slider
+field_name: field_banner_slider
+entity_type: node
+bundle: homepage
+label: 'Banner Slider'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      slider_banner: slider_banner
+    target_bundles_drag_drop:
+      slider_banner:
+        weight: 2
+        enabled: true
+field_type: entity_reference_revisions

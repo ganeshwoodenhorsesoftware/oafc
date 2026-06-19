@@ -1,0 +1,16 @@
+uuid: 864188a0-d332-4057-87ad-0cfd9273a8d4
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_tax
+third_party_settings:
+  commerce_tax:
+    taxable_type: services
+id: individual_membership
+label: 'Individual membership'
+traits:
+  - commerce_license_order_item_type
+locked: false
+purchasableEntityType: commerce_product_variation
+orderType: individual_membership

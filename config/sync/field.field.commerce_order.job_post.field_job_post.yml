@@ -1,0 +1,28 @@
+uuid: c10d23ca-6e02-41cc-b477-4af3b483cf1f
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_order.commerce_order_type.job_post
+    - field.storage.commerce_order.field_job_post
+    - node.type.job_post
+id: commerce_order.job_post.field_job_post
+field_name: field_job_post
+entity_type: commerce_order
+bundle: job_post
+label: 'Job post'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      job_post: job_post
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,29 @@
+uuid: bca1c6d6-2aef-404a-83bf-76c67bcdb7eb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.commerce_license.field_transferred_to
+  module:
+    - commerce_license
+id: commerce_license.role.field_transferred_to
+field_name: field_transferred_to
+entity_type: commerce_license
+bundle: role
+label: 'Transferred to'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:commerce_license'
+  handler_settings:
+    target_bundles:
+      role: role
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

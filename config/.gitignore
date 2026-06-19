@@ -1,0 +1,8 @@
+# We ignore all files set to be ignored during configuration import/export by
+# Config Ignore. That's to avoid having under version control files that are
+# ignored anyway.
+block.block.*
+commerce_payment.commerce_payment_gateway.*
+system.menu.course*
+system.menu.event*
+webform.webform.*

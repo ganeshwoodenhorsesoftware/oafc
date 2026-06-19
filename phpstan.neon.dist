@@ -1,0 +1,15 @@
+parameters:
+    level: 5
+    paths:
+      - web/modules/custom
+      - web/themes/custom
+    parallel:
+        processTimeout: 120.0
+    ignoreErrors:
+        # new static() is a best practice in Drupal, so we cannot fix that.
+        - "#^Unsafe usage of new static#"
+        # Order item license reference typed as non-null in stubs; createLicenseFromOrderItem is reachable at runtime.
+        - message: "#^Unreachable statement - code above always terminates\\.$#"
+          path: web/modules/custom/oafc_membership/src/EventSubscriber/OrderSubscriber.php
+includes:
+  - phpstan-baseline.neon

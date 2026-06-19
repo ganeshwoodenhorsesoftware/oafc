@@ -1,0 +1,11 @@
+uuid: 0d84c2fe-3fac-4ad6-9ec2-ed2fe2e3759a
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.cta_group
+label: 'CTA Group'
+description: ''
+targetEntityType: paragraph
+cache: true

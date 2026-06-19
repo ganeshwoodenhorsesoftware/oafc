@@ -1,0 +1,9 @@
+uuid: c9315a4b-2396-43af-a5ba-bcad3fbe5c30
+langcode: en
+status: true
+dependencies: {  }
+id: card
+label: Card
+icon_uuid: null
+description: 'A card is a flexible piece of content like a CTA. Can include: Image, title, text, button.'
+behavior_plugins: {  }

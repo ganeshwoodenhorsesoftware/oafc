@@ -1,0 +1,11 @@
+uuid: 70ac6d0c-0e13-49fb-805a-4de935a155d1
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.training_centre_regions
+id: taxonomy_term.training_centre_regions
+target_entity_type_id: taxonomy_term
+target_bundle: training_centre_regions
+default_langcode: site_default
+language_alterable: false

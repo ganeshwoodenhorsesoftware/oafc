@@ -1,0 +1,35 @@
+uuid: 970be66e-9666-4632-8916-798472874579
+langcode: en
+status: true
+dependencies:
+  module:
+    - image_effects
+name: partner_slider
+label: 'Partner Slider'
+effects:
+  ebcebf8c-23fc-47f5-9e89-931f7c918312:
+    uuid: ebcebf8c-23fc-47f5-9e89-931f7c918312
+    id: image_effects_set_canvas
+    weight: -9
+    data:
+      canvas_size: exact
+      canvas_color: '#FFFFFFFF'
+      exact:
+        width: '165'
+        height: '165'
+        placement: center-center
+        x_offset: 0
+        y_offset: 0
+      relative:
+        left: 0
+        right: 0
+        top: 0
+        bottom: 0
+  a29f8b7f-4cd4-4dd1-8e16-78bdb9152c52:
+    uuid: a29f8b7f-4cd4-4dd1-8e16-78bdb9152c52
+    id: image_scale
+    weight: -10
+    data:
+      width: 165
+      height: 165
+      upscale: false

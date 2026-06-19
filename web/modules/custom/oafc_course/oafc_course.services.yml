@@ -1,0 +1,11 @@
+services:
+  oafc_course.order_event_subscriber:
+    class: '\Drupal\oafc_course\EventSubscriber\OrderEventSubscriber'
+    tags:
+      - { name: 'event_subscriber' }
+  oafc_course.seat_availability_checker:
+    class: \Drupal\oafc_course\SeatAvailabilityChecker
+    arguments:
+      - '@messenger'
+    tags:
+      - { name: oafc_course.seat_availability_checker}

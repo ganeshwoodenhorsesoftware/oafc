@@ -1,0 +1,10 @@
+uuid: 86383bc9-7bfa-4433-af4a-c46e266340b8
+langcode: en
+status: true
+dependencies: {  }
+id: events
+label: Events
+traits: {  }
+locked: false
+orderItemType: events
+generateTitle: false

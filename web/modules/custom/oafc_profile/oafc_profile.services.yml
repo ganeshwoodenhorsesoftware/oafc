@@ -1,0 +1,19 @@
+services:
+  # Hooks.
+  # Implemented as services for OOP.
+  oafc_profile.hook.entity_field:
+    class: Drupal\oafc_profile\Hook\EntityField
+    arguments:
+      - '@entity_type.manager'
+      - '@string_translation'
+
+  oafc_profile.hook.entity_save:
+    class: Drupal\oafc_profile\Hook\EntitySave
+    arguments:
+      - '@cache_tags.invalidator'
+
+  oafc_profile.hook.form_alter:
+    class: Drupal\oafc_profile\Hook\FormAlter
+    arguments:
+      - '@current_user'
+      - '@entity_type.manager'

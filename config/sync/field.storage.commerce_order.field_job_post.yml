@@ -1,0 +1,20 @@
+uuid: b8ec4200-449d-47d4-be81-c6e21013dfeb
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_order
+    - node
+id: commerce_order.field_job_post
+field_name: field_job_post
+entity_type: commerce_order
+type: entity_reference
+settings:
+  target_type: node
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

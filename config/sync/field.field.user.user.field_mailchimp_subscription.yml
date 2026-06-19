@@ -1,0 +1,41 @@
+uuid: d1894478-39cd-4586-85ea-ce01613c05dc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_mailchimp_subscription
+  module:
+    - mailchimp_lists
+    - user
+id: user.user.field_mailchimp_subscription
+field_name: field_mailchimp_subscription
+entity_type: user
+bundle: user
+label: 'MailChimp subscription'
+description: 'Subscribes users to the primary audience on MailChimp.'
+required: false
+translatable: false
+default_value:
+  -
+    subscribe: true
+    interest_groups: null
+    allow_unsubscribe: true
+default_value_callback: ''
+settings:
+  subscribe_checkbox_label: Subscribe
+  show_interest_groups: false
+  hide_subscribe_checkbox: false
+  interest_groups_hidden: false
+  interest_groups_label: 'Interest Groups'
+  merge_fields:
+    EMAIL: mail
+    ADDRESS: ''
+    COMPANY: 'field_address:organization'
+    DEPARTMENT: ''
+    EFORMAT: ''
+    FNAME: 'field_address:given_name'
+    LNAME: 'field_address:family_name'
+    PHONE: ''
+    TITLE: field_designation
+  unsubscribe_on_delete: false
+field_type: mailchimp_lists_subscription

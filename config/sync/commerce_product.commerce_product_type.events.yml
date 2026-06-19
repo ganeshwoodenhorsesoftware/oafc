@@ -1,0 +1,13 @@
+uuid: a66d863e-4428-4346-91cf-4562f8b3d006
+langcode: en
+status: true
+dependencies: {  }
+id: events
+label: Events
+traits: {  }
+locked: false
+description: ''
+variationType: events
+variationTypes: {  }
+multipleVariations: true
+injectVariationFields: true

@@ -1,0 +1,55 @@
+uuid: 27df5d5a-462e-4a3d-a037-3a7aa159d08c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_paragraph_reference
+    - node.type.page
+    - paragraphs.paragraphs_type.content_row
+  module:
+    - entity_reference_revisions
+id: node.page.field_paragraph_reference
+field_name: field_paragraph_reference
+entity_type: node
+bundle: page
+label: 'Component Content'
+description: 'Add component based content to the page. Including rows, columns, rich media elements etc.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      content_row: content_row
+    negate: 0
+    target_bundles_drag_drop:
+      accordion:
+        weight: 11
+        enabled: false
+      accordion_item:
+        weight: 12
+        enabled: false
+      basic_content:
+        weight: 13
+        enabled: false
+      card:
+        weight: 14
+        enabled: false
+      content_column:
+        weight: 15
+        enabled: false
+      content_row:
+        weight: 16
+        enabled: true
+      homepage_cta:
+        weight: 17
+        enabled: false
+      slider_banner:
+        weight: 18
+        enabled: false
+      webform:
+        weight: 10
+        enabled: false
+field_type: entity_reference_revisions

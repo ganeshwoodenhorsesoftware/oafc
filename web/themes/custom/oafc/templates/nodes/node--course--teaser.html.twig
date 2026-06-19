@@ -1,0 +1,25 @@
+{#
+/**
+ * @file
+ * Theme implementation for a Course teaser.
+ *
+ * @see template_preprocess_node()
+ */
+#}
+<div class="job-teaser-item">
+  <div class="job-teaser-item__image">
+    <a href="{{ url }}">
+      {% if node.field_featured_image.entity.fileuri %}
+        <img src="{{ node.field_featured_image.entity.fileuri|image_style('logo_listing') }}" alt="{{ node.field_featured_image.alt }}" />
+      {% else %}
+        <img src="{{ base_path ~ directory }}/gfx/listing_placeholder.jpg" alt="{{ node.field_featured_image.alt }}" />
+      {% endif %}
+    </a>
+  </div>
+  <h4 class="job-teaser-item__title">
+    <a href="{{ url }}">{{ node.title.value }}</a>
+  </h4>
+  <div class="job-teaser-item__date">
+    {{ content.field_date_range }}
+  </div>
+</div>

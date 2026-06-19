@@ -1,0 +1,13 @@
+services:
+  oafc_no_tax.no_tax_rate_resolver:
+    class: Drupal\oafc_no_tax\Resolver\NoTaxRateResolver
+    arguments:
+      - '@entity_type.manager'
+    tags:
+      - { name: commerce_tax.tax_rate_resolver, priority: 100 }
+  oafc_no_tax.hst_helper:
+    class: \Drupal\oafc_no_tax\HstHelper
+    arguments:
+      - '@entity_type.manager'
+    tags:
+      - { name: oafc_no_tax.hst_helper }

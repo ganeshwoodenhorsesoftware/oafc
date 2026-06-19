@@ -1,0 +1,58 @@
+uuid: feff050f-2b8f-497d-b6e2-57438cce7c71
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.limited
+  module:
+    - ckeditor
+format: limited
+editor: ckeditor
+settings:
+  toolbar:
+    rows:
+      -
+        -
+          name: Formatting
+          items:
+            - Bold
+            - Underline
+            - Italic
+            - Strike
+            - RemoveFormat
+        -
+          name: Align
+          items:
+            - JustifyLeft
+            - JustifyCenter
+            - JustifyRight
+        -
+          name: Links
+          items:
+            - DrupalLink
+            - DrupalUnlink
+        -
+          name: Lists
+          items:
+            - BulletedList
+            - NumberedList
+        -
+          name: Media
+          items:
+            - DrupalImage
+            - Blockquote
+            - Table
+        -
+          name: Tools
+          items:
+            - Copy
+            - PasteText
+            - PasteFromWord
+            - SpecialChar
+            - HorizontalRule
+  plugins:
+    drupallink:
+      linkit_enabled: false
+      linkit_profile: ''
+image_upload:
+  status: false

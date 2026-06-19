@@ -1,0 +1,32 @@
+uuid: 451d2189-b9bd-4b4a-9dba-6bf437cfd5ba
+langcode: en
+status: true
+dependencies: {  }
+id: hst
+label: HST
+plugin: custom
+configuration:
+  display_inclusive: false
+  display_label: tax
+  round: true
+  rates:
+    -
+      id: fda536cd-6d88-4343-9156-9ac891e5b4d3
+      label: HST
+      percentage: '0.13'
+  territories:
+    -
+      country_code: CA
+      administrative_area: ''
+      locality: null
+      dependent_locality: null
+    -
+      country_code: US
+      administrative_area: ''
+      locality: null
+      dependent_locality: null
+conditions:
+  -
+    plugin: user_tax_exemption
+    configuration: {  }
+conditionOperator: AND

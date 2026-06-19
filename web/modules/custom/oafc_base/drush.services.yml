@@ -1,0 +1,7 @@
+services:
+  oafc_base.command.clean_up:
+    class: \Drupal\oafc_base\Command\CleanUp
+    arguments:
+      - '@entity_type.manager'
+    tags:
+      - { name: drush.command }

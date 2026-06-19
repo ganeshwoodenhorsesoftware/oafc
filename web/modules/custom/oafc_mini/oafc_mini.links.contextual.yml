@@ -1,0 +1,12 @@
+oafc_mini.add:
+  title: 'Add image'
+  route_name: 'entity.oafc_mini.add_form'
+  group: block
+oafc_mini.edit:
+  title: 'Edit image'
+  route_name: 'entity.oafc_mini.edit_form'
+  group: oafc_mini
+oafc_mini.delete:
+  title: 'Delete image'
+  route_name: 'entity.oafc_mini.delete_form'
+  group: oafc_mini

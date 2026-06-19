@@ -1,0 +1,28 @@
+uuid: f69ca319-6b52-4e8d-8799-f4061d7b916a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_member_categories
+    - node.type.profile
+    - taxonomy.vocabulary.industry_member_categories
+id: node.profile.field_member_categories
+field_name: field_member_categories
+entity_type: node
+bundle: profile
+label: 'Industry Member Product/Service Categories'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      industry_member_categories: industry_member_categories
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

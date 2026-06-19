@@ -1,0 +1,5 @@
+oafc_license_notifications.settings.parent:
+  title: 'License Notifications'
+  route_name: oafc_license_notifications.settings
+  parent: commerce.configuration
+  weight: 99

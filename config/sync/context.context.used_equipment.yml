@@ -1,0 +1,28 @@
+uuid: 27c6c2a4-9ee7-48e0-b12e-36fa810d243b
+langcode: en
+status: true
+dependencies:
+  module:
+    - context_active_trail
+    - system
+label: 'Used Equipment'
+name: used_equipment
+group: null
+description: ''
+requireAllConditions: false
+disabled: false
+conditions:
+  request_path:
+    id: request_path
+    negate: false
+    uuid: 3d84feee-d129-4c52-b9cb-d6af990e3328
+    context_mapping: {  }
+    pages: '/marketplace-careers/used-equipment/*'
+reactions:
+  active_trail:
+    id: active_trail
+    trail: 'main:menu_link_content:1982c1a6-28d9-4cbe-a074-cc0dd26e2ae1'
+    breadcrumbs: 1
+    uuid: f88ab095-023b-4230-9fb7-5d5eb499bab6
+    breadcrumb_title: false
+weight: 0

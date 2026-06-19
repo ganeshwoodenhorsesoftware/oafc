@@ -1,0 +1,16 @@
+uuid: 19ba050f-882a-4254-bc6b-f38402981caa
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_tax
+third_party_settings:
+  commerce_tax:
+    taxable_type: services
+id: industry_membership
+label: 'Industry membership'
+traits:
+  - commerce_license_order_item_type
+locked: false
+purchasableEntityType: commerce_product_variation
+orderType: industry_membership

@@ -1,0 +1,24 @@
+# Edit or remove this file as needed.
+# Docs at https://github.com/drush-ops/drush/blob/master/examples/example.site.yml
+
+#prod:
+#  host: prod.domain.com
+#  user: www-admin
+#  root: /path/to/drupal
+#  uri: http://www.example.com
+#
+dev:
+  host: dev4.acro.website
+  user: oafc
+  root: /home/oafc/www/oafc/web
+  uri: https://oafc.dev4.acro.website
+  paths:
+    drush-script: '/home/oafc/www/oafc/vendor/drush/drush/drush'
+    files: 'sites/default/files'
+  command:
+    site:
+      install:
+        options:
+          admin-password: 'secret-secret'
+
+#  uri: http://stage.example.com

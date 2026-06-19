@@ -1,0 +1,75 @@
+license_oafc_membership:
+  id: license_oafc_membership
+  group: commerce_license
+  label: 'OAFC membership'
+  # We have removed the following states compared to the default workflow.
+  # - new: Redundant, all license go directly to the Pending state.
+  states:
+    # Initial state. Memberships always need approval before they are activated.
+    pending:
+      label: Pending
+    # The 'Active' and the 'Renewal in progress' are the two states that the
+    # license is considered active.
+    active:
+      label: Active
+    renewal_in_progress:
+      label: 'Renewal in progress'
+    renewal_cancelled:
+      label: 'Renewal cancelled'
+    # Suspending a license may be temporary; the license could be reactivated.
+    suspended:
+      label: Suspended
+    # Normally, expiration happens automatically by commerce_license in cron.
+    expired:
+      label: Expired
+    # Revoking a license is permanent.
+    revoked:
+      label: Revoked
+    # State for a license whose order is canceled.
+    canceled:
+      label: Canceled
+  transitions:
+    # Terminology in commerce_license is not well defined. The `activate`
+    # transition is defined but the license is actually activated by the
+    # `confirm` transition, which is hard-coded in a couple of places as the
+    # transition that activates the license. That is, we need to keep its
+    # machine name.
+    confirm:
+      label: 'Activate'
+      from: [pending, renewal_in_progress, renewal_cancelled]
+      to: active
+    renewal_in_progress:
+      label: 'Start renewal progress'
+      from: [active]
+      to: renewal_in_progress
+    cancel_renewal:
+      label: 'Cancel renewal'
+      from: [renewal_in_progress]
+      to: renewal_cancelled
+    suspend:
+      label: 'Suspend'
+      from: [active]
+      to: suspended
+    expire:
+      label: 'Expire'
+      from: [active]
+      to: expired
+    # Unlike the default workflow, we do not reactivate expired licenses. The
+    # user has to purchase a new one.
+    reactivate:
+      label: 'Reactivate'
+      from: [suspended]
+      to: active
+    # For reason similar described in the `reactivate` transition, `expired` is
+    # considered a final state. Expired licenses can therefore not be revoked,
+    # unlike in the default workflow.
+    revoke:
+      label: 'Revoke'
+      from: [active, renewal_in_progress, renewal_cancelled, suspended]
+      to: revoked
+    # We only cancel licenses pending activation. Already active licenses should
+    # be revoked instead.
+    cancel:
+      label: Cancel
+      from: [pending]
+      to: canceled

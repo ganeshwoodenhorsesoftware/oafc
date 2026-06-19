@@ -1,0 +1,68 @@
+uuid: ccd4d137-be8d-4404-a8ba-f752f7aa5e39
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.training_centre.body
+    - field.field.node.training_centre.field_additional_information
+    - field.field.node.training_centre.field_address
+    - field.field.node.training_centre.field_logo
+    - field.field.node.training_centre.field_meta_tags
+    - field.field.node.training_centre.field_region
+    - image.style.logo_listing
+    - node.type.training_centre
+  module:
+    - address
+    - image
+    - metatag
+    - text
+    - user
+id: node.training_centre.default
+targetEntityType: node
+bundle: training_centre
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_additional_information:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_address:
+    type: address_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_logo:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: logo_listing
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_meta_tags:
+    type: metatag_empty_formatter
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 4
+    region: content
+hidden:
+  field_region: true
+  langcode: true
+  links: true
+  search_api_excerpt: true

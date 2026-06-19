@@ -1,0 +1,9 @@
+uuid: 4d532c93-e65d-4b41-b8cc-3c7a8e93e6bd
+langcode: en
+status: true
+dependencies: {  }
+name: 'Training Centre Regions'
+vid: training_centre_regions
+description: null
+weight: 0
+new_revision: false

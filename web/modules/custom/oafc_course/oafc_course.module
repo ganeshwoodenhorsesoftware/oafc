@@ -1,0 +1,175 @@
+<?php
+
+/**
+ * @file
+ * For handling custom functionalities around course registrations.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\webform\Entity\Webform;
+use Drupal\oafc_course\SeatAvailabilityChecker;
+use Drupal\oafc_course\Plugin\WebformHandler\EmailWebformHandler;
+
+/**
+ * Implements hook_webform_handler_info_alter().
+ */
+function oafc_course_webform_handler_info_alter(array &$handlers) {
+  $handlers['email']['class'] = EmailWebformHandler::class;
+}
+
+/**
+ * Implements hook_webform_admin_third_party_settings_form_alter().
+ */
+function oafc_course_webform_admin_third_party_settings_form_alter(&$form, FormStateInterface $form_state) {
+  /** @var \Drupal\webform\WebformThirdPartySettingsManagerInterface $third_party_settings_manager */
+  $third_party_settings_manager = \Drupal::service('webform.third_party_settings_manager');
+  if (!empty($form_state->getFormObject()) && is_callable([$form_state->getFormObject(), 'getEntity'])) {
+    $webform = $form_state->getFormObject()->getEntity();
+    // Webform id is created with pattern node_type__node_id,
+    // hence exploding the webform_id to get the nodetype.
+    $webform_id_components = explode('__', $webform->id());
+    if (isset($webform_id_components['0']) && $webform_id_components['0'] == "course") {
+      $stock = $webform->getThirdPartySetting('oafc_course', 'stock');
+      $remaining_stock = $webform->getThirdPartySetting('oafc_course', 'remaining_stock');
+      _oafc_course_stock_form(
+        $form,
+        $form_state,
+        $stock,
+        $remaining_stock
+      );
+    }
+  }
+}
+
+/**
+ * Implements hook_webform_third_party_settings_form_alter().
+ */
+function oafc_course_webform_third_party_settings_form_alter(&$form, FormStateInterface $form_state) {
+  /** @var \Drupal\webform\WebformThirdPartySettingsManagerInterface $third_party_settings_manager */
+  $third_party_settings_manager = \Drupal::service('webform.third_party_settings_manager');
+  if (!empty($form_state->getFormObject()) && is_callable([$form_state->getFormObject(), 'getEntity'])) {
+    $webform = $form_state->getFormObject()->getEntity();
+    // Webform id is created with pattern node_type__node_id,
+    // hence exploding the webform_id to get the nodetype.
+    $webform_id_components = explode('__', $webform->id());
+    if (isset($webform_id_components['0']) && $webform_id_components['0'] == "course") {
+      $stock = $webform->getThirdPartySetting('oafc_course', 'stock');
+      $remaining_stock = $webform->getThirdPartySetting('oafc_course', 'remaining_stock');
+      _oafc_course_stock_form(
+        $form,
+        $form_state,
+        $stock,
+        $remaining_stock
+      );
+    }
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function oafc_course_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Alter the course registration webform and do not display the form
+  // if there are no open seats for registration.
+  if (strpos($form_id, 'webform_submission') === 0 && !empty($form['#webform_id'])) {
+    $webform_id = $form['#webform_id'];
+    // Webform id is created with pattern node_type__node_id,
+    // hence exploding the webform_id to get the nodetype.
+    $webform_id_components = explode('__', $webform_id);
+    if (isset($webform_id_components['0']) && $webform_id_components['0'] == "course") {
+      // Prevent the form from caching.
+      $form['#cache'] = ['max-age' => 0];
+      $webform = Webform::load($webform_id);
+      $remaining_stock = $webform->getThirdPartySetting('oafc_course', 'remaining_stock');
+      // Do not display the form if there are no remaining seats.
+      if ($remaining_stock == 0) {
+        \Drupal::messenger()->addWarning(t(
+          'Sorry, All seats are booked for @name, Please contact the course administrator.',
+          ['@name' => $webform->label()]
+        ));
+        $form['#access'] = FALSE;
+      }
+      array_unshift($form['#validate'], [SeatAvailabilityChecker::class, 'oafcCourseRegistrationValidate']);
+    }
+  }
+}
+
+/**
+ * The webform thirdparty settings form for stock handling.
+ *
+ * @see oafc_course_webform_third_party_settings_form_alter
+ */
+function _oafc_course_stock_form(array &$form, FormStateInterface $form_state, $stock, $remaining_stock) {
+  // Course Stock.
+  $form['third_party_settings']['oafc_course'] = [
+    '#type' => 'details',
+    '#title' => t('Course Stock'),
+    '#open' => TRUE,
+    '#description' => t('Course available seats'),
+  ];
+  $form['third_party_settings']['oafc_course']['stock'] = [
+    '#type' => 'textfield',
+    '#title' => t('Total Seats'),
+    '#default_value' => $stock,
+    '#return_value' => TRUE,
+  ];
+  $form['third_party_settings']['oafc_course']['remaining_stock'] = [
+    '#type' => 'textfield',
+    '#title' => t('Number of seats available'),
+    '#default_value' => $remaining_stock,
+    '#return_value' => TRUE,
+  ];
+}
+
+/**
+ * Returns the number of contacts contained in a webform submission's data.
+ *
+ * @param array $data
+ *   The webform submission data array.
+ *
+ * @return int
+ *   The count of contacts found in the submission data.
+ */
+function oafc_course_get_submission_contact_count(array $data): int {
+  $count = 0;
+  foreach ($data as $key => $value) {
+    if (!is_array($value)) {
+      continue;
+    }
+
+    if (oafc_course_validate_submission_contact($value)) {
+      $count++;
+    }
+    else {
+      // If it's an array but not a contact itself, see if it contains contacts.
+      $count += oafc_course_get_submission_contact_count($value);
+    }
+  }
+
+  return $count;
+}
+
+/**
+ * Validates that a webform submission contact has the required fields.
+ *
+ * @param array $data
+ *   The contact data array.
+ *
+ * @return bool
+ *   `TRUE` if the contact has all required fields, `FALSE` otherwise.
+ */
+function oafc_course_validate_submission_contact(array $data): bool {
+  $required_fields = [
+    'email',
+    'first_name',
+    'last_name',
+  ];
+
+  foreach ($required_fields as $required_field) {
+    if (!isset($data[$required_field]) || !is_scalar($data[$required_field])) {
+      return FALSE;
+    }
+  }
+
+  return TRUE;
+}

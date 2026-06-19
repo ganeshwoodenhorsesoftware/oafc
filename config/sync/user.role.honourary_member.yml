@@ -1,0 +1,14 @@
+uuid: a0980e04-2cdc-42e8-8c7e-fa4168f463d6
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_order
+    - file
+id: honourary_member
+label: 'Honourary Member'
+weight: 0
+is_admin: null
+permissions:
+  - 'delete own files'
+  - 'view own commerce_order'

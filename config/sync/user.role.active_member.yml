@@ -1,0 +1,16 @@
+uuid: dda0db60-374d-4420-af34-3214a9e24742
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_order
+    - file
+    - media
+id: active_member
+label: 'Individual Member'
+weight: -4
+is_admin: null
+permissions:
+  - 'delete own files'
+  - 'view media'
+  - 'view own commerce_order'

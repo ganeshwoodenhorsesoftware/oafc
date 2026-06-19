@@ -1,0 +1,7 @@
+uuid: 4b76ea63-7c92-4aa6-ba32-dd68b7383824
+langcode: en
+status: true
+dependencies: {  }
+id: slider_banner
+label: 'Slider Banner'
+behavior_plugins: {  }

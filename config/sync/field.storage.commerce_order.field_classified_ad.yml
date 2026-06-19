@@ -1,0 +1,20 @@
+uuid: dcc8202d-56cc-4ffd-8d1b-87fd4664c45e
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_order
+    - node
+id: commerce_order.field_classified_ad
+field_name: field_classified_ad
+entity_type: commerce_order
+type: entity_reference
+settings:
+  target_type: node
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

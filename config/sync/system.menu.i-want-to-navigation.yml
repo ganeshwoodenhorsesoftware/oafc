@@ -1,0 +1,8 @@
+uuid: 77b78679-8eb6-4618-b804-7b66c646d6ef
+langcode: en
+status: true
+dependencies: {  }
+id: i-want-to-navigation
+label: 'I Want To Navigation'
+description: ''
+locked: false

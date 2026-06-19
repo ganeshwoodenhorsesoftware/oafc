@@ -1,0 +1,21 @@
+uuid: ff9e22d4-2bf0-4285-86e7-c1cecdce5c91
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: KDpMwS4Uwj6QVsy4SKHPRnK7FgEqyWtIyiYdZBe4TVw
+id: admin
+label: 'Admin profile'
+description: 'Configuration for site administrators'
+conf:
+  extensions: 'jpg png gif pdf txt doc xls docx xls xlsx'
+  maxsize: 18.0
+  quota: 0.0
+  maxwidth: 0
+  maxheight: 0
+  replace: 1
+  folders:
+    -
+      path: .
+      permissions:
+        all: true

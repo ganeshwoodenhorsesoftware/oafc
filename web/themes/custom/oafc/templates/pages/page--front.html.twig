@@ -1,0 +1,243 @@
+{#
+/**
+ * @file
+ * Theme implementation to display the homepage.
+ *
+ * Available variables:
+ * - homepage_carousel_view: Homepage Carousel embedded view.
+ *
+ * @see template_preprocess_page()
+ */
+#}
+{# Site Header. #}
+{% include directory ~ '/templates/pages/includes/site_header.html.twig' %}
+{# / Site Header. #}
+
+{# Banner Slider. #}
+{% if node.field_banner_slider.entity %}
+  <div class="banner-slider">
+    <div class="banner-slider__content">
+      <div class="banner-slider__slider">
+        {% for slide in node.field_banner_slider %}
+          {%
+          set banner_image = {
+          '#theme':      'image_style',
+          '#style_name': 'homepage_banner',
+          '#uri':        slide.entity.field_banner_image.entity.uri.value,
+          '#alt':        slide.entity.field_banner_image.alt,
+          }
+          %}
+          <div>
+            <a href="{{ slide.entity.field_banner_link.0.url }}" class="banner-slider__item">
+              <div class="banner-slider__item-image">
+                {{ banner_image }}
+              </div>
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endif %}
+{# / Banner Slider. #}
+
+{# Homepage CTAs. #}
+{% if node.field_homepage_ctas.entity %}
+  <div class="homepage-ctas">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          {# Display quick links if logged in, otherwise show login form. #}
+          {% if logged_in %}
+            {% if page.quick_links_nav %}
+              <div class="homepage-user-box">
+                <div class="homepage-user-box__quick-links">
+                  {{ page.quick_links_nav }}
+                  <div class="homepage-user-box__bottom-cta">
+                    <h3>{{ 'View Member Account'|t }}</h3>
+                    <a href="{{ base_path }}dashboard">{{ 'My Dashboard'|t }}</a>
+                  </div>
+                </div>
+              </div>
+            {% endif %}
+          {% else %}
+            {% if page.member_login %}
+              <div class="homepage-user-box">
+                <div class="homepage-user-box__login">
+                  {{ page.member_login }}
+                  <div class="homepage-user-box__login-reset">
+                    {% trans %}
+                    Forgot <a href="{{ base_path }}user/password">username</a> or <a href="{{ base_path }}user/password">password</a>
+                    {% endtrans %}
+                  </div>
+                  <div class="homepage-user-box__bottom-cta">
+                    <h3>{{ "Don't Have an Account?"|t }}</h3>
+                    <a href="{{ base_path }}membership">{{ 'Join the OAFC'|t }}</a>
+                  </div>
+                </div>
+              </div>
+            {% endif %}
+          {% endif %}
+
+          <div class="homepage-ctas__list">
+            <ul class="clearfix">
+              {% for cta in node.field_homepage_ctas %}
+                {%
+                set cta_image = {
+                '#theme':      'image_style',
+                '#style_name': 'cta_homepage',
+                '#uri':        cta.entity.field_cta_image.entity.uri.value,
+                '#alt':        cta.entity.field_cta_image.alt,
+                }
+                %}
+                <li>
+                  <div class="homepage-cta">
+                    <a href="{{ cta.entity.field_cta_link.0.url }}" class="homepage-cta__image">
+                      {{ cta_image }}
+                    </a>
+                    <h2 class="homepage-cta__title">
+                      <a href="{{ cta.entity.field_cta_link.0.url }}">{{ cta.entity.field_cta_title.value }}</a>
+                    </h2>
+                    <div class="homepage-cta__body">
+                      {{ cta.entity.field_cta_body.value }}
+                    </div>
+                    <a href="{{ cta.entity.field_cta_link.0.url }}" class="homepage-cta__link">{{ cta.entity.field_cta_link.title }}</a>
+                  </div>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+{# / Homepage CTAs. #}
+
+{# Main Content. #}
+<div class="site-content">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9">
+        <main class="content__main-content clearfix" role="main">
+          <div class="visually-hidden"><a id="main-content" tabindex="-1"></a></div>
+          {% if page.highlighted %}
+            {{ page.highlighted }}
+          {% endif %}
+          {% if page.above_content %}
+            {{ page.above_content }}
+          {% endif %}
+          {% if page.content %}
+            <div class="homepage-content">
+              {{ page.content }}
+            </div>
+          {% endif %}
+          {% if page.below_content %}
+            {{ page.below_content }}
+          {% endif %}
+        </main>
+
+        <div class="row">
+          <div class="col-md-6">
+            <h3 class="listing-header listing-header--job">
+              <a href="{{ base_path }}marketplace-careers/job-postings">{{ 'Job Listings'|t }}</a>
+            </h3>
+            <div class="home-job-listing">
+              {{ drupal_view('job_listing', 'job_listing') }}
+
+              <div class="listing-view-more">
+                <a href="{{ base_path }}marketplace-careers/job-postings" class="btn btn--cta">{{ 'View Job Listings'|t }}</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <h3 class="listing-header listing-header--news">
+              <a href="{{ base_path }}about/news-and-notices">{{ 'News & Updates'|t }}</a>
+            </h3>
+
+            <div class="home-news-listing">
+              <ul class="nav nav-tabs content-tabs clearfix" role="tablist">
+                <li role="presentation" class="active">
+                  <a href="#news" aria-controls="news" role="tab" data-toggle="tab" aria-expanded="true">{{ 'OAFC News & Updates'|t }}</a>
+                </li>
+                <li role="presentation" class="">
+                  <a href="#fire-news" aria-controls="fire-news" role="tab" data-toggle="tab" aria-expanded="false">{{ 'Fire News Headlines'|t }}</a>
+                </li>
+              </ul>
+
+              <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade active in" id="news">
+                  {{ drupal_view('news', 'homepage_news') }}
+
+                  <div class="listing-view-more">
+                    <a href="{{ base_path }}about/news-and-notices" class="btn btn--cta">{{ 'View OAFC News & Updates'|t }}</a>
+                  </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="fire-news">
+                  {{ drupal_view('news', 'homepage_fire_news') }}
+
+                  <div class="listing-view-more">
+                    <a href="{{ base_path }}about/announcements/fire-news" class="btn btn--cta">{{ 'View Fire News Headlines'|t }}</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        {% if page.homepage_sidebar %}
+          <div class="homepage-sidebar clearfix">
+            {{ page.homepage_sidebar }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{# / Main Content. #}
+
+
+{# Social Media Section. #}
+<section class="social-media-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="homepage-bottom-cta">
+          {% if node.field_cta_title.value %}
+            <h2 class="homepage-bottom-cta__title">{{ node.field_cta_title.value }}</h2>
+          {% endif %}
+          {% if node.field_cta_body.value %}
+            <div class="homepage-bottom-cta__body">
+              {{ node.field_cta_body.value|raw }}
+            </div>
+          {% endif %}
+          {% if node.field_cta_link.0.url %}
+            <div class="homepage-bottom-cta__link">
+              <a href="{{ node.field_cta_link.0.url }}" class="btn btn--cta-sm">{{ node.field_cta_link.title }}</a>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{# / Social Media Section. #}
+
+{% if partners_slider_view %}
+  <section class="partners-slider-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="partners-slider">
+            {{ partners_slider_view }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endif %}
+
+{# Site Footer. #}
+{% include directory ~ '/templates/pages/includes/site_footer.html.twig' %}
+{# / Site Footer. #}

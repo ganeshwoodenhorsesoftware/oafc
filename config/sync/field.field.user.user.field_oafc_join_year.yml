@@ -1,0 +1,22 @@
+uuid: fb612a64-ebe1-47ca-a30a-6899d44fc51e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_oafc_join_year
+  module:
+    - user
+id: user.user.field_oafc_join_year
+field_name: field_oafc_join_year
+entity_type: user
+bundle: user
+label: 'What year did you join the OAFC?'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1516614467
+default_value_callback: ''
+settings: {  }
+field_type: timestamp

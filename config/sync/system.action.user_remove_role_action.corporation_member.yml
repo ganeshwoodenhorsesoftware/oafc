@@ -1,0 +1,14 @@
+uuid: 4cba1f7c-a8f9-413d-80b9-b8d099f8b70b
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.corporation_member
+  module:
+    - user
+id: user_remove_role_action.corporation_member
+label: 'Remove the Corporation Member role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: corporation_member

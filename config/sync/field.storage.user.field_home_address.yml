@@ -1,0 +1,19 @@
+uuid: 09a382a1-a726-439f-8337-a3f1383c5278
+langcode: en
+status: true
+dependencies:
+  module:
+    - address
+    - user
+id: user.field_home_address
+field_name: field_home_address
+entity_type: user
+type: address
+settings: {  }
+module: address
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

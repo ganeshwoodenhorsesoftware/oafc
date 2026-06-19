@@ -1,0 +1,29 @@
+uuid: 97076c51-fe9a-4a74-a837-29f5decca16f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_category
+    - node.type.classified_ad
+    - taxonomy.vocabulary.product_categories
+id: node.classified_ad.field_category
+field_name: field_category
+entity_type: node
+bundle: classified_ad
+label: Category
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      product_categories: product_categories
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

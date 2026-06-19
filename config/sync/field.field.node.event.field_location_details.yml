@@ -1,0 +1,19 @@
+uuid: 421ddaa8-9e1f-4ea7-9791-704a116355c8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_location_details
+    - node.type.event
+id: node.event.field_location_details
+field_name: field_location_details
+entity_type: node
+bundle: event
+label: 'Location Details'
+description: 'Additional location details, such as the event venue etc. Example: Toronto Congress Centre'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

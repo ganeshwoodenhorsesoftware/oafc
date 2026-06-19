@@ -1,0 +1,28 @@
+uuid: 9e57733b-5c3e-4000-8a55-10788c4463c8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.basic_content.field_text_long_formatted
+    - paragraphs.paragraphs_type.basic_content
+  module:
+    - text
+id: paragraph.basic_content.default
+targetEntityType: paragraph
+bundle: basic_content
+mode: default
+content:
+  field_text_long_formatted:
+    type: text_textarea_with_summary
+    weight: 0
+    region: content
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+      show_summary: false
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
+  uid: true

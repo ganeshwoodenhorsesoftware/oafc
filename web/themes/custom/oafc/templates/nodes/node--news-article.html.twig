@@ -1,0 +1,99 @@
+{#
+/**
+ * @file
+ * Theme implementation for a News Article.
+ *
+ * @see template_preprocess_node()
+ */
+#}
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+    'clearfix',
+  ]
+%}
+{% if view_mode == 'teaser' %}
+
+  <div class="news-teaser-item">
+    <div class="news-teaser-item__date">
+      {{ content.field_date }}
+    </div>
+    <h4 class="news-teaser-item__title">
+      <a href="{{ url }}">{{ node.title.value }}</a>
+    </h4>
+    <div class="news-teaser-item__link">
+      <a href="{{ url }}" class="link-arrow">{{ 'View Details'|t }}</a>
+    </div>
+  </div>
+
+{% elseif view_mode == 'listing' %}
+
+  <div class="news-item">
+    <h3 class="news-item__title">
+      <a href="{{ url }}">{{ label }}</a>
+    </h3>
+    <div class="news-item__date">
+      {{ content.field_date }}
+    </div>
+    <div class="news-item__body">
+      {% set body_teaser %}
+        {{ content.body }}
+      {% endset %}
+      {{ body_teaser|striptags }}
+    </div>
+    <div class="news-item__view-more">
+      <a class="btn btn--sm btn--red" href="{{ url }}">{{ 'Read More'|t }}</a>
+    </div>
+    {% if node.field_category.target_id %}
+      <div class="news-item__category">
+        {{ content.field_category }}
+      </div>
+    {% endif %}
+  </div>
+
+{% else %}
+
+  <article{{ attributes.addClass(classes) }}>
+    <div class="news-item">
+      <div class="social-media-sharing-nav">
+        <ul class="social-media-sharing-menu clearfix">
+          <li class="social-media-sharing-menu__item">
+            <a class="social-media-sharing-menu__link social-media-sharing-menu__link--facebook" href="https://facebook.com/sharer/sharer.php?u={{ absolute_encoded_path }}" target="_blank" aria-label="" title="{{ 'Share on Facebook'|t }}"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+          </li>
+          <li class="social-media-sharing-menu__item">
+            <a class="social-media-sharing-menu__link social-media-sharing-menu__link--twitter" href="https://twitter.com/intent/tweet/?text={{ encoded_title }}&amp;url={{ absolute_encoded_path }}" target="_blank" aria-label="" title="{{ 'Share on Twitter'|t }}"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+          </li>
+          <li class="social-media-sharing-menu__item">
+            <a class="social-media-sharing-menu__link social-media-sharing-menu__link--linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ absolute_encoded_path }}&amp;title={{ encoded_title }}&amp;summary={{ encoded_title }}&amp;source={{ absolute_encoded_path }}" target="_blank" aria-label="" title="{{ 'Share on LinkedIn'|t }}"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="news-item__date">
+        {{ content.field_date }}
+      </div>
+
+      <div class="news-item__body">
+        {{ content.body }}
+      </div>
+
+      {% if node.field_category.target_id %}
+        <div class="news-item__category">
+          {{ content.field_category }}
+        </div>
+      {% endif %}
+    </div>
+
+    {% if content.field_blog_comments %}
+      <div class="blog-post-comments">
+        {{ content.field_blog_comments }}
+      </div>
+    {% endif %}
+  </article>
+
+{% endif %}

@@ -1,0 +1,22 @@
+uuid: 68bbe7a9-7990-41e5-aab0-13ff33529101
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.classified_ad
+id: node.classified_ad.promote
+field_name: promote
+entity_type: node
+bundle: classified_ad
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

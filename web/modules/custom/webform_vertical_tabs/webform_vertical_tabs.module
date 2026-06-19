@@ -1,0 +1,11 @@
+<?php
+
+use Drupal\webform_vertical_tabs\WebformVerticalTabs;
+
+/**
+ * Implements hook_element_alter().
+ */
+function webform_vertical_tabs_element_alter(array &$definitions) {
+  $definitions['webform_multiple']['class'] = WebformVerticalTabs::class;
+  $definitions['webform_custom_composite']['class'] = WebformVerticalTabs::class;
+}

@@ -1,0 +1,48 @@
+uuid: be76ed24-2909-4f4e-a4bd-c3799f838fd5
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.slider
+    - field.field.node.classified_ad.body
+    - field.field.node.classified_ad.field_ad_type
+    - field.field.node.classified_ad.field_category
+    - field.field.node.classified_ad.field_contact_details
+    - field.field.node.classified_ad.field_image
+    - field.field.node.classified_ad.field_location
+    - field.field.node.classified_ad.field_meta_tags
+    - field.field.node.classified_ad.field_price
+    - field.field.node.classified_ad.field_published_date
+    - image.style.product_slider_block_image
+    - node.type.classified_ad
+  module:
+    - image
+    - user
+id: node.classified_ad.slider
+targetEntityType: node
+bundle: classified_ad
+mode: slider
+content:
+  field_image:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: product_slider_block_image
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  body: true
+  field_ad_type: true
+  field_category: true
+  field_contact_details: true
+  field_location: true
+  field_meta_tags: true
+  field_price: true
+  field_published_date: true
+  langcode: true
+  links: true
+  search_api_excerpt: true

@@ -1,0 +1,11 @@
+uuid: a566afad-80c1-4f1f-a40f-2c4b6340e6b5
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_order
+id: commerce_order_item.cart
+label: Cart
+description: ''
+targetEntityType: commerce_order_item
+cache: true

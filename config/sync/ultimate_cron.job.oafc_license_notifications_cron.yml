@@ -1,0 +1,29 @@
+uuid: d1b58da3-3ac8-4691-9aa2-3c0e51751cca
+langcode: en
+status: true
+dependencies:
+  module:
+    - oafc_license_notifications
+title: 'Default cron handler'
+id: oafc_license_notifications_cron
+weight: 0
+module: oafc_license_notifications
+callback: oafc_license_notifications_cron
+scheduler:
+  id: simple
+  configuration:
+    rules:
+      - '0+@ 0 * * *'
+launcher:
+  id: serial
+  configuration:
+    timeouts:
+      lock_timeout: 3600
+    launcher:
+      thread: 0
+logger:
+  id: database
+  configuration:
+    method: '3'
+    expire: 1209600
+    retain: 1000

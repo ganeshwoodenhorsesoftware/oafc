@@ -1,0 +1,52 @@
+global-styling:
+  version: 1.x
+  css:
+    theme:
+      css/style.css: { media: all }
+  js:
+    js/custom/script.js: {}
+  dependencies:
+    - core/jquery
+    - orange_framework/flexslider
+
+flexslider:
+  version: 1.x
+  js:
+    js/contrib/jquery.flexslider-min.js: {}
+  dependencies:
+    - core/jquery
+
+hoverintent:
+  version: 1.x
+  js:
+    js/contrib/jquery.hoverIntent.minified.js: {}
+  dependencies:
+    - core/jquery
+
+bootstrap:
+  version: 1.x
+  css:
+    theme:
+      css/bootstrap.css: { media: all }
+  js:
+    bootstrap/js/affix.js: { weight: 0 }
+    bootstrap/js/alert.js: { weight: 0 }
+    bootstrap/js/modal.js: { weight: 0 }
+    bootstrap/js/tab.js: { weight: 0 }
+    bootstrap/js/transition.js: { weight: 0 }
+    bootstrap/js/dropdown.js: { weight: 0 }
+    bootstrap/js/carousel.js: { weight: 0 }
+    bootstrap/js/collapse.js: { weight: 0 }
+    bootstrap/js/scrollspy.js: { weight: 0 }
+    bootstrap/js/tooltip.js: { weight: -1 }
+    bootstrap/js/popover.js: { weight: 0 }
+  dependencies:
+    - core/jquery
+
+maintenance_page:
+  version: 1.x
+  css:
+    theme:
+      css/maintenance-page.css: { media: all }
+  dependencies:
+    - system/maintenance

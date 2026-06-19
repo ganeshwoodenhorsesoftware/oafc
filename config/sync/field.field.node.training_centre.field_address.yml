@@ -1,0 +1,39 @@
+uuid: ef76ed97-b5dc-4f45-8da7-aae8e89f960e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_address
+    - node.type.training_centre
+  module:
+    - address
+id: node.training_centre.field_address
+field_name: field_address
+entity_type: node
+bundle: training_centre
+label: Address
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    country_code: CA
+default_value_callback: ''
+settings:
+  available_countries:
+    CA: CA
+  langcode_override: ''
+  field_overrides: {  }
+  fields:
+    administrativeArea: administrativeArea
+    locality: locality
+    dependentLocality: dependentLocality
+    postalCode: postalCode
+    sortingCode: sortingCode
+    addressLine1: addressLine1
+    addressLine2: addressLine2
+    organization: organization
+    givenName: '0'
+    additionalName: '0'
+    familyName: '0'
+field_type: address

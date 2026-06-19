@@ -1,0 +1,717 @@
+/**
+ * Marketplace.
+ */
+.path-marketplace-careers,
+.path-events,
+.path-education-training {
+  .page-title {
+    margin: 0 0 35px 0;
+    padding: 0 0 15px 0;
+    font-size: 50px;
+    line-height: 1.2;
+    font-weight: 600;
+    color: $c-body;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .site-sidebar {
+    margin: 0;
+    padding: 25px 20px;
+    background: $c-tan;
+    border: 1px solid #ccc;
+
+    .block {
+      margin: 0 0 30px 0;
+      padding: 0;
+
+      h2 {
+        margin: 0 0 10px 0;
+        padding: 0;
+        font-size: 25px;
+        line-height: 1.2;
+        font-weight: 600;
+        color: $c-body;
+      }
+    }
+  }
+}
+.h-exposed-form-search {
+  position: relative;
+  float: none;
+  display: block;
+  margin: 0 0 20px 0;
+  padding: 0 0 0 33px;
+  font-size: 20px;
+  line-height: 1.2;
+  color: $c-secondary;
+  min-height: 26px;
+  text-align: left;
+
+  @media (min-width: $screen-sm-min) {
+    padding: 0 0 0 39px;
+    font-size: 28px;
+  }
+
+  // Search icon.
+  &:before {
+    @include fa-icon();
+    content: $fa-var-search;
+    position: absolute;
+    top: 2px;
+    left: 0;
+    font-size: 22px;
+    color: $c-link;
+
+    @media (min-width: $screen-sm-min) {
+      font-size: 28px;
+    }
+  }
+}
+
+/**
+ * Solr Search Views.
+ */
+.marketplace-search .view-header .views-exposed-form,
+.views-exposed-form.block-views-exposed-filter-blockbuyers-guide-buyers-guide,
+.views-exposed-form.block-views-exposed-filter-blockclassified-ads-used-equipment {
+  display: block;
+  margin: 0 0 30px 0;
+  padding: 30px 15px;
+  width: 100%;
+  height: auto;
+  text-align: center;
+  background: $c-tan;
+  border-top: 1px solid #ccc;
+  border-bottom: 10px solid #ccc;
+
+  .form-optional {
+    display: none;
+  }
+
+  .form-item,
+  .form-actions {
+    float: none;
+    display: block;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+
+    @media (min-width: $screen-sm-min) {
+      display: inline-block;
+      margin: 0 5px;
+    }
+  }
+  .form-item {
+    margin-bottom: 15px;
+  }
+
+  label {
+    display: block;
+    margin: 0 0 8px 0;
+    padding: 0;
+    font-size: 16px;
+    line-height: 1.0;
+    font-weight: 600;
+    color: $c-link;
+  }
+
+  .form-item-search {
+    .form-control {
+      width: 100%;
+
+      @media (min-width: $screen-sm-min) {
+        width: 200px;
+      }
+    }
+  }
+
+  .form-type-select {
+    .form-control {
+      width: 100%;
+
+      @media (min-width: $screen-sm-min) {
+        width: 168px;
+      }
+    }
+  }
+
+  .form-submit {
+    margin: 0;
+    padding: 4px 40px;
+    height: 30px;
+    font-size: 15px;
+    line-height: 1.0;
+    color: #fff;
+    background: $c-body;
+    border: none;
+
+    &:hover,
+    &:focus {
+      color: #fff;
+      background: $c-link;
+    }
+  }
+}
+// Buyer's Guide overrides.
+.views-exposed-form.block-views-exposed-filter-blockbuyers-guide-buyers-guide {
+  padding: 30px 15px;
+  text-align: left;
+
+  @media (min-width: $screen-sm-min) {
+    padding: 30px 40px;
+  }
+}
+
+.marketplace-search {
+  .view-header {
+    display: relative;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+/**
+ * Facets Summary.
+ */
+.block-facets-summary {
+  position: relative;
+  clear: both;
+  margin: 0 0 30px 0;
+  padding: 0 190px 12px 80px;
+  min-height: 44px;
+  border-bottom: 1px solid #ccc;
+
+  h2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    margin: 0 20px 20px 0;
+    padding: 7px 0 0 0;
+    font-size: 16px;
+    line-height: 1.0;
+    font-weight: 600;
+    color: $c-body;
+  }
+
+  > ul {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    vertical-align: top;
+
+    li {
+      display: inline-block;
+      margin: 0;
+      padding: 0;
+      vertical-align: top;
+
+      a {
+        position: relative;
+        display: inline-block;
+        margin: 0 5px 5px 0;
+        padding: 6px 36px 5px 15px;
+        font-size: 15px;
+        line-height: 1.2;
+        color: $c-body;
+        text-decoration: none;
+        background: $c-tan;
+        border: 1px solid $c-body;
+
+        // Close icon.
+        &:after {
+          @include fa-icon();
+          content: $fa-var-times;
+          position: absolute;
+          top: 0;
+          right: 0;
+          display: block;
+          margin: 0;
+          padding: 7px 0 0 0;
+          width: 25px;
+          height: 100%;
+          color: #fff;
+          text-align: center;
+          background: $c-body;
+          transition: color .2s ease-in-out, background-color .2s ease-in-out, border-color .2s ease-in-out;
+        }
+
+        .js-facet-deactivate {
+          display: none;
+        }
+
+        &:hover,
+        &:focus {
+          color: $c-body;
+          border-color: $c-link;
+
+          // Close icon.
+          &:after {
+            color: #fff;
+            background: $c-link;
+          }
+        }
+      }
+
+      // Clear filters.
+      &:first-child {
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: block;
+
+        a {
+          display: inline-block;
+          margin: 0;
+          padding: 8px 15px;
+          height: auto;
+          font-size: 15px;
+          line-height: 1.0;
+          color: #fff;
+          text-decoration: none;
+          background: $c-body;
+          border: none;
+
+          &:hover,
+          &:focus {
+            color: #fff;
+            background: $c-link;
+          }
+
+          &:after {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Results Summary.
+ */
+.view-results-summary {
+  clear: both;
+  margin: 0 0 30px 0;
+  padding: 0 0 12px 0;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.2;
+  border-bottom: 1px solid #ccc;
+}
+
+/**
+ * Product Listing.
+ */
+.listing-item {
+  position: relative;
+  margin: 0 0 20px 0;
+  padding: 27px 20px 20px 20px;
+  min-height: 253px;
+  background: $c-tan;
+  border: 1px solid #ccc;
+
+  @media (min-width: $screen-sm-ph) {
+    padding: 37px 20px 20px 250px;
+  }
+}
+.listing-item__image {
+  position: relative;
+  top: 0;
+  left: 0;
+  margin: 0 0 15px 0;
+
+  @media (min-width: $screen-sm-ph) {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    margin: 0;
+  }
+
+  a {
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: 210px;
+    text-decoration: none;
+    border: 1px solid #ccc;
+
+    &:hover,
+    &:focus {
+      border-color: $c-link;
+    }
+  }
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+}
+.listing-item--featured {
+  padding-top: 53px;
+  min-height: 283px;
+  background: #f0ede8;
+  border: 2px solid $c-link;
+
+  @media (min-width: $screen-sm-ph) {
+    padding-top: 63px;
+  }
+
+  .listing-item__image {
+    top: 0;
+
+    @media (min-width: $screen-sm-ph) {
+      top: 50px;
+    }
+  }
+}
+.listing-item__featured-title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 7px 20px 0 20px;
+  width: 100%;
+  height: 30px;
+  color: #fff;
+  font-size: 14px;
+  line-height: 1.0;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-align: right;
+  background: $c-link;
+}
+.listing-item__title {
+  margin: 0 0 2px 0;
+  padding: 0;
+
+  h3 {
+    margin: 0;
+    padding: 0;
+    font-size: 24px;
+    font-weight: 600;
+
+    a {
+      color: $c-body;
+      text-decoration: none;
+
+      &:hover,
+      &:focus {
+        color: $c-link;
+      }
+    }
+  }
+}
+.listing-item__sub-title {
+  margin: 0 0 5px 0;
+  padding: 0;
+  color: $c-link;
+  font-weight: 600;
+
+  div {
+    display: inline-block;
+  }
+  .field__label {
+    display: none;
+  }
+}
+.listing-item__body {
+  margin: 0 0 10px 0;
+  padding: 0;
+}
+.listing-item--type-profile {
+  .listing-item__body {
+    padding: 5px 10px;
+    font-size: 14px;
+    background: #fff;
+    border: 1px solid #ccc;
+  }
+}
+.listing-item__body-scroller {
+  max-height: 66px;
+  overflow: auto;
+}
+
+/**
+ * Facets.
+ */
+.block-facets {
+  &.block--empty {
+    display: none;
+  }
+  .facets-widget-links,
+  .facets-widget-oafc_membership_numericgranular {
+    ul {
+      display: block;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+
+      > li {
+        display: block;
+        margin: 0 0 6px 0;
+        padding: 0;
+        background: none;
+
+        a {
+          position: relative;
+          display: block;
+          margin: 0;
+          padding: 0 0 0 23px;
+          font-size: 14px;
+          line-height: 1.4;
+          font-weight: normal;
+          color: $c-body;
+          text-decoration: none;
+
+          .js-facet-deactivate {
+            display: none;
+          }
+
+          // Checkbox.
+          &:before {
+            @include fa-icon();
+            content: $fa-var-square-o;
+            position: absolute;
+            top: 1px;
+            left: 0;
+            font-size: 19px;
+            color: $c-body;
+          }
+
+          &:hover,
+          &:focus {
+            color: $c-link;
+          }
+
+          // Active.
+          &.is-active {
+            color: $c-link;
+            font-weight: 600;
+
+            // Checkbox.
+            &:before {
+              content: $fa-var-check-square-o;
+              color: $c-body;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Profiles.
+ */
+.profile__header {
+  position: relative;
+  clear: both;
+  margin: 0 0 30px 0;
+  padding: 30px;
+  background: $c-tan;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+
+  @media (min-width: $screen-sm-min) {
+    padding: 30px 30px 30px 260px;
+    min-height: 260px;
+  }
+}
+.profile__header-name {
+  margin: 20px 0 0 0;
+  padding: 0;
+  font-size: 36px;
+
+  @media (min-width: $screen-sm-min) {
+    margin: 67px 0 0 0;
+  }
+}
+.profile__header-link {
+  display: inline-block;
+  vertical-align: top;
+
+  a {
+    display: inline-block;
+    margin: 0;
+    padding: 5px 8px;
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+    vertical-align: top;
+    background: $c-body;
+
+    &:hover,
+    &:focus {
+      color: #fff;
+      background: $c-link;
+    }
+  }
+}
+.profile__header-links {
+  clear: both;
+  margin: 0;
+  padding: 30px 0 0 0;
+
+  > div {
+    display: inline-block;
+    vertical-align: top;
+  }
+}
+.profile__header-links-right {
+  float: none;
+
+  @media (min-width: $screen-sm-min) {
+    float: right;
+  }
+}
+.profile__header-social-media-sharing {
+  float: none;
+
+  @media (min-width: $screen-sm-min) {
+    float: right;
+  }
+}
+.profile__header-logo {
+  position: relative;
+  top: 0;
+  left: 0;
+  max-width: 200px;
+  border: 1px solid #ccc;
+  z-index: 0;
+
+  @media (min-width: $screen-sm-min) {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    z-index: 0;
+  }
+}
+.profile__header-address {
+  font-size: 0;
+
+  .field__label {
+    display: none;
+  }
+  p {
+    margin: 0;
+    padding: 0;
+  }
+  br,
+  span {
+    display: none;
+  }
+  span {
+    padding-right: 4px;
+    font-size: 16px;
+  }
+  .locality::after {
+    content: ',';
+  }
+  .locality,
+  .administrative-area {
+    display: inline;
+  }
+}
+.profile__file-name {
+  font-weight: bold;
+}
+.profile__file-filename {
+  padding-right: 2px;
+  font-style: italic;
+  color: #999;
+}
+.profile__overview-content {
+
+  ul {
+    margin: 0 0 20px 20px;
+    padding: 0;
+    list-style: none;
+
+    > li {
+      position: relative;
+      margin: 0 0 3px 0;
+      padding: 0 0 0 13px;
+
+      // Bullet.
+      &:before {
+        position: absolute;
+        top: 10px;
+        left: 0;
+        content: '';
+        width: 5px;
+        height: 5px;
+        background: $c-body;
+        border-radius: 50%;
+      }
+    }
+  }
+}
+.profile__categories {
+  clear: both;
+  margin: 20px 0 20px 0;
+  padding: 30px 0 0 0;
+  border-top: 1px solid #ccc;
+
+  > h3 {
+    margin-top: 0;
+  }
+
+  .field--name-field-member-categories {
+    margin: 0 0 20px 20px;
+    padding: 0;
+    column-count: auto;
+    column-gap: normal;
+
+    @media (min-width: $screen-sm-min) {
+      column-count: 3;
+      column-gap: 20px;
+    }
+
+    // Clearfix.
+    &:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+  }
+  .field__item {
+    position: relative;
+    margin: 0 0 3px 0;
+    padding: 0 0 0 13px;
+
+    // Bullet.
+    &:before {
+      position: absolute;
+      top: 10px;
+      left: 0;
+      content: '';
+      width: 5px;
+      height: 5px;
+      background: $c-body;
+      border-radius: 50%;
+    }
+  }
+}
+.profile__content-sidebar {
+  margin: 0 0 30px 0;
+  padding: 30px 20px;
+  height: 100%;
+  background: $c-tan;
+  border: 1px solid #ccc;
+
+  > div {
+    position: relative;
+    margin: 0 0 20px 0;
+    padding: 0;
+  }
+  .profile__email,
+  .profile__website {
+    word-break: break-all;
+  }
+}
+.profile__overview-content {
+  > h3:first-child {
+    margin-top: 0;
+  }
+}

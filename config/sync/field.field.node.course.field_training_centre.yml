@@ -1,0 +1,28 @@
+uuid: e7d6f04f-972d-45f5-a06f-8c250b314f2f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_training_centre
+    - node.type.course
+    - node.type.training_centre
+id: node.course.field_training_centre
+field_name: field_training_centre
+entity_type: node
+bundle: course
+label: 'Training Centre'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      training_centre: training_centre
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

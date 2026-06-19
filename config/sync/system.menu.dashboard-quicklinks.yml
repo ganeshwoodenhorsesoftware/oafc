@@ -1,0 +1,8 @@
+uuid: 94f9e428-c9a5-4da3-a992-08cb3294e852
+langcode: en
+status: true
+dependencies: {  }
+id: dashboard-quicklinks
+label: 'Dashboard Quicklinks'
+description: ''
+locked: false

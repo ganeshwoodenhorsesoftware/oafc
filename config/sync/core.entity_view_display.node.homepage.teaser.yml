@@ -1,0 +1,40 @@
+uuid: 569df515-4d89-4ff6-84c2-d04a81cff565
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.homepage.body
+    - field.field.node.homepage.field_banner_slider
+    - field.field.node.homepage.field_cta_body
+    - field.field.node.homepage.field_cta_link
+    - field.field.node.homepage.field_cta_title
+    - field.field.node.homepage.field_homepage_ctas
+    - field.field.node.homepage.field_meta_tags
+    - node.type.homepage
+  module:
+    - text
+    - user
+id: node.homepage.teaser
+targetEntityType: node
+bundle: homepage
+mode: teaser
+content:
+  body:
+    type: text_summary_or_trimmed
+    label: hidden
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_banner_slider: true
+  field_cta_body: true
+  field_cta_link: true
+  field_cta_title: true
+  field_homepage_ctas: true
+  field_meta_tags: true
+  langcode: true
+  links: true
+  search_api_excerpt: true

@@ -1,0 +1,298 @@
+/**
+ * Print.
+ */
+@media print {
+  *,
+  *::before,
+  *::after {
+    background: transparent !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  html,
+  body,
+  input,
+  textarea,
+  select {
+    color: #000;
+    background: none;
+  }
+
+  html,
+  body {
+    font-size: 14px;
+  }
+
+  thead {
+    display: table-header-group;
+  }
+
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+
+  img {
+    max-width: 100% !important;
+  }
+
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+
+  .navigation,
+  #toolbar,
+  .tabs,
+  .shortcut-action {
+    display: none;
+  }
+
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+
+  a[href]:after {
+    display: none !important;
+  }
+
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+
+  thead {
+    display: table-header-group; /* h5bp.com/t */
+  }
+
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+
+  img {
+    max-width: 100% !important;
+  }
+
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+
+  a,
+  .link {
+    color: #000;
+    text-decoration: underline;
+  }
+
+  .button, .button--primary {
+    background: none !important;
+  }
+
+  .messages {
+    border-width: 1px;
+    border-color: #999;
+  }
+
+  .is-collapse-enabled .tabs {
+    max-height: 999em;
+  }
+
+  .is-horizontal .tabs__tab {
+    margin: 0 4px !important;
+    border-radius: 4px 4px 0 0 !important;
+  }
+
+  .dropbutton-multiple .dropbutton .secondary-action {
+    display: block;
+  }
+
+  .js .dropbutton-widget,
+  .js td .dropbutton-widget /* Splitbuttons. */ {
+    position: relative;
+  }
+
+  .js .dropbutton .dropbutton-toggle {
+    display: none;
+  }
+
+  .js .dropbutton-multiple .dropbutton-widget {
+    background: none;
+    border-radius: 4px;
+  }
+
+  input.form-autocomplete,
+  input.form-text,
+  input.form-tel,
+  input.form-email,
+  input.form-url,
+  input.form-search,
+  input.form-number,
+  input.form-color,
+  input.form-file,
+  textarea.form-textarea,
+  select.form-select {
+    border-width: 1px;
+  }
+
+  #comments .title,
+  #comments form,
+  .comment-forbidden {
+    display: none;
+  }
+
+  // Keep header for print but compact; logo smaller.
+  .site-header {
+    margin: 0 0 20px;
+    padding: 15px 0 10px;
+    background: none;
+    border: 0;
+  }
+
+  .site-header .container .row .col-md-12 {
+    display: block;
+  }
+
+  .site-header__logo {
+    display: block;
+    float: none;
+    width: auto;
+    height: auto;
+    padding: 0;
+    max-width: 120px;
+
+    img {
+      position: static;
+      max-width: 80px;
+      height: auto;
+    }
+
+    span {
+      display: none;
+    }
+  }
+
+  /* Contact information directly under the logo, compact. */
+  .site-header__print-contact {
+    display: block !important;
+    clear: both;
+    margin: 4px 0 0;
+    padding: 0;
+    font-size: 9px;
+    line-height: 1.25;
+    color: #000;
+
+    .site-header__print-contact-line {
+      margin: 0 0 1px;
+      padding: 0;
+    }
+
+    .site-header__print-contact-site-name {
+      font-size: 16px;
+      font-weight: bold;
+      margin-top: 4px;
+    }
+  }
+
+  .site-header .mobile-control-nav,
+  .site-header .site-header__actions,
+  .site-header .visible-xs-block,
+  .site-header .visible-sm-block {
+    display: none !important;
+  }
+
+  // Titles.
+  .page-title,
+  .page-title--underline,
+  .path-marketplace-careers .page-title,
+  .path-events .page-title,
+  .path-education-training .page-title {
+    margin: 0 0 10px;
+    padding: 0 0 10px;
+    font-size: 24px;
+  }
+
+  // Hide general site elements.
+  .site-header__top,
+  .dashboard,
+  .site-footer,
+  .mobile-overlay,
+  .mobile-control-nav,
+  .site-header__actions,
+  .site-header__bottom,
+  .block-views-blockpartners-partners-slider,
+  .block-views-exposed-filter-blockbuyers-guide-buyers-guide,
+  .site-section--breadcrumbs,
+  .profile__header-social-media-sharing,
+  .profile__header-links,
+  .block-views-exposed-filter-blockclassified-ads-used-equipment,
+  .field--name-field-product-categories,
+  .field--name-field-classified-ad,
+  .order-total-line__edit-cart,
+  .order-print-button-wrapper,
+  .messages {
+    display: none !important;
+  }
+
+  // Profiles.
+  .profile__header-name {
+    margin: 10px 0 0;
+    font-size: 20px;
+  }
+
+  .profile__header {
+    padding: 0;
+    border: 0;
+    min-height: 0;
+    background: none;
+
+    @media (min-width: $screen-sm-min) {
+      padding: 30px 30px 30px 260px;
+      min-height: 260px;
+    }
+  }
+
+  .profile__header-logo {
+    width: 100px;
+  }
+
+  /* Order print footer: flows at end of document (bottom of last page). */
+  .order-print-footer {
+    display: block !important;
+    margin-top: 30px;
+    padding: 15px 0 0;
+    font-size: 12px;
+    line-height: 1.4;
+    color: #000;
+    border-top: 1px solid #999;
+    page-break-before: avoid;
+
+    .order-print-footer__thank-you,
+    .order-print-footer__hst {
+      margin: 0 0 4px;
+      padding: 0;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

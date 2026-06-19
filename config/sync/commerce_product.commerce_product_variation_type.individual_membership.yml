@@ -1,0 +1,21 @@
+uuid: be98d586-d61b-4978-9d95-0cf9d16096a5
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_license
+third_party_settings:
+  commerce_license:
+    license_types:
+      role: role
+    activate_on_place: false
+    allow_renewal: true
+    interval: '3'
+    period: month
+id: individual_membership
+label: 'Individual membership'
+traits:
+  - commerce_license
+locked: false
+orderItemType: individual_membership
+generateTitle: false

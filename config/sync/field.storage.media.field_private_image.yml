@@ -1,0 +1,30 @@
+uuid: 4b40546e-3d78-4e0a-a106-a4941aeda6b6
+langcode: en
+status: true
+dependencies:
+  module:
+    - file
+    - image
+    - media
+id: media.field_private_image
+field_name: field_private_image
+entity_type: media
+type: image
+settings:
+  target_type: file
+  display_field: false
+  display_default: false
+  uri_scheme: private
+  default_image:
+    uuid: ''
+    alt: ''
+    title: ''
+    width: null
+    height: null
+module: image
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

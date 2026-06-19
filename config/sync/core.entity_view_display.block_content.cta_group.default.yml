@@ -1,0 +1,26 @@
+uuid: 0cf4f7f0-e994-44ab-9118-db3c3e686ac5
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.cta_group
+    - field.field.block_content.cta_group.field_paragraph_reference
+  module:
+    - entity_reference_revisions
+id: block_content.cta_group.default
+targetEntityType: block_content
+bundle: cta_group
+mode: default
+content:
+  field_paragraph_reference:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: cta_group
+      link: ''
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

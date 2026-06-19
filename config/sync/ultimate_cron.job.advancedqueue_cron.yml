@@ -1,0 +1,17 @@
+uuid: 1683167c-6c8c-4acc-bb22-5ae01f64b8dd
+langcode: en
+status: true
+dependencies:
+  module:
+    - advancedqueue
+title: 'Default cron handler'
+id: advancedqueue_cron
+weight: 0
+module: advancedqueue
+callback: advancedqueue_cron
+scheduler:
+  id: simple
+launcher:
+  id: serial
+logger:
+  id: database

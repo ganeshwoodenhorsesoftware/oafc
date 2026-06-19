@@ -1,0 +1,127 @@
+<?php
+
+/**
+ * @file
+ * Support module for job posting on OAFC.
+ */
+
+use Drupal\node\NodeInterface;
+use Drupal\commerce_product\Entity\ProductVariation;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\field\Entity\FieldStorageConfig;
+use Drupal\Core\Field\FieldDefinitionInterface;
+
+/**
+ * Implements hook_ENTITY_TYPE_insert().
+ */
+function oafc_job_post_node_insert(NodeInterface $node)
+{
+  /** @var \Drupal\Core\Session\AccountProxyInterface $account */
+  $account = \Drupal::currentUser();
+  /** @var \Drupal\Core\Session\UserSession $user_session */
+  $user_session = $account->getAccount();
+
+  if ($node->bundle() === 'job_post' && !$user_session->hasPermission('bypass paid job post')) {
+    /*
+     * Creates cart and pushes the job posting selection to the cart.
+     */
+    $order_type = 'job_post';
+    $commerce_product_variation_id = $node->get('field_ad_type')->getString();
+    /** @var \Drupal\commerce_product\Entity\ProductVariationInterface $commerce_product_variation */
+    $product_variation = ProductVariation::load($commerce_product_variation_id);
+    /** @var \Drupal\commerce_store\CurrentStoreInterface $current_store */
+    $current_store = \Drupal::service('commerce_store.current_store');
+    /** @var \Drupal\commerce_cart\CartProviderInterface $cart_provider */
+    $cart_provider = \Drupal::service('commerce_cart.cart_provider');
+    /** @var \Drupal\commerce_cart\CartManagerInterface $cart_manager */
+    $cart_manager = \Drupal::service('commerce_cart.cart_manager');
+
+    /** @var \Drupal\commerce_order\Entity\OrderInterface|null $cart */
+    $cart = $cart_provider->getCart($order_type, $current_store->getStore());
+
+    if (!$cart) {
+      /** @var \Drupal\commerce_order\Entity\OrderInterface $cart */
+      $cart = $cart_provider->createCart($order_type, $current_store->getStore());
+    }
+
+    $cart->setData('job_post_id', $node->id());
+    $cart->save();
+    $cart_manager->addEntity($cart, $product_variation);
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function oafc_job_post_form_node_job_post_form_alter(&$form, FormStateInterface $form_state, $form_id)
+{
+  /** @var array $query_parameters */
+  $query_parameters = \Drupal::request()->query->all();
+  /** @var \Drupal\Core\Session\AccountProxyInterface $account */
+  $account = \Drupal::currentUser();
+  /** @var \Drupal\Core\Session\UserSession $user_session */
+  $user_session = $account->getAccount();
+
+  if (!$user_session->hasPermission('bypass paid job post')) {
+    $form['actions']['submit']['#submit'][] = 'oafc_job_post_redirect_form';
+    $form['actions']['submit']['#submit'][] = 'oafc_job_post_alter_feedback_messages';
+  }
+
+  if (isset($query_parameters['field_ad_type'])) {
+    $form['field_ad_type']['widget']['#default_value'] = $query_parameters['field_ad_type'];
+  }
+}
+
+/**
+ * Redirects after a job post is created.
+ *
+ * @param array $form
+ *   Drupal form.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   The form state.
+ */
+function oafc_job_post_redirect_form(array $form, FormStateInterface $form_state)
+{
+  $order_type = 'job_post';
+  /** @var \Drupal\commerce_store\CurrentStoreInterface $current_store */
+  $current_store = \Drupal::service('commerce_store.current_store');
+  /** @var \Drupal\commerce_cart\CartProviderInterface $cart_provider */
+  $cart_provider = \Drupal::service('commerce_cart.cart_provider');
+  /** @var \Drupal\commerce_order\Entity\OrderInterface $commerce_order */
+  $commerce_order = $cart_provider->getCart($order_type, $current_store->getStore());
+
+  $form_state->setRedirect('commerce_checkout.form', [
+    'commerce_order' => $commerce_order->id(),
+  ]);
+}
+
+/**
+ * Alters the feedback messages after a job post is created.
+ *
+ * @param array $form
+ *   Drupal form.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   The form state.
+ */
+function oafc_job_post_alter_feedback_messages(array $form, FormStateInterface $form_state)
+{
+  $messenger = \Drupal::messenger();
+  $messenger->deleteAll();
+  $messenger->addStatus(t(
+    'Check out to pay for the ad and we will review the ad before publishing it.'
+  ));
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_presave().
+ */
+function oafc_job_post_node_presave(NodeInterface $node)
+{
+  /*
+   * Sets published date of a job post when it is published.
+   */
+  if ($node->bundle() === 'job_post' && $node->isPublished()) {
+    $node->set('field_published_date', \Drupal::time()->getRequestTime());
+  }
+}

@@ -1,0 +1,15 @@
+uuid: b0918697-a4bc-4712-8db2-6b61e1cd3099
+langcode: en
+status: true
+dependencies: {  }
+name: microsite_logo
+label: 'Microsite Logo'
+effects:
+  86ff397a-228b-4c24-be6c-52e05bcc9ee9:
+    uuid: 86ff397a-228b-4c24-be6c-52e05bcc9ee9
+    id: image_scale
+    weight: 1
+    data:
+      width: 450
+      height: null
+      upscale: false

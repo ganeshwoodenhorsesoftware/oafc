@@ -1,0 +1,11 @@
+uuid: dc371127-a2cf-41b6-91a0-a3a924ebae27
+langcode: en
+status: true
+dependencies:
+  config:
+    - media.type.private_audio
+id: media.private_audio
+target_entity_type_id: media
+target_bundle: private_audio
+default_langcode: site_default
+language_alterable: false

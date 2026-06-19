@@ -1,0 +1,44 @@
+uuid: a4408fa9-04c5-4851-8187-f6149c2ebf96
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.classified_ad
+    - field.field.commerce_product.classified_ad.body
+  module:
+    - commerce_product
+    - text
+id: commerce_product.classified_ad.default
+targetEntityType: commerce_product
+bundle: classified_ad
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: -4
+    region: content
+  title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: -5
+    region: content
+  variations:
+    type: commerce_add_to_cart
+    label: hidden
+    settings:
+      combine: true
+    third_party_settings: {  }
+    weight: 10
+    region: content
+hidden:
+  created: true
+  langcode: true
+  search_api_excerpt: true
+  stores: true
+  uid: true

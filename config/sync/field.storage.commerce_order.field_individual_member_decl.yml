@@ -1,0 +1,18 @@
+uuid: 57c57c9e-3de8-4cfd-ad3d-2cfeb69a97c0
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_order
+id: commerce_order.field_individual_member_decl
+field_name: field_individual_member_decl
+entity_type: commerce_order
+type: boolean
+settings: {  }
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

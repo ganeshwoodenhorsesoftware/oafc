@@ -1,0 +1,435 @@
+/**
+ * Live CSS.
+ */
+.live-css-nav ul a:hover {
+  color: $c-link;
+  text-decoration: none;
+}
+.live-css-nav ul .active > a {
+  color: $c-link-hover;
+}
+.live-css-v-primary i {
+  background-color: $c-primary;
+
+  &:after {
+    background: $c-primary-hover;
+  }
+}
+.live-css-v-secondary i {
+  background-color: $c-secondary;
+
+  &:after {
+    background: $c-secondary-hover;
+  }
+}
+.live-css-v-tertiary i {
+  background-color: $c-tertiary;
+
+  &:after {
+    background: $c-tertiary-hover;
+  }
+}
+.live-css-v-accent-1 i {
+  background-color: $c-accent-1;
+}
+.live-css-v-accent-2 i {
+  background-color: $c-accent-2;
+}
+.live-css-v-accent-3 i {
+  background-color: $c-accent-3;
+}
+.live-css-v-body i {
+  background-color: $c-body;
+}
+.live-css-v-link i {
+  background-color: $c-link;
+
+  &:after {
+    background: $c-link-hover;
+  }
+}
+.live-css-v-gray-base i {
+  background-color: $gray-base;
+}
+.live-css-v-gray-darker i {
+  background-color: $gray-darker;
+}
+.live-css-v-gray-dark i {
+  background-color: $gray-dark;
+}
+.live-css-v-gray i {
+  background-color: $gray;
+}
+.live-css-v-gray-light i {
+  background-color: $gray-light;
+}
+.live-css-v-gray-lighter i {
+  background-color: $gray-lighter;
+}
+.live-css-v-f-primary {
+  font-family: $f-primary;
+}
+.live-css-v-f-secondary {
+  font-family: $f-secondary;
+}
+.live-css-v-f-body {
+  font-family: $f-body;
+}
+.live-css-v-o-border-radius i {
+  background: $gray-light;
+  border-radius: $border-radius;
+}
+
+/**
+ * Button Border Radius Override - OAFC-205
+ * This override ensures all buttons use the consistent 3px border-radius
+ * and overrides Bootstrap's 4px default and any other conflicting styles.
+ * Loaded last to ensure specificity.
+ */
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+.btn,
+.btn-default,
+.btn--default,
+.btn-primary,
+.btn--primary,
+.btn--cta,
+.btn--cta-left,
+.btn--cta-sm,
+.btn--plus,
+.btn--sm,
+.btn--red,
+.btn--register-now,
+.btn-success,
+.btn-info,
+.btn-warning,
+.btn-danger,
+.btn-link,
+body.cke_editable .btn,
+body.cke_editable .btn--primary,
+.field.text-formatted.field--name-body .btn,
+.field.text-formatted.field--name-body .btn-default,
+.field.text-formatted.field--name-body .btn--default,
+.field.text-formatted.field--name-body .btn-primary,
+.field.text-formatted.field--name-body .btn--primary,
+.field.text-formatted.field--name-body .btn--cta,
+.field.text-formatted.field--name-body .btn--cta-left,
+.field.text-formatted.field--name-body .btn--cta-sm,
+.field.text-formatted.field--name-body .btn--plus,
+.field.text-formatted.field--name-body .btn-link {
+  border-radius: $button-border-radius !important;
+}
+
+/**
+ * Menu Link Buttons - OAFC-205
+ * Ensure menu links styled as buttons also get consistent border-radius.
+ */
+.menu__link,
+.menu__link--active-trail,
+.menu__link.is-active,
+a.menu__link,
+.menu .menu__link,
+.contextual-region .menu__link,
+.menu__item .menu__link {
+  border-radius: $button-border-radius !important;
+}
+
+/**
+ * Button Styling - OAFC-205
+ * Organized in cascade order: generic first, specific last.
+ */
+
+// 1. BASE BUTTON STYLES - Apply to all buttons first
+.btn,
+.btn--default,
+.btn-default,
+button,
+input[type="submit"],
+input[type="button"],
+input[type="reset"],
+a.btn,
+a.btn-default,
+a.btn--default {
+  padding: 10px 12px 13px 12px !important;
+  font-size: 20px !important;
+  font-weight: bold !important;
+  line-height: 1.0 !important;
+  text-decoration: none !important;
+
+  &:hover,
+  &:focus,
+  &:active {
+    text-decoration: none !important;
+  }
+}
+
+// 2. PRIMARY BUTTONS
+.btn-primary,
+.btn--primary,
+a.btn-primary,
+a.btn--primary,
+body.cke_editable .btn--primary,
+.field.text-formatted.field--name-body .btn-primary,
+.field.text-formatted.field--name-body .btn--primary {
+  padding: 10px 12px 10px 12px !important;
+  font-size: 16px !important;
+  font-weight: bold !important;
+  line-height: 1.0 !important;
+  color: #fff !important;
+  background-color: $c-secondary !important;
+  border-color: $c-secondary !important;
+  text-decoration: none !important;
+
+  // Arrow icon.
+  &:after {
+    @include oafc-icon();
+    content: $oafc-var-arrow-right;
+    position: relative;
+    top: 50% !important;
+    margin: 0 0 0 12px;
+    padding: 0;
+    font-size: 12px;
+    transition: color .2s ease-in-out, background-color .2s ease-in-out;
+  }
+}
+
+.btn--primary-wrap {
+  padding: 0px 10px 0px 0px;
+  width: fit-content !important;
+
+  input {
+    padding: 10px 0px 10px 10px !important;
+    font-size: 16px !important;
+  }
+
+  // Single arrow from .btn--primary-arrow; hide the one on the input.
+  input::after {
+    display: none !important;
+    content: none !important;
+  }
+}
+
+.btn--primary-wrap:hover,
+.btn--primary-wrap:focus,
+.btn--primary-wrap:focus-within,
+.btn--primary-wrap.is-arrow-hovered,
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn--primary:hover,
+.btn--primary:focus,
+.btn--primary:active,
+a.btn-primary:hover,
+a.btn-primary:focus,
+a.btn--primary:hover,
+a.btn--primary:focus,
+body.cke_editable .btn--primary:hover,
+body.cke_editable .btn--primary:focus,
+.field.text-formatted.field--name-body .btn-primary:hover,
+.field.text-formatted.field--name-body .btn-primary:focus,
+.field.text-formatted.field--name-body .btn-primary:active,
+.field.text-formatted.field--name-body .btn--primary:hover,
+.field.text-formatted.field--name-body .btn--primary:focus,
+.field.text-formatted.field--name-body .btn--primary:active {
+  color: #fff !important;
+  background-color: $c-link !important;
+  border-color: $c-link !important;
+  text-decoration: none !important;
+}
+
+// 3. LINK BUTTONS - Red buttons
+.btn-link,
+a.btn-link {
+  color: #fff !important;
+  background: $c-link !important;
+  border-color: $c-link !important;
+  padding: 10px 12px 13px 12px !important;
+  font-size: 20px !important;
+  font-weight: bold !important;
+  line-height: 1.0 !important;
+  text-decoration: none !important;
+
+  &:hover,
+  &:focus {
+    color: #fff !important;
+    background: darken($c-link, 10%) !important;
+    border-color: darken($c-link, 10%) !important;
+    text-decoration: none !important;
+  }
+}
+
+// 4. SMALL BUTTONS - Override base padding/font for compact buttons
+.btn--sm,
+.btn--red,
+a.btn--sm,
+a.btn--red {
+  padding: 7px 12px !important;
+  font-size: 15px !important;
+  font-weight: normal !important;
+  line-height: 1.0 !important;
+  color: #fff !important;
+
+  // Arrow Icon white.
+  &:after {
+    @include oafc-icon();
+    content: $oafc-var-arrow-right;
+    position: relative;
+    top: -1px;
+    margin: 0 0 0 10px;
+    padding: 0;
+    font-size: 11px;
+    transition: color .2s ease-in-out, background-color .2s ease-in-out;
+  }
+}
+
+.btn--sm:hover
+.btn--red:hover {
+  color: #fff !important;
+  background-color: $c-link !important;
+  border-color: $c-link !important;
+  text-decoration: none !important;
+}
+
+// 5. CTA BUTTONS - Most specific, overrides everything above
+.btn--cta,
+a.btn--cta,
+.btn--cta-left,
+a.btn--cta-left,
+.field.text-formatted.field--name-body .btn--cta,
+.entity-header__back-button .btn--cta-left {
+  position: relative !important;
+  display: block !important;
+  width: fit-content;
+  margin: 0 !important;
+  padding: 14px 40px 15px 15px !important;
+  font-size: 16px !important;
+  line-height: 1.0 !important;
+  font-weight: 600 !important;
+  color: #fff !important;
+  text-align: left !important;
+  background: $c-secondary !important;
+  border: none !important;
+  white-space: normal !important;
+  text-decoration: none !important;
+
+  // Arrow icon positioning - WHITE arrow on black background
+  &:after {
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    right: 12px !important;
+    color: #fff !important;
+    font-size: 14px !important;
+  }
+
+  &:hover {
+    color: #fff !important;
+    background: $c-link !important;
+    text-decoration: none !important;
+
+    &:after {
+      color: #fff !important;
+    }
+  }
+}
+
+/* Target the button using its specific classes */
+.entity-header__back-button .btn--cta-left {
+    /* New Padding: Top 14px, Right 40px, Bottom 15px, Left 40px */
+    /* Increased left padding from 15px to 40px to create space for the arrow icon */
+    padding: 14px 40px 15px 40px !important;
+}
+
+// 6. CTA SMALL BUTTONS
+.btn--cta-sm,
+a.btn--cta-sm,
+.field.text-formatted.field--name-body .btn--cta-sm {
+  position: relative !important;
+  display: block !important;
+  width: fit-content;
+  margin: 0 !important;
+  padding: 7px 32px 7px 9px !important;
+  font-size: 14px !important;
+  line-height: 1.0 !important;
+  font-weight: normal !important;
+  color: #fff !important;
+  text-align: left !important;
+  background: $c-secondary !important;
+  border: none !important;
+  white-space: normal !important;
+  text-decoration: none !important;
+
+  // Arrow icon positioning - WHITE arrow on black background
+  &:after {
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    right: 10px !important;
+    font-size: 11px !important;
+    color: #fff !important;
+  }
+
+  &:hover {
+    color: #fff !important;
+    background: $c-link !important;
+    text-decoration: none !important;
+
+    &:after {
+      color: #fff !important;
+    }
+  }
+}
+
+// 7. PLUS BUTTONS
+.btn--plus,
+a.btn--plus,
+.field.text-formatted.field--name-body .btn--plus {
+  position: relative !important;
+  display: inline-block !important;
+  padding: 14px 15px 15px 40px !important;
+  font-size: 16px !important;
+  line-height: 1.0 !important;
+  font-weight: 600 !important;
+  color: #fff !important;
+  text-align: left !important;
+  background: $c-secondary !important;
+  border: none !important;
+  white-space: normal !important;
+  text-decoration: none !important;
+
+  // Plus icon positioning - WHITE icon on black background
+  &:after {
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    left: 12px !important;
+    color: #fff !important;
+    font-size: 18px !important;
+  }
+
+  &:hover {
+    color: #fff !important;
+    background: $c-link !important;
+    text-decoration: none !important;
+
+    &:after {
+      color: #fff !important;
+    }
+  }
+}
+
+/**
+ * Marketplace Search Form Exception - OAFC-205
+ * Keep original compact styling for marketplace/classified ads search buttons.
+ */
+.marketplace-search .view-header .views-exposed-form .form-submit,
+.views-exposed-form.block-views-exposed-filter-blockbuyers-guide-buyers-guide .form-submit,
+.views-exposed-form.block-views-exposed-filter-blockclassified-ads-used-equipment .form-submit {
+  padding: 4px 40px !important;
+  height: 30px !important;
+  font-size: 15px !important;
+  line-height: 1.0 !important;
+  font-weight: normal !important;
+}

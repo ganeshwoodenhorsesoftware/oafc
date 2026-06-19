@@ -1,0 +1,15 @@
+uuid: f5c6f28f-b707-4289-9ded-2063fbe2a855
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_tax
+third_party_settings:
+  commerce_tax:
+    taxable_type: services
+id: job_post
+label: 'Job post'
+traits: {  }
+locked: false
+purchasableEntityType: commerce_product_variation
+orderType: classified_ad

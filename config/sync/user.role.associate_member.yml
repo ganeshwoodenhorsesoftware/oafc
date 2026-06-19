@@ -1,0 +1,14 @@
+uuid: 2b1a3389-3788-4c7c-916d-02ae97967f7a
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_order
+    - file
+id: associate_member
+label: 'Associate Member'
+weight: -3
+is_admin: null
+permissions:
+  - 'delete own files'
+  - 'view own commerce_order'

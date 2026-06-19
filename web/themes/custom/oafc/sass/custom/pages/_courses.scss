@@ -1,0 +1,108 @@
+/**
+ * Courses
+ */
+.node--type-course.node--view-mode-full {
+  .field--name-field-date-range {
+    margin: 0 0 20px 0;
+    font-weight: 600;
+  }
+}
+
+// Courses - Page Listing.
+.view-regional-training-centres.view-display-id-page_listing {
+  .base-accordion {
+    margin: 0;
+
+    .base-accordion__header {
+      font-size: 21px;
+    }
+    .base-accordion__item {
+      border-bottom: 1px solid #e9e9e9;
+    }
+  }
+}
+.training-centre-listing-item {
+  position: relative;
+  clear: both;
+  margin: 0 0 25px 0;
+  padding: 20px 0 0 118px;
+  min-height: 100px;
+}
+.training-centre-listing-item__image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px;
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+.training-centre-listing-item__address {
+  .field--name-field-address {
+    .address-line1,
+    .address-line2,
+    .postal-code,
+    .country {
+      display: none;
+    }
+    p {
+      margin: 0;
+      padding: 0;
+
+      br {
+        display: none;
+      }
+    }
+  }
+}
+
+// Courses - Nav Listing.
+.view-regional-training-centres.view-display-id-nav_listing {
+  .base-accordion {
+    margin: 0;
+
+    .base-accordion__content {
+      padding: 10px;
+      font-size: 14px;
+
+      .views-row .training-centre__title {
+        margin-bottom: 8px;
+      }
+      .views-row:last-child .training-centre__title {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+.training-centre__title.is-active a {
+  color: #000;
+}
+
+// Regional Training Centres.
+.page-node-type-training-centre {
+  .page-title {
+    margin: 0 0 35px 0;
+    padding: 0 0 15px 0;
+    font-size: 50px;
+    line-height: 1.2;
+    font-weight: 600;
+    color: $c-body;
+    border-bottom: 1px solid #ccc;
+  }
+}
+.view-all-at-training-centre {
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  a {
+    color: $c-body-link;
+
+    &:hover,
+    &:focus {
+      color: $c-body-link-hover;
+    }
+  }
+}

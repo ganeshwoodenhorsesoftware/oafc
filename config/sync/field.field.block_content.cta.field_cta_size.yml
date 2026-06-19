@@ -1,0 +1,23 @@
+uuid: 512b6811-c039-4532-becb-f2663d0cafb1
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.cta
+    - field.storage.block_content.field_cta_size
+  module:
+    - options
+id: block_content.cta.field_cta_size
+field_name: field_cta_size
+entity_type: block_content
+bundle: cta
+label: 'CTA Size'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: 285x104
+default_value_callback: ''
+settings: {  }
+field_type: list_string

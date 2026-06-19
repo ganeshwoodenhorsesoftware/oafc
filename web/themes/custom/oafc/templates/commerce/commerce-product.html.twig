@@ -1,0 +1,218 @@
+{#
+/**
+ * @file
+ *
+ * Default product template.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the wrapper.
+ * - product: The rendered product fields.
+ *   Use 'product' to print them all, or print a subset such as
+ *   'product.title'. Use the following code to exclude the
+ *   printing of a given field:
+ *   @code
+ *   {{ product|without('title') }}
+ *   @endcode
+ * - product_entity: The product entity.
+ * - product_url: The product URL.
+ *
+ * @ingroup themeable
+ */
+#}
+
+{# Fallback product thumbnail placeholder. #}
+{% set product_placeholder_thumbnail_url = base_path ~ directory ~ '/gfx/listing_placeholder.jpg' %}
+{% set product_placeholder_thumbnail_alt = product_entity.title.value %}
+
+{# Listing. #}
+{% if view_mode == 'listing' %}
+
+  {# Set product thumbnail. #}
+  {% if product_variation_images %}
+    {# Set thumbnail to first variation, first image. #}
+    {%
+    set product_image_thumbnail = {
+    '#theme':      'image_style',
+    '#style_name': 'product_thumbnail',
+    '#uri':        product_variation_images.0.images.0.entity.uri.value,
+    '#alt':        product_variation_images.0.images.0.alt,
+    }
+    %}
+  {% endif %}
+
+  <div class="listing-item">
+    <div class="listing-item__image">
+      <a href="{{ product_url }}" aria-label="{{ 'View Details'|t }}">
+        {% if product_image_thumbnail %}
+          {{ product_image_thumbnail }}
+        {% else %}
+          <img src="{{ product_placeholder_thumbnail_url }}" alt="{{ product_placeholder_thumbnail_alt }}" />
+        {% endif %}
+      </a>
+    </div>
+    <div class="listing-item__title">
+      <h3><a href="{{ product_url }}">{{ product_entity.title.value }}</a></h3>
+    </div>
+    <div class="listing-item__sub-title">
+      {{ product.variation_price }}
+    </div>
+    <div class="listing-item__body">
+      {% if product_entity.body.summary %}
+        {{ product_entity.body.summary }}
+      {% else %}
+        {% set teaser_text = product_entity.body.value|raw|striptags %}
+        {{ teaser_text|length > 200 ? teaser_text|slice(0, 200) ~ '...' : teaser_text }}
+      {% endif %}
+    </div>
+    <a href="{{ product_url }}" class="btn btn--sm btn--red">{{ 'View Details'|t }}</a>
+  </div>
+
+{# Teaser/Listing Display. #}
+{% elseif view_mode == 'teaser' %}
+
+  {# Set product thumbnail. #}
+  {% if product_variation_images %}
+    {# Set thumbnail to first variation, first image. #}
+    {%
+    set product_image_thumbnail = {
+    '#theme':      'image_style',
+    '#style_name': 'product_slider_block_image',
+    '#uri':        product_variation_images.0.images.0.entity.uri.value,
+    '#alt':        product_variation_images.0.images.0.alt,
+    }
+    %}
+  {% endif %}
+
+  <div class="product-teaser-item">
+    <a href="{{ product_url }}">
+      <div class="product-teaser-item__title">
+        <strong>{{ 'For Sale'|t }}</strong>
+        {{ product_entity.title.value }}
+      </div>
+
+      <div class="product-teaser-item__image">
+        {% if product_image_thumbnail %}
+          {{ product_image_thumbnail }}
+        {% else %}
+          <img src="{{ product_placeholder_thumbnail_url }}" alt="{{ product_placeholder_thumbnail_alt }}" />
+        {% endif %}
+      </div>
+    </a>
+  </div>
+
+{# Node display. #}
+{% else %}
+
+  <article{{ attributes }} class="product product--full product--default">
+    <div class="entity-header clearfix">
+      <div class="entity-header__back-button">
+        {% if product_entity.bundle == 'used_equipment' %}
+          {% set back_url = base_path ~ 'marketplace-careers/used-equipment' %}
+        {% else %}
+          {% set back_url = base_path ~ 'marketplace-careers/oafc-product-catalog' %}
+        {% endif %}
+        <a href="{{ back_url }}" class="btn btn--cta btn--cta-left">{{ 'Return to View All'|t }}</a>
+      </div>
+
+      {# Social Media Sharing. #}
+      <div class="entity-header__social-media-sharing">
+        <div class="social-media-sharing-nav">
+          <ul class="social-media-sharing-menu clearfix">
+            <li class="social-media-sharing-menu__item">
+              <a class="social-media-sharing-menu__link social-media-sharing-menu__link--email" href="mailto:?subject={{ encoded_title }}&amp;body={{ absolute_encoded_path }}" target="_blank" aria-label="{{ 'E-Mail'|t }}" title="{{ 'E-Mail'|t }}"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>
+            </li>
+            <li class="social-media-sharing-menu__item">
+              <a class="social-media-sharing-menu__link social-media-sharing-menu__link--facebook" href="https://facebook.com/sharer/sharer.php?u={{ absolute_encoded_path }}" target="_blank" aria-label="{{ 'Share on Facebook'|t }}" title="{{ 'Share on Facebook'|t }}"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+            </li>
+            <li class="social-media-sharing-menu__item">
+              <a class="social-media-sharing-menu__link social-media-sharing-menu__link--linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ absolute_encoded_path }}&amp;title={{ encoded_title }}&amp;summary={{ encoded_title }}&amp;source={{ absolute_encoded_path }}" target="_blank" aria-label="{{ 'Share on LinkedIn'|t }}" title="{{ 'Share on LinkedIn'|t }}"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+            </li>
+            <li class="social-media-sharing-menu__item">
+              <a class="social-media-sharing-menu__link social-media-sharing-menu__link--twitter" href="https://twitter.com/intent/tweet/?text={{ encoded_title }}&amp;url={{ absolute_encoded_path }}" target="_blank" aria-label="{{ 'Share on Twitter'|t }}" title="{{ 'Share on Twitter'|t }}"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+            </li>
+            <li class="social-media-sharing-menu__item">
+              <a class="social-media-sharing-menu__link social-media-sharing-menu__link--pinterest" href="https://pinterest.com/pin/create/button/?url={{ absolute_encoded_path }}&amp;media={{ absolute_encoded_path }}&amp;description={{ encoded_title }}" target="_blank" aria-label="{{ 'Share on Pinterest'|t }}" title="{{ 'Share on Pinterest'|t }}"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      {# / Social Media Sharing. #}
+
+      {% if is_admin %}
+        <div class="entity-header__action">
+          <a href="#" class="btn btn--plus">{{ 'Place an Ad'|t }}</a>
+        </div>
+      {% endif %}
+    </div>
+    <div class="row">
+      {% if product_variation_images %}
+        <div class="col-md-5">
+          {# Set product thumbnail. #}
+          {# Set thumbnail to first variation, first image. #}
+          {%
+          set product_image_thumbnail = {
+          '#theme':      'image_style',
+          '#style_name': 'logo_listing',
+          '#uri':        product_variation_images.0.images.0.entity.uri.value,
+          '#alt':        product_variation_images.0.images.0.alt,
+          }
+          %}
+
+          {{ attach_library('magnific_popup/magnific_popup') }}
+
+          <div class="product-slider">
+            <div class="product-slider__main-slider">
+              {% for product_variation in product_variation_images %}
+                {% for product_variation_image in product_variation.images %}
+                  <div>
+                    <div class="product-slider__main-slider__item">
+                      <a href="{{ product_variation_image.entity.uri.value|image_style('full_size') }}" class="magnific-popup-gallery">
+                        <span><img src="{{ product_variation_image.entity.uri.value|image_style('product_thumbnail') }}" alt="{{ product_variation_image.alt }}" /></span>
+                      </a>
+                    </div>
+                  </div>
+                {% endfor %}
+              {% endfor %}
+            </div>
+            <div class="product-slider__nav-slider">
+              {% for product_variation in product_variation_images %}
+                {% for product_variation_image in product_variation.images %}
+                  <div>
+                    <a class="product-slider__nav-slider__item">
+                      <span><img src="{{ product_variation_image.entity.uri.value|image_style('product_thumbnail') }}" alt="{{ product_variation_image.alt }}" /></span>
+                    </a>
+                  </div>
+                {% endfor %}
+              {% endfor %}
+            </div>
+          </div>
+
+        </div>
+      {% endif %}
+      <div class="{{ product_variation_images ? 'col-md-7' : 'col-md-12' }}">
+        <div class="product_main-content">
+          <h2 class="product__title">{{ product_entity.title.value }}</h2>
+
+          <div class="product__price">
+            <div class="product__price-prefix">{{ 'Asking Price:'|t }}</div>
+            {{ product.variation_price }}
+          </div>
+
+          <div class="product__body">
+            <div class="field text-formatted">
+              {{ product_entity.body.value|raw }}
+            </div>
+          </div>
+
+          {# Hide product form from used equipment only. #}
+          {% if product_entity.bundle != 'used_equipment' %}
+            <div class="product__form">
+              {{- product|without('variation_attributes','') -}}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </article>
+
+{% endif %}
