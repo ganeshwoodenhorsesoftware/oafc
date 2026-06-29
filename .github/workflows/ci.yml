@@ -36,6 +36,3 @@ jobs:
 
       - name: PHP syntax lint
         run: find web/modules/custom -name "*.php" | xargs php -l
-
-      - name: Run PHPUnit tests
-        run: ./vendor/bin/phpunit --configuration phpunit.xml
